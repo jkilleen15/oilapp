@@ -3,7 +3,7 @@ import CollapsableMapper from "./CollapsableMapper";
 
 function Movies(props) {
   return (
-    <CollapsableMapper data={props.movies} path="movie" field="body" />
+    <CollapsableMapper data={props.movies} path="movie" field="title" />
   );
 }
 export default Movies;

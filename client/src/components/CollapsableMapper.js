@@ -15,7 +15,7 @@ class CollapsableMapper extends Component {
         return (
           <div key={i}>
             {d[this.props.field]}
-            <Link to={"/" + this.props.path + "/" + d._id}> View Movie Details </Link>
+            <Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link>
           </div>
         );
       });
