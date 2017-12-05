@@ -1,13 +1,15 @@
 import express from "express";
 const router = express.Router();
-// import {listComment,showComment,createComment,updateComment,removeComment}
+// add deleteMovie
 import {listMovies,showMovie,createMovie}
 from "../controllers/MoviesController";
 
 router.get("/movies", listMovies);
 router.get("/movies/:id", showMovie);
+router.get("/movies/create", createMovie); // ?
+router.post("/movies/create", createMovie); // ?
 router.post("/movies", createMovie);
-// router.put("/comments/:id", updateComment);
-// router.delete("/comments/:id", removeComment);
+// add delete
+// router.delete("/movies/:id", removeMovie);
 
 export default router;

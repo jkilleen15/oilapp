@@ -20,8 +20,11 @@ export default (App);
 */
 import React, { Component } from "react";
 import "./App.css";
-import Main from "./components/Main";
+// ListOfUsers
+import ListOfMovies from "./components/ListOfMovies";
+// import Main from "./components/Main";
 import MovieSingleContainer from "./containers/MovieSingleContainer";
+import CreateMovieListingContainer from "./containers/CreateMovieListingContainer";
 // import CommentSingleContainer from "./containers/CommentSingleContainer";
 // import ContactSingleContainer from "./containers/ContactSingleContainer";
 // import ProductSingleContainer from "./containers/ProductSingleContainer";
@@ -35,7 +38,12 @@ import {
 class App extends Component {
   constructor() {
     super();
-    this.state = {myMovies: []};
+    // IS THIS STATE BEING USED
+    // I THINK I CAN CHANGE NAME AND NOTHING CHANGES
+    // HOW CONNECTED TO PROPS REQUIRED IN MAIN (MOVIES)
+    // HOW DO I INIITALLY POPULATE REQUIRED MOVIES ARRAY PROP
+       // DEFINED IN MAIN/LIST OF USERS?
+    this.state = {movies: []};
   }
 
   componentDidMount() {
@@ -46,18 +54,29 @@ class App extends Component {
   }
 
   render() {
+  /*
+  X Create a route to show the list container
+    X Main / MoviesContainer
+  X Create a route to show the create container
+    Currently built into Main with MoviesContainer
+    ? build CreateMovieListingContainer as separate destination?
+  X Create a route to show the detail container.
+    X MovieSingleContainer
+  */
     return (
       <div>
         <BrowserRouter>
           <Switch>
             <Route path="/movie/:id" component={MovieSingleContainer} />
-            <Route path="/" component={Main} />
+            <Route path="/create" component={CreateMovieListingContainer} />
+            <Route path="/" component={ListOfMovies} />
           </Switch>
         </BrowserRouter>
       </div>
     );
   }
 }
+
 export default (App);
 
 /*

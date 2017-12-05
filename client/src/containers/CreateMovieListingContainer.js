@@ -1,11 +1,6 @@
 import { connect } from "react-redux";
 import CreateMovieListing from "../components/CreateMovieListing";
-import {
-  createMovie,
-  // createVehicle,
-  // createContact,
-  // createComment
-} from "../actions";
+import { createMovie } from "../actions";
 
 function mapDispatchToProps(dispatch) {
   return {

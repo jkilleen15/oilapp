@@ -19,13 +19,37 @@ function moviesLoaded(movies) {
 
 // SINGLE MOVIE
 
+/*
+export function createMovie(m) {
+  return function (dispatch) {
+    fetch("/create", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(m)
+    }).then(() => dispatch(loadMovies()));
+  };
+}
+*/
+
+
 export function createMovie(m) {
   return function (dispatch) {
     fetch("/movies", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(m)
-    }).then(() => dispatch(loadMovies()));
+  //  }).then(() => dispatch(loadMovies()));
+    }).then(() => dispatch(createMovieDone()))
+    .then(() => dispatch(loadMovies()));
+  };
+}
+// function getMovieDone(movie) {
+function createMovieDone(newMovie) {
+  alert('new movie added!')
+  return {
+    type: "CREATE_MOVIE_DONE",
+    value: newMovie
+    // value: movie
   };
 }
 

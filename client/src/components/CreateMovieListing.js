@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
-class CreateMovieListing extends React.Component {
+class CreateMovieListing extends Component {
   constructor() {
     super();
     this.state = {
@@ -85,7 +86,9 @@ class CreateMovieListing extends React.Component {
             </div>
             <button>Create</button>
           </form>
-        </div></div>
+        </div>
+        <li><Link to={"/"}> return to lising </Link></li>
+      </div>
 
     );
   }

@@ -11,7 +11,7 @@ const myMovieServer = express();
 myMovieServer.use(bodyParser.json());
 myMovieServer.use(movieRoutes);
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 3001;
 myMovieServer.listen(port, () => {
   console.log(`Listening on port:${port}`);
 });
