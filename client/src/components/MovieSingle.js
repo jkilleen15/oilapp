@@ -1,0 +1,30 @@
+import React, {Component} from "react";
+
+class MovieSingle extends Component {
+
+  componentDidMount() {
+    const thisMovieId = this.props.match.params.id;
+    this.props.getMovie(thisMovieId);
+  }
+
+  render(){
+    const PersonImg = "http://avantsynergy.com/wp-content/uploads/2016/03/highlight-reel.png";
+    console.log(this.props.movie);
+    console.log(this.props.movie.title);
+    return (
+      <div>
+        <h3>Movie Id: {this.props.movie._id}</h3>
+        <h3>Movie Poster or Image URL: <img src={this.props.movie.image || PersonImg}
+          alt={this.props.movie.title + " Image"} /></h3>
+        <h3>Movie Title: {this.props.movie.title}</h3>
+        <h3>Date watched: {this.props.movie.date || "n/a"}</h3>
+        <h3>Viewing Format: {this.props.movie.format || "n/a"}</h3>
+        <h3>Genre: {this.props.movie.genre}</h3>
+        <h3>Description: {this.props.movie.plot}</h3>
+        <h3>Keywords: {this.props.movie.keywords}</h3>
+      </div>
+    );
+  }
+}
+
+export default MovieSingle;

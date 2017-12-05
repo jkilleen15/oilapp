@@ -3,25 +3,39 @@
 * Don’t use this readme to figure out what code to type
 * Use all other projects we have done as code examples
 * Pick a real life thing to use as a model. Vehicle, Product, Movie …etc
-* Implement 5 properties for this model. 
+* Implement 5 properties for this model.
 * Make sure if you are on a windows machine you remove the single quotes from package.json
+
+Movie
+  Title
+  Image or - easier - premise desc
+  Genre
+  Keywords
+  Date Watched
+
+Oil
+  name
+  ok usage (internal, external, aroma only)
+  external body
+  aromatherapy
+  internal body
 
 ## Client
 * Client code goes in client/src
 
 ### React
-* Create a function component that list out a collection of your models (ListOfUsers)
+* Create a function component that lists out a collection of your models (ListOfUsers)
     * Use prop types to define what props the component needs
-    * It should probably need a prop named after the plural of your model, and it should probably be an array
+    * It should probably need (require) a prop named after the plural of your model, and it should probably be an array
     * Probably want to map over this array and create some divs or li’s showing 3 of the properties of the item
-    * Create a Link on each item so you can navigate to the detail page 
+    * Create a Link on each item so you can navigate to the detail page
     * Create a button on each item so you can delete the item
 * Create a class component that makes a new model (redux fetch practice)
     * Create a form and a button
     * Put a label and an input for each property your model has
     * Bonus - use a drop down if there are a limited number of values for a property
     * Register onChange for each input and use setState to store the information typed in
-    * Register onSubmit for the form. 
+    * Register onSubmit for the form.
     * onSubmit call an action called createThing(change it to make sense for your model)
 * Create a function component that shows details of one thing (UserDetail)
     * Use a prop that has the array of your models
@@ -29,7 +43,7 @@
     * Use whatever html you want to show all of the properties of your thing
 * App.js
     * componentDidMount, call loadThings
-    
+
 ### React Router
 * Import necessary components from react-router-dom into App.js
 * Make sure to wrap everything in BrowserRouter
@@ -37,7 +51,7 @@
 * Create a route to show the create container
 * Create a route to show the detail container. Make sure this route has a variable in it
 * Make sure to wrap all routes in Switch
-* Create links to the list and create routes, put them anywhere in App.js outside of the Switch. 
+* Create links to the list and create routes, put them anywhere in App.js outside of the Switch.
 
 ### Redux
 
@@ -97,4 +111,3 @@
 
 ## Bonus
 * Create the edit component by reusing the create component
-
