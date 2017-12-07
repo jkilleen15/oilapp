@@ -43,6 +43,21 @@ export function createMovie(request, response) {
     });
 }
 
+// not finished, is this where i say remove or pop?
+export function deleteMovie(request, response) {
+  console.log("delete movie controller reached");
+  Movie.findByIdAndRemove(request.params.id).exec()
+  // .then(alert("movie deleted!"))
+  .then(movies => {
+  return response.json(movies);
+  // Movie.findById(request.params.id).exec()   // findByIdAndRemove
+    // .then(movieToDelete => {
+      // movieToDelete.remove();
+      // return response.json(movieToDelete);
+  });
+  (alert("movie deleted!"));
+}
+
 // FUNCTIONS BELOW NOT UPDATED
 /*
 export function updateComment(request, response) {

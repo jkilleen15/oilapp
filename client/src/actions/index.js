@@ -1,4 +1,9 @@
 // MOVIES
+/*
+X Create actions for loading your models and models loaded
+    X loadThings() - do a fetch get to “/things”
+    X thingsLoaded(things) - THINGS_LOADED
+*/
 
 export function loadMovies() {
   return function (dispatch) {
@@ -18,19 +23,11 @@ function moviesLoaded(movies) {
 }
 
 // SINGLE MOVIE
-
 /*
-export function createMovie(m) {
-  return function (dispatch) {
-    fetch("/create", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(m)
-    }).then(() => dispatch(loadMovies()));
-  };
-}
+X Create an action for saving a new model
+    X createThing(thing) - do a fetch post to “/things”
+    X when the fetch is complete, dispatch to loadThings
 */
-
 
 export function createMovie(m) {
   return function (dispatch) {
@@ -43,7 +40,7 @@ export function createMovie(m) {
     .then(() => dispatch(loadMovies()));
   };
 }
-// function getMovieDone(movie) {
+
 function createMovieDone(newMovie) {
   alert('new movie added!')
   return {
@@ -52,6 +49,8 @@ function createMovieDone(newMovie) {
     // value: movie
   };
 }
+
+// ////////
 
 export function getMovie(id) {
   return function (dispatch) {
@@ -70,7 +69,154 @@ function getMovieDone(movie) {
     value: movie
   };
 }
-// //
+
+/*
+* Create an action for deleting an item
+    * deleteThing(id) - do a fetch delete to “/things/” + id
+    * when the fetch is complete, dispatch to loadThings
+
+*/
+
+export function deleteMovie(id) {
+  console.log("delete movie reached");
+  console.log("id: " + id);
+  return function (dispatch) {
+    // function deleteData(item, url) {
+    return fetch(`/movies/${id}`, {
+      method: "delete"
+    })
+      // .then(response => response.json())
+    // }
+     .then(console.log("fetch complete"))
+     // .then(id => dispatch(deleteMovieDone(id)));
+     .then(() => dispatch(loadMovies()));
+  };
+}
+// function getMovieDone(movie) {
+// function deleteMovieDone() {
+//   alert("movie deleted!");
+//  return {
+//    type: "DELETE_MOVIE_DONE",
+    // value: deletedMovie
+    // value: movie
+//  };
+// }
+
+/*
+export function deleteMovie(id) {
+  console.log("delete movie reached");
+  return function (dispatch) {
+    fetch(`/movies/${id}`)
+    .then(console.log("fetch complete"))
+    .then( (response) => {
+      return response.json();
+    })
+      .then(console.log("response to json"))
+      .then((movie) => {
+        dispatch(deleteMovieDone(movie))
+      .then(() => dispatch(loadMovies()));
+      });
+  };
+}
+
+function deleteMovieDone(movie) {
+  console.log("delete movie done reached");
+  return {
+    type: "DELETE_MOVIE_DONE",
+    value: movie
+  };
+}
+
+/*
+
+export function deleteMovie(id) {
+  console.log({id});
+  return function (dispatch) {
+    fetch(`/movies/${id}`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      id: JSON.stringify(id)
+    })// .then( (response) => {
+      // return response.json();
+    // })
+    .then(() => dispatch(movieDeleted()))
+    .then(() => dispatch(loadMovies()));
+
+  };
+}
+
+function movieDeleted() {
+  alert('movie deleted!')
+  return {
+    type: "MOVIES_DELETED",
+  //  value: movies
+  };
+}
+
+/*
+export function deleteMovie(id) {
+  return function (dispatch) {
+    fetch(`/movies/${id}`)
+    .then( (response) => {
+      return response.json();
+    }).then(alert("movie deleted!"))
+     .then(() => {
+       dispatch(loadMovies());
+     });
+  };
+}
+
+/*
+export function deleteMovie(id) {
+  return function (dispatch) {
+    fetch(`/movies/${id}`)
+    .then( (response) => {
+      return response.json();
+    })
+    .then(alert('movie deleted'))
+    .then(() => dispatch(loadMovies()));
+  };
+}
+
+    .then( (response) => {
+      return response.json();
+    }).then((movie) => {
+      dispatch(getMovieDone(movie));
+    });
+  };
+}
+*/
+
+/*
+export function deleteMovie(id) {
+  return function (dispatch) {
+    fetch(`/movies/${id}`)
+    .then( (response) => {
+      return response.json();
+    }).then(() => {
+      dispatch(deleteMovieDone());
+    });
+  };
+}
+
+function deleteMovieDone(deletedMovie) {
+  return {
+    type: "GET_MOVIE_DONE",
+    value: deletedMovie
+  };
+}
+*/
+
+/*
+function deleteMovieDone() {
+  alert("movie deleted!");
+  return {
+    type: "DELETE_MOVIE_DONE",
+    //value: deletedMovie
+  };
+}
+*/
+
 /*
 export function createMovie(movie) {
   return function (dispatch) {

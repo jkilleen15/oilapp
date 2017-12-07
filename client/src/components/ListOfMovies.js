@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviesContainer from "../containers/MoviesContainer";
+
 // import CreateMovieListingContainer from "../containers/CreateMovieListingContainer";
 
 function ListOfMovies() {

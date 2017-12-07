@@ -30,7 +30,8 @@ class CreateMovieListing extends Component {
             <div>
             Movie Poster or Image URL (please enter a URL or leave empty, not required):
               <input onChange={(e) => {
-                const movie = {image: e.target.value};
+                // const PersonImg = "http://avantsynergy.com/wp-content/uploads/2016/03/highlight-reel.png";
+                const movie = {image: e.target.value || ""}
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
                 });

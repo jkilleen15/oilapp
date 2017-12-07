@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+// import { deleteMovie } from "../actions";
 
 class CollapsableMapper extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {visible: true};
   }
+
+//  componentDidMount() {
+  //  const thisMovieId = this.props.match.params.id;
+  //  this.props.deleteMovie(thisMovieId);
+//  }
+
   render() {
     let buttonText = "Hide";
     let movieDivs = "";
@@ -19,6 +26,11 @@ class CollapsableMapper extends Component {
             <li>{d[this.props.field2]}</li>
             <li>{d[this.props.field3]}</li>
             <li><Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link></li>
+
+              <button onClick={this.props.deleteMovie}>
+                DELETE THIS MOVIE
+              </button>
+
             </ul>
           </div>
         );

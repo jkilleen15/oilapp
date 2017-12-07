@@ -23,11 +23,9 @@ import "./App.css";
 // ListOfUsers
 import ListOfMovies from "./components/ListOfMovies";
 // import Main from "./components/Main";
+// import MovieContainer from "./containers/MovieContainer";
 import MovieSingleContainer from "./containers/MovieSingleContainer";
 import CreateMovieListingContainer from "./containers/CreateMovieListingContainer";
-// import CommentSingleContainer from "./containers/CommentSingleContainer";
-// import ContactSingleContainer from "./containers/ContactSingleContainer";
-// import ProductSingleContainer from "./containers/ProductSingleContainer";
 
 import {
    BrowserRouter,

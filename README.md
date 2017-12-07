@@ -35,7 +35,7 @@ X Create a function component that lists out a collection of your models (ListOf
     X Probably want to map over this array and create some divs or li’s showing 3 of the properties of the item
     X Create a Link on each item so you can navigate to the detail page
 
-    * Create a button on each item so you can delete the item
+    X Create a button on each item so you can delete the item
 
 X Create a class component that makes a new model (redux fetch practice)
       --> components/CreateMovieListing
@@ -57,8 +57,7 @@ X Create a function component that shows details of one thing (UserDetail)
     * Use whatever html you want to show all of the properties of your thing
 
 * App.js
-    * componentDidMount, call loadThings
-      -->loadMovies
+    X componentDidMount, call loadThings  -->loadMovies
 
 ### React Router
 X Import necessary components from react-router-dom into App.js
@@ -68,15 +67,15 @@ X Create a route to show the list container
   X Main / MoviesContainer
 
 X Create a route to show the create container
-  Currently built into Main with MoviesContainer
-  ? build CreateMovieListingContainer as separate destination?
-  
+  X build CreateMovieListingContainer as separate 'destination'
+
 X Create a route to show the detail container.
   X MovieSingleContainer
   X Make sure this route has a variable in it
 X Make sure to wrap all routes in Switch
 
-* Create links to the list and create routes, put them anywhere in App.js outside of the Switch.
+* Create links to the list (NEED TO - currently resides on page) and
+X create routes, put them anywhere in App.js outside of the Switch.
 
 ### Redux
 
@@ -86,13 +85,14 @@ X Make sure to wrap all routes in Switch
     X Create actions for loading your models and models loaded
         X loadThings() - do a fetch get to “/things”
         X thingsLoaded(things) - THINGS_LOADED
+
     X Create an action for saving a new model
         X createThing(thing) - do a fetch post to “/things”
         X when the fetch is complete, dispatch to loadThings
 
-    * Create an action for deleting an item
-        * deleteThing(id) - do a fetch delete to “/things/” + id
-        * when the fetch is complete, dispatch to loadThings
+    X Create an action for deleting an item
+        X deleteThing(id) - do a fetch delete to “/things/” + id
+        X when the fetch is complete, dispatch to loadThings
 
     * Create reducer for the state
         * care about the action THINGS_LOADED
@@ -100,11 +100,12 @@ X Make sure to wrap all routes in Switch
     X Create containers for all of you components
         X mapStateToProps and mapDispatchToProps
 
-        * The list component container should mapStateToProps for the array of things
-        * The list component container should mapDispatchToProps for the deleteThing action
+        X The list component container should mapStateToProps for the array of things
+        X The list component container should mapDispatchToProps for the deleteThing action
 
-        * The new thing component container should mapDispatchToProps for the saveThingAction
-        * AppContainer should mapDispatchToProps for loadThings.
+        X The new thing component container should mapDispatchToProps for the saveThingAction
+
+        X AppContainer should mapDispatchToProps for loadThings.
 
 ## Server - use advanced-express-practice as an example
 X The code for this goes in the /server folder
@@ -115,9 +116,16 @@ X Create a Route and Controller for your thing
 
 // NEED TO CREATE UPDATE AND DELETE
 // IS UPDATE THE SAME AS EDIT???(RE: BONUS)
-* In the Route, create routes for getting all things, getting one thing by id, deleting one thing, updating one thing, and creating one thing
 
-* In the Controller, create functions for list,show,create,update,remove
+* In the Route,
+X create routes for getting all things,
+X getting one thing by id,
+X deleting one thing,
+updating one thing, and
+X creating one thing
+
+* In the Controller, create functions for list,show,create,remove(delete)
+update
 
 ## Points
 * When I yarn start, the web page loads with no errors - 10pts
