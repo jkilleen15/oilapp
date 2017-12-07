@@ -82,25 +82,26 @@ export function deleteMovie(id) {
   console.log("id: " + id);
   return function (dispatch) {
     // function deleteData(item, url) {
-    return fetch(`/movies/${id}`, {
+    fetch(`/movies/${id}`, {
       method: "delete"
     })
       // .then(response => response.json())
     // }
      .then(console.log("fetch complete"))
-     // .then(id => dispatch(deleteMovieDone(id)));
-     .then(() => dispatch(loadMovies()));
+     .then(() => dispatch(loadMovies()))
+     .then(() => dispatch(deleteMovieDone()));
   };
 }
 // function getMovieDone(movie) {
-// function deleteMovieDone() {
-//   alert("movie deleted!");
-//  return {
-//    type: "DELETE_MOVIE_DONE",
+function deleteMovieDone() {
+  // alert("movie deleted!");
+  console.log("movie deleted!");
+  return {
+    type: "DELETE_MOVIE_DONE",
     // value: deletedMovie
     // value: movie
-//  };
-// }
+  };
+}
 
 /*
 export function deleteMovie(id) {

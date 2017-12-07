@@ -49,13 +49,14 @@ export function deleteMovie(request, response) {
   Movie.findByIdAndRemove(request.params.id).exec()
   // .then(alert("movie deleted!"))
   .then(movies => {
+  // alert("movie deleted!");
   return response.json(movies);
   // Movie.findById(request.params.id).exec()   // findByIdAndRemove
     // .then(movieToDelete => {
       // movieToDelete.remove();
       // return response.json(movieToDelete);
   });
-  (alert("movie deleted!"));
+  // (alert("movie deleted!"));
 }
 
 // FUNCTIONS BELOW NOT UPDATED
