@@ -42,8 +42,8 @@ X Create a class component that makes a new model (redux fetch practice)
     X Create a form and a button
     X Put a label and an input for each property your model has
 
-    * Bonus - use a drop down if there are a limited number of values for a property
-      --> add for genre, format
+    X Bonus - use a drop down if there are a limited number of values for a property
+      X add for genre, format
 
     X Register onChange for each input and use setState to store the information typed in
     X Register onSubmit for the form.

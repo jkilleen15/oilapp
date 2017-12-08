@@ -14,7 +14,7 @@ class MovieSingle extends Component {
     return (
       <div>
         <h3>Movie Id: {this.props.movie._id}</h3>
-        <h3>Movie Poster or Image URL: <img src={this.props.movie.image || PersonImg}
+        <h3>Movie Poster or Image URL: <br /><img src={this.props.movie.image || PersonImg}
           alt={this.props.movie.title + " Image"} /></h3>
         <h3>Movie Title: {this.props.movie.title}</h3>
         <h3>Date watched: {this.props.movie.date || "n/a"}</h3>

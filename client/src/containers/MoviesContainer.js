@@ -1,11 +1,13 @@
 import { connect } from "react-redux";
 import Movies from "../components/Movies";
 import { deleteMovie } from "../actions";
+import movieGenres from "../movieGenres";
 
 // The list component container should mapStateToProps for the array of things
 function mapStateToProps(state) {
   return {
-    movies: state.movies
+    movies: state.movies,
+    movieGenres: movieGenres
   };
 }
 

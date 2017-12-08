@@ -12,6 +12,7 @@ const schema = new mongoose.Schema({
   date: {
     required: false,
     type: String
+    // type: Date, default: Date.now
   },
   format: {
     required: false,
