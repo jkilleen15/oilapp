@@ -54,9 +54,9 @@ X Create a function component that shows details of one thing (UserDetail)
     X Use a prop that has the array of your models
     X Use a parameter from the route path /:id to find the model to show
 
-    * Use whatever html you want to show all of the properties of your thing
+  X Use whatever html you want to show all of the properties of your thing
 
-* App.js
+X App.js
     X componentDidMount, call loadThings  -->loadMovies
 
 ### React Router
@@ -74,7 +74,7 @@ X Create a route to show the detail container.
   X Make sure this route has a variable in it
 X Make sure to wrap all routes in Switch
 
-* Create links to the list (NEED TO - currently resides on page) and
+OK Create links to the list (NEED TO - currently resides on page) and
 X create routes, put them anywhere in App.js outside of the Switch.
 
 ### Redux
@@ -94,8 +94,8 @@ X create routes, put them anywhere in App.js outside of the Switch.
         X deleteThing(id) - do a fetch delete to “/things/” + id
         X when the fetch is complete, dispatch to loadThings
 
-    * Create reducer for the state
-        * care about the action THINGS_LOADED
+    X Create reducer for the state
+        X care about the action THINGS_LOADED
 
     X Create containers for all of you components
         X mapStateToProps and mapDispatchToProps
@@ -114,8 +114,8 @@ X Use mongoose to connect to a MongoDB database called “checkpoint2”
 X Create a Model for your thing -->Movie.js
 X Create a Route and Controller for your thing
 
-// NEED TO CREATE UPDATE AND DELETE
-// IS UPDATE THE SAME AS EDIT???(RE: BONUS)
+X NEED TO CREATE DELETE
+// UPDATE => SAME AS EDIT (RE: BONUS)
 
 * In the Route,
 X create routes for getting all things,
@@ -124,8 +124,8 @@ X deleting one thing,
 updating one thing, and
 X creating one thing
 
-* In the Controller, create functions for list,show,create,remove(delete)
-update
+X In the Controller, create functions for list,show,create,remove(delete)
+bonus - update
 
 ## Points
 * When I yarn start, the web page loads with no errors - 10pts

@@ -1,5 +1,3 @@
-// import comments from "../comments";
-
 import Movie from "../models/Movie";
 
 /*
@@ -43,18 +41,13 @@ export function createMovie(request, response) {
     });
 }
 
-// not finished, is this where i say remove or pop?
 export function deleteMovie(request, response) {
   console.log("delete movie controller reached");
   Movie.findByIdAndRemove(request.params.id).exec()
   // .then(alert("movie deleted!"))
   .then(movies => {
   // alert("movie deleted!");
-  return response.json(movies);
-  // Movie.findById(request.params.id).exec()   // findByIdAndRemove
-    // .then(movieToDelete => {
-      // movieToDelete.remove();
-      // return response.json(movieToDelete);
+    return response.json(movies);
   });
   // (alert("movie deleted!"));
 }
@@ -69,6 +62,7 @@ export function removeComment(request, response) {
   return response.json(comments);
 }
 */
+
 // Alternate 'show' functions
 /*
 export function show(request, response) {

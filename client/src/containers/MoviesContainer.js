@@ -17,8 +17,6 @@ function mapDispatchToProps(dispatch) {
   return {
     deleteMovie: function (id) {
       dispatch(deleteMovie(id));
-    // deleteMovie: function (id) {
-    //  dispatch(deleteMovie(id));
       // const action = getComment(id);
       // dispatch(action);
     }

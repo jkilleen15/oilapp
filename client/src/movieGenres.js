@@ -4,6 +4,7 @@ export default [
   "Adventure",
   "Comedy",
   "Crime",
+  "Documentary",
   "Drama",
   "Fantasy",
   "Historical",

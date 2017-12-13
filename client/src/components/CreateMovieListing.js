@@ -47,12 +47,11 @@ class CreateMovieListing extends Component {
             <div>
             Movie Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
-                // const PersonImg = "http://avantsynergy.com/wp-content/uploads/2016/03/highlight-reel.png";
-                const movie = {image: e.target.value || ""}
-                this.setState({
-                  movie: Object.assign(this.state.movie,movie)
-                });
-              }} />
+            const movie = {image: e.target.value || ""};
+            this.setState({
+              movie: Object.assign(this.state.movie,movie)
+            });
+          }} />
             </div>
             <div>
               Movie Title: <input onChange={(e) => {
@@ -117,42 +116,3 @@ class CreateMovieListing extends Component {
   }
 }
 export default CreateMovieListing;
-
-// PREVIOUS FORMAT AND GENRE SELECTION FORMAT
-/*
-<div>
-  Viewing Format(theater, redbox, netflix, etc.): <input onChange={(e) => {
-    const movie = {format: e.target.value};
-    this.setState({
-      movie: Object.assign(this.state.movie,movie)
-    });
-  }} />
-</div>
-
-<input onChange={(e) => {
-  const movie = {format: e.target.value};
-  this.setState({
-    movie: Object.assign(this.state.movie,movie)
-  });
-}} />
-
-*/
-
-/*
-<div>
-  Genre: <input onChange={(e) => {
-    const movie = {genre: e.target.value};
-    this.setState({
-      movie: Object.assign(this.state.movie,movie)
-    });
-  }} />
-</div>
-*/
-
-// REF CODE
-
-/*
-<select value={this.state.value} onChange={this.handleChange}>
-          {optionTemplate}
-        </select>
-*/

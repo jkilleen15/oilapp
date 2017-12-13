@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-// import { deleteMovie } from "../actions";
 
 // class CollapsableMapper extends Component {
 class Movies extends Component {

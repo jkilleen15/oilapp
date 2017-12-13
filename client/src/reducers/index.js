@@ -18,14 +18,6 @@ function movie(state = [], action) {
   return state;
 }
 
-// template provided
-/*
-function someThing(state = "") {
-  return state;
-}
-
-*/
-// add newMovie, deleted movie? needed? benefit? if yes, also change value in actions
 const rootReducer = combineReducers({
   movies, movie
 });
