@@ -3,6 +3,7 @@ import "./App.css";
 import ListOfMovies from "./components/ListOfMovies";
 import MovieSingleContainer from "./containers/MovieSingleContainer";
 import CreateMovieListingContainer from "./containers/CreateMovieListingContainer";
+import UpdateMovieListingContainer from "./containers/UpdateMovieListingContainer";
 
 import {
    BrowserRouter,
@@ -36,6 +37,7 @@ class App extends Component {
           <Switch>
             <Route path="/movie/:id" component={MovieSingleContainer} />
             <Route path="/create" component={CreateMovieListingContainer} />
+            <Route path="/update" component={UpdateMovieListingContainer} />
             <Route path="/" component={ListOfMovies} />
           </Switch>
         </BrowserRouter>

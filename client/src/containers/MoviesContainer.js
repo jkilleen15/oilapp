@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Movies from "../components/Movies";
 import { deleteMovie } from "../actions";
+import { updateMovie } from "../actions";
 import movieGenres from "../movieGenres";
 
 // The list component container should mapStateToProps for the array of things
@@ -19,7 +20,10 @@ function mapDispatchToProps(dispatch) {
       dispatch(deleteMovie(id));
       // const action = getComment(id);
       // dispatch(action);
-    }
+    },
+    updateMovie: function (mov) {
+      dispatch(updateMovie(mov));
+    },
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

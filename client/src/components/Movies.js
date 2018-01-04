@@ -18,7 +18,7 @@ class Movies extends Component {
   }
 
 // <li><Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link></li>
-
+// <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
   render() {
     let buttonText = "Hide";
     let movieDivs = "";
@@ -33,6 +33,7 @@ class Movies extends Component {
             <li>{d.genre}</li>
             <li>{d.plot}</li>
             <li><Link to={"/movie/" + d._id}> view movie details </Link></li>
+            <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
 
               <button onClick={this.handleClick} id={d._id}>
                 DELETE THIS MOVIE
@@ -41,7 +42,7 @@ class Movies extends Component {
             </ul>
           </div>
         );
-      });
+         });
     } else {
       buttonText = "Show My Movies";
       movieDivs = "";

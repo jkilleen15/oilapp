@@ -69,6 +69,31 @@ function getMovieDone(movie) {
   };
 }
 
+// Create an action for updating an item
+
+export function updateMovie(m) {
+  console.log("update movie reached");
+  console.log("movie id: " + m.id);
+  return function (dispatch) {
+    fetch("/movies/" + m.id, {
+      method: "PUT",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(m)
+    })
+    .then(() => dispatch(updateMovieDone()))
+    .then(() => dispatch(loadMovies()));
+  };
+}
+
+function updateMovieDone(updatedMovie) {
+  alert("movie listing updated!")
+  return {
+    type: "UPDATE_MOVIE_DONE",
+    value: updatedMovie
+  };
+}
+
+
 /*
 * Create an action for deleting an item
     * deleteThing(id) - do a fetch delete to “/things/” + id
@@ -81,7 +106,7 @@ export function deleteMovie(id) {
   console.log("id: " + id);
   return function (dispatch) {
     fetch(`/movies/${id}`, {
-      method: "delete"
+      method: "DELETE"
     })
      .then(console.log("fetch complete"))
      .then(() => dispatch(loadMovies()))

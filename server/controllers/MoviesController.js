@@ -41,6 +41,33 @@ export function createMovie(request, response) {
     });
 }
 
+/*
+export function updateComment(request, response) {
+  return response.json({theId: request.params.id});
+}
+*/
+
+export function updateMovie(request, response) {
+  // we need to give Movie() an object will all the information
+  // {body: "my movie"} = request.body
+  console.log("update movie controller reached");
+  Movie.findById(request.params.id).exec()
+  .then(movie => {
+    movie.image = request.body.image || movie.image;
+    movie.title = request.body.title || movie.title;
+    movie.date = request.body.date || movie.date;
+    movie.format = request.body.format || movie.format;
+    movie.genre = request.body.genre || movie.genre;
+    movie.plot = request.body.plot || movie.plot;
+    movie.emotions = request.body.emotions || movie.emotions;
+    movie.keywords = request.body.keywords || movie.keywords;
+    return movie.save();
+  })
+  .then(mov => {
+    return response.json(mov);
+  });
+}
+
 export function deleteMovie(request, response) {
   console.log("delete movie controller reached");
   Movie.findByIdAndRemove(request.params.id).exec()
@@ -52,12 +79,14 @@ export function deleteMovie(request, response) {
   // (alert("movie deleted!"));
 }
 
-// FUNCTIONS BELOW NOT UPDATED
+
+
 /*
 export function updateComment(request, response) {
   return response.json({theId: request.params.id});
 }
 
+// FUNCTIONS BELOW NOT UPDATED
 export function removeComment(request, response) {
   return response.json(comments);
 }

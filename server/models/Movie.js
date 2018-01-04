@@ -1,12 +1,17 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
+  id: {
+    required: false,
+    type: String
+  },
   image: {
     required: false,
     type: String
   },
   title: {
-    required: true,
+    // required: true,
+    required: false,
     type: String
   },
   date: {
@@ -19,15 +24,24 @@ const schema = new mongoose.Schema({
     type: String
   },
   genre: {
-    required: true,
-    type: String
+    // required: true,
+    required: false,
+    // type: String
+    type: Array
   },
   plot: {
-    required: true,
+    // required: true,
+    required: false,
     type: String
   },
+  emotions: {
+    // required: true,
+    required: false,
+    type: Array
+  },
   keywords: {
-    required: true,
+    // required: true,
+    required: false,
     type: String
   },
 });
