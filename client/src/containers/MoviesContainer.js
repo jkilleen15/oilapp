@@ -8,6 +8,7 @@ import movieGenres from "../movieGenres";
 function mapStateToProps(state) {
   return {
     movies: state.movies,
+    movie: state.movie,
     movieGenres: movieGenres
   };
 }

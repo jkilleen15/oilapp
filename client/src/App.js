@@ -14,9 +14,11 @@ import {
 class App extends Component {
   constructor() {
     super();
-    this.state = {movies: []};
+    this.state = {
+      movies: [],
+      movie: [],
+    };
   }
-
   componentDidMount() {
     this.props.loadMovies();
   }

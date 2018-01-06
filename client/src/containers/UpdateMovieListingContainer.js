@@ -5,6 +5,7 @@ import { updateMovie } from "../actions";
 function mapStateToProps(state) {
   return {
     movie: state.movie,
+    // selectedOption: state.movie.selectedOption,
     // movies: state.movies
   };
 }

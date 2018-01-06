@@ -19,11 +19,8 @@ class UpdateMovieListing extends Component {
         emotions: this.props.movie.emotions,
         keywords: this.props.movie.keywords,
         movieGenres,
-        selectedOption: this.props.movie.emotions,
-        // value: this.props.movie.value,
-        // value: ["stress", "focus", "fatigue"],
-        value: this.props.movie.value, // held here but not used
-        // value: this.state.movie.value.toString(),
+        selectedOption: this.props.movie.selectedOption,
+        value: this.props.movie.emotions,
       },
       // for EasyMultiSelect
       // selectedOption: this.props.selectedOption,
@@ -46,7 +43,6 @@ class UpdateMovieListing extends Component {
 
   // from EasyMultiSelect
 
-/*
   // simplified function
   handleEmotionsChange = (selectedOption) => {
     // const selectedEmotions = [];
@@ -62,55 +58,30 @@ class UpdateMovieListing extends Component {
     // });
     console.log(`Selected: ${selectedOption}`);
   }
-*/
 
-  // UPDATED FUNCTION
-
-  handleEmotionsChange = (selectedOption) => {
-    // 1 const selectedEmotions = [];
-    console.log("selectedOption: " + selectedOption.toString()); // not selectedOption.value
-    // 2 this.setState({ selectedOption });
-    // 3 this.setState({ value: selectedOption});
-    // 4 selectedEmotions.push(selectedOption);
-    // 5 console.log("selectedEmotionsArray: " + selectedEmotions)
-    // 6, switch to below, const movie = {emotions: selectedEmotions};
-    const movie = {emotions: selectedOption};
-    this.setState({
-      movie: Object.assign(this.state.movie,movie)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
-
-/*
-  // OLD FUNCTION
+  /* OLD FUNCTION
     handleEmotionsChange = (selectedOption) => {
       const selectedEmotions = [];
       console.log("selectedOption.value: " + selectedOption.value);
       this.setState({ selectedOption });
-      // this.setState({ value: selectedOption}); //LAST TO WORK
-      //this.setState({ value: emotions});
+      this.setState({ value: selectedOption});
       selectedEmotions.push(selectedOption);
       console.log("selectedEmotionsArray: " + selectedEmotions)
       const movie = {emotions: selectedEmotions};
       this.setState({
       movie: Object.assign(this.state.movie,movie)
       });
-      // this.setState({ value: this.state.movie.emotions.toString()});
       console.log(`Selected: ${selectedOption}`);
     }
-*/
+    */
+
     // from EasyMultiSelect end
 
   render() {
 
     // for EasyMultiSelect
     console.log("this.state.movie.emotions" + this.state.movie.emotions);
-    console.log("this.props.movie.emotions" + this.props.movie.emotions);
-    const emotionsString = this.props.movie.emotions.toString();
-    const emotionsSplit = emotionsString.split(",");
-
-    console.log("this.props.movie.emotions SPLIT: " + emotionsSplit);
-    // console.log("value: " + this.state.movie.value) // no longer using value
+    console.log("value: " + this.state.movie.value)
     console.log("selectedOption: " + this.state.movie.selectedOption)
     console.log("emotions: " + this.state.movie.emotions)
     // console.log("value: " + value.value)
@@ -127,6 +98,7 @@ class UpdateMovieListing extends Component {
     console.log(this.props.movie);
     console.log(this.props.movie.title);
     console.log("state image" + this.state.movie.image);
+    console.log("selectedOption: " + this.state.selectedOption);
     const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
     const emotionsArray = ["happy", "sad", "regretful", "inspired", "uncomfortable"];
 
@@ -222,10 +194,8 @@ class UpdateMovieListing extends Component {
               <h4>Current Emotions: {this.state.movie.emotions}</h4>
               <Select
                 name="form-field-name"
-                // value={this.state.movie.emotions}
-                // value={this.state.movie.value}
-                // value={this.props.movie.emotions.toString()}
-                value={this.state.movie.emotions.toString()}
+                value={value}
+                // value={value}
                 onChange={this.handleEmotionsChange}
                 multi
                 closeOnSelect={stayOpen}

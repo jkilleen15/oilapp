@@ -1,0 +1,97 @@
+// oil characteristics
+
+Name
+Uses
+  - aromatherapy
+  - topical
+  - internal
+Benefits
+blend recommendations
+Keywords (stress)
+Links
+  article
+  recipe
+  news
+  these are pasted in, then displayed as anchor tags like pics with source
+
+  // FROM BOOK
+
+
+  Application [differs for Adult, Child/Sensitive, Pregnancy for each area]
+
+  * could be displayed as a table
+  * could be a key above display on show single page
+
+    - topically / Topical [yes/no]
+    - aromatically / Aromatic [yes/no]
+    - Internally / Internal [yes/no]
+
+    - [GREEN] Safe to use without dilution as directed
+    - [PURPLE] Safe to use with moderate dilution
+    - [PINK] Safe to use with heavier dilution -- consult with a physician before using
+    if pregnant or ill.
+
+    - X Not a generally recommended use
+    - * Avoid sunlight for several hours after topical use
+    - ** Avoid sunlight for 12-24 hours after topical use
+
+  Oil Type
+    - single oils
+    - oil blend (two or more oils)
+
+  Properties (choose from):
+    - Antibacterial
+      an agent that prevents the growth of (or destroys) bacteria
+    - Anticatarrhal
+      an agent that helps remove excess catarrh from the body
+      Expectorants help promot the removal of mucus from the repiratory system
+    - Antidepressant
+      an agent that helps alleviate depression
+    - Antifungal
+      an agent that prevents and combats fungal infection
+    - Anti-infectious
+      an agent that prevents and combats the spread of germs
+    - Anti-inflammatory
+      an agent that alleviates inflammation
+    - Antimicrobial
+      an agent that resists or destroys pathogenic microorganisms
+    - Antiparasitic
+      an agent that prevents and destroys parasites
+    - Antirheumatic
+      an agent that helps prevents and relieve rheumatism
+    - Antiseptic
+      an agent that destroys and prevents the development of microbes
+    - Antispasmodic
+      an agent that prevents and eases spasms or convulsions
+    - Antiviral
+      a substance that inhibits the growth of a virus
+    - Analgesic
+      a substance that relieves pain
+    - Immune-stimulant
+      an agent that stimulates the natural defense mechanism of the body
+
+  Body Systems Affected (choose from)
+    - Cardiovascular System
+    - Digestive System
+    - Emotional Balance
+    - Hormonal System
+    - Immune System
+    - Muscles and Bones
+    - Nervous System
+    - Respiratory System
+    - Skin and Hair
+
+  Common Uses
+    i.e. promotes healthy cell function
+    i.e. allergies, boils, burns, calming, itching, pain, skin, sleep, wrinkles
+    [this should be connected to word search; it should suggest from oils large array.commonUses]
+
+  General Uses
+    i.e. emotional shock, headache, grief
+
+  Warnings
+    - Dilute
+    - Volatile
+    - Photosensitizing
+
+    MAYBE - carrier oils

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-// import MultiSelectField from "../components/MultiSelectField";
-// import EasyMultiSelect from "../components/EasyMultiSelect";
+import MultiSelectField from "../components/MultiSelectField";
 import movieGenres from "../movieGenres";
 import createClass from "create-react-class";
 import PropTypes from "prop-types";
@@ -17,31 +16,19 @@ class CreateMovieListing extends Component {
         title: "",
         date: "",
         format: "",
-        genre: [],
+        genre: "",
         plot: "",
-        // emotions currently going in as simpleValue string from Select
-        // so array.length = 1
         emotions: [],
         keywords: "",
         movieGenres,
-        selectedOption: [],
-        value: [], // here for now, but no longer used
       },
-      // for EasyMultiSelect
-      // selectedOption: [], // moved to movie-specific
-      stayOpen: false,
-      // value: [],// moved to movie-specific for temp, then remove and switch to specific prop
-
-      // for multi select feature
-      removeSelected: true,
-      disabled: false,
-      crazy: false,
-      // stayOpen: false, // dup
-      // value: [], // dup
-      rtl: false,
     };
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    // this.handleEmotions = this.handleEmotions.bind(this);
+    // this.addEmotions = this.addEmotions.bind(this);
+    this.getInitialState = this.getInitialState.bind(this);
   }
-/*
+
   getInitialState () {
   return {
     removeSelected: true,
@@ -53,57 +40,18 @@ class CreateMovieListing extends Component {
     emotions: this.state.movie.emotions,
   };
 }
-*/
-
-// from EasyMultiSelect
-
-// SIMPLIFIED FUNCTION
-/*
-  handleEmotionsChange = (selectedOption) => {
-  // const selectedEmotions = [];
-    console.log("initial selectedOption.value: " + selectedOption.value);
-    this.setState({ selectedOption });
-    this.setState({ emotions: selectedOption});
-  // this.setState({ value: selectedOption});
-  // selectedEmotions.push(selectedOption);
-  // console.log("selectedEmotionsArray: " + selectedEmotions)
-  // const movie = {emotions: selectedEmotions};
-  // this.setState({
-  // movie: Object.assign(this.state.movie,movie)
-  // });
-    console.log(`Selected: ${selectedOption}`);
-  }
-*/
-// OLD FUNCTION
-  handleEmotionsChange = (selectedOption) => {
-    // 1 const selectedEmotions = [];
-    console.log("selectedOption: " + selectedOption.toString()); // not selectedOption.value
-    // 2 this.setState({ selectedOption });
-    // 3 this.setState({ value: selectedOption});
-    // 4 selectedEmotions.push(selectedOption);
-    // 5 console.log("selectedEmotionsArray: " + selectedEmotions)
-    // 6, switch to below, const movie = {emotions: selectedEmotions};
-    const movie = {emotions: selectedOption};
-    this.setState({
-      movie: Object.assign(this.state.movie,movie)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
-
-  // from EasyMultiSelect end
 
   handleSelectChange(value) {
     this.getInitialState();
     console.log("You\"ve selected:", value);
 
-/*
     const movie = {emotions: value};
     // console.log("movieEmotionsSelected before " + movieEmotionsSelected);
     this.setState({
       movie: Object.assign(this.state.movie,movie)
       // movie: Object.assign(this.state.movie,movie)
     });
-    console.log("this.state.movie.emotions " + this.state.movie.emotions)
+    console.log("movie.emotions: " + this.state.movie.emotions)
     // console.log("movieEmotionsSelected after " + movieEmotionsSelected);
 
     // this.setState({ emotions: value });
@@ -111,7 +59,6 @@ class CreateMovieListing extends Component {
     // this.setState({ emotionsSelected });
     // console.log("emotions: " + this.state.movie.emotions)
   //  this.handleEmotions(value);
-  */
   }
 
   toggleCheckbox (e) {
@@ -150,28 +97,11 @@ class CreateMovieListing extends Component {
     */
 
   render() {
-    // for EasyMultiSelect
-
-    // console.log("selectedOption: " + this.state.movie.value) //value no longer used
-    console.log("emotions: " + this.state.movie.emotions)
-    // console.log("value: " + value.value)
-    const { selectedOption, value, stayOpen, movie, emotions } = this.state;
-    const options = [
-      { value: "stress", label: "Stress" },
-      { value: "focus", label: "Focus" },
-      { value: "fatigue", label: "Fatigue"},
-      { value: "happiness", label: "Happiness" },
-    ];
-
-    // end for EasyMultiSelect
-
-
     const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
   //  const emotionsArray = [];
 
     const emotionsArray = [
-      "happy", "sad", "regretful", "inspired", "uncomfortable", "melancholy"];
-/*
+      // "happy", "sad", "regretful", "inspired", "uncomfortable", "melancholy"
     { label: "Happy", value: "happy" },
     { label: "Sad", value: "sad" },
     { label: "Regretful", value: "regretful" },
@@ -179,12 +109,9 @@ class CreateMovieListing extends Component {
     { label: "Uncomfortable", value: "uncomfortable" },
     { label: "Melancholy", value: "melancholy" },
     ];
-    */
 
     const movieEmotions = [];
     const movieEmotionsSelected = [];
-
-    const genreFruitSelected = [];
 
     const formatOptionDisplay = formatOptions.map((f,i) => (
       <option value={f} key={i}>{f}</option>
@@ -198,8 +125,6 @@ class CreateMovieListing extends Component {
     const emotionDisplay = emotionsArray.map((g,i) => (
       <option value={g} key={i}>{g}</option>
     ));
-
-    // const fruitDisplay =
 
     // BONUS - dropdowns used for viewing format and movie genres
     //       - format dropdown pulls from local variable array
@@ -293,7 +218,6 @@ class CreateMovieListing extends Component {
             <div>
               Viewing Format(theater, redbox, netflix, etc.):
               <select onChange={(e) => {
-                console.log("e: " + e.target.value);
                 const movie = {format: e.target.value};
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
@@ -303,66 +227,40 @@ class CreateMovieListing extends Component {
               </select>
             </div>
             <div>
-              Genre:
+              Genre: <select onChange={(e) => {
+                const movie = {genre: e.target.value};
+                this.setState({
+                  movie: Object.assign(this.state.movie,movie)
+                });
+              }} >
                 {movieGenreDisplay}
-
+              </select>
             </div>
             <div>
               Plot Summary: <input onChange={(e) => {
-
                 const movie = {plot: e.target.value};
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
                 });
               }} />
             </div>
+            <div>
+              Emotions:
 
-            <div className="EasyMultiSelect">
               <Select
-                name="form-field-name"
-                // value={value}
-                value={this.state.movie.emotions.toString()}
-                onChange={this.handleEmotionsChange}
                 multi
-                closeOnSelect={stayOpen}
+                options={emotionsArray}
                 simpleValue
-                options={options}
-            />
-
-          </div>
+                value={movieEmotions}
+                placeholder="Select how this movie makes you feel"
+                onChange={this.handleSelectChange}
+                />
+            </div>
 
             <div>
-              Search Genre/Fruit:
-              <searchable-multi placeholder="Search fruits..." >
-                <select multiple onChange={(e) => {
-                  console.log("fruit e: " + e.target.value);
-                  let multi = document.querySeletor("searchable-multi");
-
-                  console.log("searchable-multi: " + multi.value);
-                  genreFruitSelected.push(e.target.value.split(","));
-                  console.log("genreFruitSelected: " + genreFruitSelected);
-                  const movie = {genre: genreFruitSelected};
-                  this.setState({
-                    movie: Object.assign(this.state.movie,movie)
-                  });
-                  console.log("this.state.movie.genre: " + this.state.movie.genre)
-                }}>
-                  <option value="Apple">Apple</option>
-                  <option value="Banana">Banana</option>
-                  <option value="Blueberry">Blueberry</option>
-                  <option value="Cherry">Cherry</option>
-                  <option value="Coconut">Coconut</option>
-                  <option value="Grapefruit">Grapefruit</option>
-                  <option value="Kiwi">Kiwi</option>
-                  <option value="Lemon">Lemon</option>
-                  <option value="Lime">Lime</option>
-                  <option value="Mango">Mango</option>
-                  <option value="Orange">Orange</option>
-                  <option value="Papaya">Papaya</option>
-                </select>
-              </searchable-multi>
-
+              <MultiSelectField />
             </div>
+
             <div>
               Keywords: <input onChange={(e) => {
                 const movie = {keywords: e.target.value};
@@ -382,17 +280,6 @@ class CreateMovieListing extends Component {
 }
 
 /*
-
-<select onChange={(e) => {
-  const movie = {genre: e.target.value};
-  this.setState({
-    movie: Object.assign(this.state.movie,movie)
-  });
-}} >
-</select>
-*/
-
-/*
 handleEmotions(e.target.value);
 // addEmotions();
 
@@ -407,20 +294,6 @@ handleEmotions(e.target.value);
   console.log("movieEmotionsSelected after " + movieEmotionsSelected);
 
 }}
-
-////////////
-<div>
-  Emotions:
-
-  <Select
-    multi
-    options={emotionsArray}
-    simpleValue
-    value={movieEmotions}
-    placeholder="Select how this movie makes you feel"
-    onChange={this.handleSelectChange}
-    />
-</div>
 */
 
 export default CreateMovieListing;

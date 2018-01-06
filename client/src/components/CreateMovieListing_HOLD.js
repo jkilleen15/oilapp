@@ -25,7 +25,7 @@ class CreateMovieListing extends Component {
         keywords: "",
         movieGenres,
         selectedOption: [],
-        value: [], // here for now, but no longer used
+        value: [],
       },
       // for EasyMultiSelect
       // selectedOption: [], // moved to movie-specific
@@ -57,38 +57,39 @@ class CreateMovieListing extends Component {
 
 // from EasyMultiSelect
 
-// SIMPLIFIED FUNCTION
 /*
+// NEW FUNCTION
   handleEmotionsChange = (selectedOption) => {
-  // const selectedEmotions = [];
+    const selectedEmotions = [];
     console.log("initial selectedOption.value: " + selectedOption.value);
     this.setState({ selectedOption });
     this.setState({ emotions: selectedOption});
-  // this.setState({ value: selectedOption});
-  // selectedEmotions.push(selectedOption);
-  // console.log("selectedEmotionsArray: " + selectedEmotions)
-  // const movie = {emotions: selectedEmotions};
-  // this.setState({
-  // movie: Object.assign(this.state.movie,movie)
-  // });
+    // this.setState({ value: selectedOption});
+    // selectedEmotions.push(selectedOption);
+    // console.log("selectedEmotionsArray: " + selectedEmotions)
+    // const movie = {emotions: selectedEmotions};
+    // this.setState({
+    // movie: Object.assign(this.state.movie,movie)
+    // });
     console.log(`Selected: ${selectedOption}`);
   }
-*/
-// OLD FUNCTION
-  handleEmotionsChange = (selectedOption) => {
-    // 1 const selectedEmotions = [];
-    console.log("selectedOption: " + selectedOption.toString()); // not selectedOption.value
-    // 2 this.setState({ selectedOption });
-    // 3 this.setState({ value: selectedOption});
-    // 4 selectedEmotions.push(selectedOption);
-    // 5 console.log("selectedEmotionsArray: " + selectedEmotions)
-    // 6, switch to below, const movie = {emotions: selectedEmotions};
-    const movie = {emotions: selectedOption};
-    this.setState({
+
+  */
+
+  // OLD FUNCTION -- lAST WORKING!!!!
+    handleEmotionsChange = (selectedOption) => {
+      const selectedEmotions = [];
+      console.log("selectedOption.value: " + selectedOption.value);
+      this.setState({ selectedOption });
+      this.setState({ value: selectedOption});
+      selectedEmotions.push(selectedOption);
+      console.log("selectedEmotionsArray: " + selectedEmotions)
+      const movie = {emotions: selectedEmotions};
+      this.setState({
       movie: Object.assign(this.state.movie,movie)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
+      });
+      console.log(`Selected: ${selectedOption}`);
+    }
 
   // from EasyMultiSelect end
 
@@ -152,7 +153,7 @@ class CreateMovieListing extends Component {
   render() {
     // for EasyMultiSelect
 
-    // console.log("selectedOption: " + this.state.movie.value) //value no longer used
+    console.log("selectedOption: " + this.state.value)
     console.log("emotions: " + this.state.movie.emotions)
     // console.log("value: " + value.value)
     const { selectedOption, value, stayOpen, movie, emotions } = this.state;
@@ -320,8 +321,9 @@ class CreateMovieListing extends Component {
             <div className="EasyMultiSelect">
               <Select
                 name="form-field-name"
+                value={this.state.movie.emotions}
                 // value={value}
-                value={this.state.movie.emotions.toString()}
+                // value={emotions}
                 onChange={this.handleEmotionsChange}
                 multi
                 closeOnSelect={stayOpen}
