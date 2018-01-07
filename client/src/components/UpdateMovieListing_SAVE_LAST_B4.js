@@ -19,8 +19,23 @@ class UpdateMovieListing extends Component {
         emotions: this.props.movie.emotions,
         keywords: this.props.movie.keywords,
         movieGenres,
+        // selectedOption: this.props.movie.emotions, // no longer in use
+        // value: this.props.movie.value,// value no longer in use
+        // value: ["stress", "focus", "fatigue"],
+        // value: this.props.movie.value, // held here but not used
+        // value: this.state.movie.value.toString(),
       },
+      // for EasyMultiSelect
+      // selectedOption: this.props.selectedOption,
       stayOpen: false,
+      // value: this.props.movie.emotions,
+      // for multi select feature
+      //  removeSelected: true,
+      //  disabled: false,
+      //  crazy: false,
+      // stayOpen: false,
+      // value: [],
+      // rtl: false,
     };
   }
 

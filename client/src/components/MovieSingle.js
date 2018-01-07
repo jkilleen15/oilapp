@@ -23,7 +23,12 @@ class MovieSingle extends Component {
         <h3>Viewing Format: {this.props.movie.format || "n/a"}</h3>
         <h3>Genre: {this.props.movie.genre}</h3>
         <h3>Description: {this.props.movie.plot}</h3>
+        <h3>Oil Type: {this.props.movie.oilType}</h3>
+        <h3>Warnings: {this.props.movie.warnings}</h3>
         <h3>Emotions: {this.props.movie.emotions}</h3>
+        <h3>Application: {this.props.movie.application}</h3>
+        <h3>Body Systems Affected: {this.props.movie.bodySystems}</h3>
+        <h3>Properties: {this.props.movie.properties}</h3>
         <h3>Keywords: {this.props.movie.keywords}</h3>
 
         <li><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></li>

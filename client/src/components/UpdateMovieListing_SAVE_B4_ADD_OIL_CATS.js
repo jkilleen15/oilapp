@@ -19,8 +19,23 @@ class UpdateMovieListing extends Component {
         emotions: this.props.movie.emotions,
         keywords: this.props.movie.keywords,
         movieGenres,
+        selectedOption: this.props.movie.emotions,
+        // value: this.props.movie.value,
+        // value: ["stress", "focus", "fatigue"],
+        value: this.props.movie.value, // held here but not used
+        // value: this.state.movie.value.toString(),
       },
+      // for EasyMultiSelect
+      // selectedOption: this.props.selectedOption,
       stayOpen: false,
+      // value: this.props.movie.emotions,
+      // for multi select feature
+      //  removeSelected: true,
+      //  disabled: false,
+      //  crazy: false,
+      // stayOpen: false,
+      // value: [],
+      // rtl: false,
     };
   }
 
@@ -96,7 +111,7 @@ class UpdateMovieListing extends Component {
 
     console.log("this.props.movie.emotions SPLIT: " + emotionsSplit);
     // console.log("value: " + this.state.movie.value) // no longer using value
-    // console.log("selectedOption: " + this.state.movie.selectedOption) // no longer using selectedValue
+    console.log("selectedOption: " + this.state.movie.selectedOption)
     console.log("emotions: " + this.state.movie.emotions)
     // console.log("value: " + value.value)
     const { selectedOption, value, stayOpen, movie, emotions } = this.state;
@@ -213,7 +228,7 @@ class UpdateMovieListing extends Component {
                 value={this.state.movie.emotions.toString()}
                 onChange={this.handleEmotionsChange}
                 multi
-                closeOnSelect={this.state.stayOpen}
+                closeOnSelect={stayOpen}
                 simpleValue
                 options={options}
             />

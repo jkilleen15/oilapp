@@ -34,7 +34,32 @@ const schema = new mongoose.Schema({
     required: false,
     type: String
   },
+  oilType: {
+    // required: true,
+    required: false,
+    type: Array
+  },
+  warnings: {
+    // required: true,
+    required: false,
+    type: Array
+  },
   emotions: {
+    // required: true,
+    required: false,
+    type: Array
+  },
+  application: {
+    // required: true,
+    required: false,
+    type: Array
+  },
+  bodySystems: {
+    // required: true,
+    required: false,
+    type: Array
+  },
+  properties: {
     // required: true,
     required: false,
     type: Array
