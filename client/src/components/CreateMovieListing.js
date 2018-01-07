@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 // import MultiSelectField from "../components/MultiSelectField";
 // import EasyMultiSelect from "../components/EasyMultiSelect";
 import movieGenres from "../movieGenres";
+import warningOptions from "../warningOptions";
 import createClass from "create-react-class";
 import PropTypes from "prop-types";
 import Select from "react-select";
@@ -35,7 +36,16 @@ class CreateMovieListing extends Component {
       },
       stayOpen: false,
       // emotionsDisplay: [],
-
+      warningOptions, // right now this adds to (global) state that applies now any time a new movie is CREATED
+                      // consider benefits of adding like this -- how would a user remove unwanted global options
+                      // should it just be applied to per-movie, movie-specific - how would this effect search functions
+      /*
+      warningsOptions: [
+          { value: "Dilute", label: "Dilute" },
+          { value: "Volatile", label: "Volatile" },
+          { value: "Photosensitizing", label: "Photosensitizing" },
+      ],
+      */
 
       // for multi select feature
       removeSelected: true,
@@ -68,10 +78,10 @@ class CreateMovieListing extends Component {
   // cleaned up
 /*
   handleEmotionsChange = (selectedOption) => {
-    // this.className = className;
+    // this.stateName = stateName;
     console.log("selectedOption Emotions: " + selectedOption.toString());
     console.log("selectedOption id: " + selectedOption.name);
-    // console.log("className: " + className);
+    // console.log("stateName: " + stateName);
     // console.log("emotions keyword name: " + keyword);
 
     const movie = {emotions: selectedOption};
@@ -97,21 +107,21 @@ class CreateMovieListing extends Component {
 */
 
   handleOilTypeChange = (selectedOption) => {
-  // this.className = className;
+  // this.stateName = stateName;
   // const keyword = "emotions";
-  const className = {oilType: selectedOption};
-  // this.handleChange(selectedOption, className, keyword);
-  this.handleChange(selectedOption, className);
+  const stateName = {oilType: selectedOption};
+  // this.handleChange(selectedOption, stateName, keyword);
+  this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
   console.log("oilType Selected Option: " + selectedOption);
   }
 
   handleWarningsChange = (selectedOption) => {
-  // this.className = className;
+  // this.stateName = stateName;
   // const keyword = "emotions";
-  const className = {warnings: selectedOption};
-  // this.handleChange(selectedOption, className, keyword);
-  this.handleChange(selectedOption, className);
+  const stateName = {warnings: selectedOption};
+  // this.handleChange(selectedOption, stateName, keyword);
+  this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
   console.log("warnings Selected Option: " + selectedOption);
 }
@@ -142,56 +152,56 @@ const onChange = (selectedOption) => {
 */
 
   handleEmotionsChange = (selectedOption) => {
-  // this.className = className;
+  // this.stateName = stateName;
   // const keyword = "emotions";
-  const className = {emotions: selectedOption};
-  // this.handleChange(selectedOption, className, keyword);
-  this.handleChange(selectedOption, className);
+  const stateName = {emotions: selectedOption};
+  // this.handleChange(selectedOption, stateName, keyword);
+  this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
   console.log("emotions Selected Option: " + selectedOption);
 }
 
   handleApplicationChange = (selectedOption) => {
-// this.className = className;
+// this.stateName = stateName;
     // const keyword = "application";
-    const className = {application: selectedOption};
-    // this.handleChange(selectedOption, className, keyword);
-    this.handleChange(selectedOption, className);
+    const stateName = {application: selectedOption};
+    // this.handleChange(selectedOption, stateName, keyword);
+    this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
     console.log("application Selected Option: " + selectedOption);
   }
 
   handleBodySystemsChange = (selectedOption) => {
-// this.className = className;
+// this.stateName = stateName;
     // const keyword = "application";
-    const className = {bodySystems: selectedOption};
-    // this.handleChange(selectedOption, className, keyword);
-    this.handleChange(selectedOption, className);
+    const stateName = {bodySystems: selectedOption};
+    // this.handleChange(selectedOption, stateName, keyword);
+    this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
     console.log("bodySystems Selected Option: " + selectedOption);
   }
 
   handlePropertiesChange = (selectedOption) => {
-// this.className = className;
+// this.stateName = stateName;
     // const keyword = "application";
-    const className = {properties: selectedOption};
-    // this.handleChange(selectedOption, className, keyword);
-    this.handleChange(selectedOption, className);
+    const stateName = {properties: selectedOption};
+    // this.handleChange(selectedOption, stateName, keyword);
+    this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
     console.log("properties Selected Option: " + selectedOption);
   }
 
-handleChange = (selectedOption, className) => {
-// this.className = className;
+handleChange = (selectedOption, stateName) => {
+// this.stateName = stateName;
 console.log("selectedOptions: " + selectedOption.toString());
-console.log("className: " + className);
-// console.log("className: " + className);
+console.log("stateName: " + stateName);
+// console.log("stateName: " + stateName);
 // console.log("emotions keyword name: " + keyword);
 // const stateName = keyword;
 // const movie = (`{${stateName}: selectedOption}`); moved to handleEmotionsChange
   // const movie = {emotions: selectedOption};
   this.setState({
-    movie: Object.assign(this.state.movie,className)
+    movie: Object.assign(this.state.movie,stateName)
   });
 // console.log( `this.state.movie.${keyword}`);
 console.log(`Selected: ${selectedOption.toString()}`);
@@ -236,13 +246,15 @@ console.log(`Selected: ${selectedOption.toString()}`);
       - single oils
       - oil blend (two or more oils)
 */
-
+// REF
+// static array moved to state so newly created tags would appear in input field
+/*
   const warningsOptions = [
       { value: "Dilute", label: "Dilute" },
       { value: "Volatile", label: "Volatile" },
       { value: "Photosensitizing", label: "Photosensitizing" },
     ];
-
+*/
 /*
   Warnings
     - Dilute
@@ -455,23 +467,29 @@ console.log(`Selected: ${selectedOption.toString()}`);
                 // options={emotionsOptions}
                 options={oilTypeOptions}
             />
-            </div>
+          </div>
 
             Warnings (select all that apply)
             <div className="warningsSelect">
-              <Select.Creatable
+
+                <Select.Creatable
                 name="warnings"
                 // value={value}
                 value={this.state.movie.warnings.toString()}
                 onChange={this.handleWarningsChange}
+                // onInputChange
                 multi
                 allowCreate
+                // onNewOptionClick
                 // newOptionCreator
+              //  newOptionCreator = { label: string, labelKey: string, valueKey: string }
+              //  onNewOptionClick = function(option) {}
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={emotionsOptions}
-                options={warningsOptions}
-            />
+                options={this.state.warningOptions}
+             />
+
             </div>
 
             Emotions (select all that apply)
