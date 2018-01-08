@@ -52,15 +52,58 @@ export function updateMovie(request, response) {
   // {body: "my movie"} = request.body
   console.log("update movie controller reached");
   Movie.findById(request.params.id).exec()
-  .then(movie => {
+  .then(movie => { // UPDATE THIS NOW!
     movie.image = request.body.image || movie.image;
     movie.title = request.body.title || movie.title;
-    movie.date = request.body.date || movie.date;
-    movie.format = request.body.format || movie.format;
-    movie.genre = request.body.genre || movie.genre;
-    movie.plot = request.body.plot || movie.plot;
+    // movie.date = request.body.date || movie.date;
+    // movie.format = request.body.format || movie.format;
+    // movie.genre = request.body.genre || movie.genre;
+    // movie.plot = request.body.plot || movie.plot;
+    movie.oilType = request.body.oilType || movie.oilType;
+    movie.warnings = request.body.warnings || movie.warnings;
     movie.emotions = request.body.emotions || movie.emotions;
+    movie.application = request.body.application || movie.application;
+    movie.bodySystems = request.body.bodySystems || movie.bodySystems;
+    movie.properties = request.body.properties || movie.properties;
     movie.keywords = request.body.keywords || movie.keywords;
+    movie.links = request.body.links || movie.links;
+
+/*
+id: "",
+image: "",
+title: "",
+
+oilType: "",
+warnings: [],
+emotions: [],
+application: [], // !! ADD TO MODEL, UPDATE COMP
+bodySystems: [],
+properties: [],
+keywords: [],
+links: "",
+
+*/
+
+    /*
+    emotionsOptions,
+    applicationOptions,
+    bodySystemsOptions,
+    propertiesOptions,
+    oilTypeOptions,
+    keywordsOptions: [],
+    linksOptions: [], check on this format
+    warningOptions
+    */
+
+// UPDATE THIS NOW!!! not sure if we also need to round displayers...
+    movie.oilTypeOptions = request.body.oilType || movie.oilType;
+    movie.warningOptions = request.body.warningOptions || movie.warningOptions;
+    movie.emotionsOptions = request.body.emotionsOptions || movie.emotionsOptions;
+    movie.applicationOptions = request.body.applicationOptions || movie.applicationOptions;
+    movie.bodySystemsOptions = request.body.bodySystemsOptions || movie.bodySystemsOptions;
+    movie.propertiesOptions = request.body.propertiesOptions || movie.propertiesOptions;
+    movie.keywordsOptions = request.body.keywordsOptions || movie.keywordsOptions;
+    movie.linksOptions = request.body.linksOptions || movie.linksOptions;
     return movie.save();
   })
   .then(mov => {

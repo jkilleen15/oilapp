@@ -2,6 +2,13 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 // import MultiSelectField from "../components/MultiSelectField";
 // import EasyMultiSelect from "../components/EasyMultiSelect";
+
+import createClass from "create-react-class";
+import PropTypes from "prop-types";
+import Select from "react-select";
+import Creatable from "react-select";
+import "react-select/dist/react-select.css";
+
 import movieGenres from "../movieGenres";
 // move options files into options folder and re-route below
 import oilTypeOptions from "../oilTypeOptions";
@@ -10,23 +17,15 @@ import emotionsOptions from "../emotionsOptions";
 import applicationOptions from "../applicationOptions";
 import bodySystemsOptions from "../bodySystemsOptions";
 import propertiesOptions from "../propertiesOptions";
-import createClass from "create-react-class";
-import PropTypes from "prop-types";
-import Select from "react-select";
-import Creatable from "react-select";
-import "react-select/dist/react-select.css";
 
 class CreateMovieListing extends Component {
   constructor() {
     super();
     this.state = {
       movie: {
+        id: "",
         image: "",
         title: "",
-        // date: "",
-        // format: "",
-        // genre: [],
-        // plot: "",
         // emotions currently going in as simpleValue string from Select
         // so array.length = 1
         oilType: "",
@@ -41,12 +40,23 @@ class CreateMovieListing extends Component {
         movieGenres,
         // selectedOption: [], // here for now, but no longer used
         // value: [], // here for now, but no longer used
+
+        // these values moved from global state to per-movie, keep in mind for search
+        emotionsOptions,
+        applicationOptions,
+        bodySystemsOptions,
+        propertiesOptions,
+        oilTypeOptions,
+        keywordsOptions: [],
+        linksOptions: [],
+        warningOptions
       },
       stayOpen: false,
       // emotionsDisplay: [],
-      warningOptions, // right now this adds to (global) state that applies now any time a new movie is CREATED
+      // warningOptions, // right now this adds to (global) state that applies now any time a new movie is CREATED
                       // consider benefits of adding like this -- how would a user remove unwanted global options
                       // should it just be applied to per-movie, movie-specific - how would this effect search functions
+      /*
       emotionsOptions,
       applicationOptions,
       bodySystemsOptions,
@@ -54,21 +64,24 @@ class CreateMovieListing extends Component {
       oilTypeOptions,
       keywordsOptions: [],
       linksOptions: [],
+      */
       /*
-      warningsOptions: [
+      warningOptions: [
           { value: "Dilute", label: "Dilute" },
           { value: "Volatile", label: "Volatile" },
           { value: "Photosensitizing", label: "Photosensitizing" },
       ],
       */
 
-      // for multi select feature
+      /*
+      // for multi select feature - unused
       removeSelected: true,
       disabled: false,
       crazy: false,
       // stayOpen: false, // dup
       // value: [], // dup
       rtl: false,
+      */
     };
     // this.handleChange = this.handleChange.bind(this);
   }
@@ -147,20 +160,20 @@ class CreateMovieListing extends Component {
 const onChange = (selectedOption) => {
       console.log("Change Handler 1 : Selected: ", selectedOption);
 
-      const newSelectedOptions = [].concat(warningsOptions);
+      const newSelectedOptions = [].concat(warningOptions);
       // this will depend on how info out i.e. currently simple value
       selectedOption.forEach(selected => {
-        const match = warningsOptions.find(
+        const match = warningOptions.find(
           entry => (entry.value == selected.value));
         if (!match) {
         	newSelectedOptions.add(match);
         }
       });
-      warningsOptions = newSelectedOptions
+      warningOptions = newSelectedOptions
       this.setState({
       movie: {
         warnings: [].concat(selectedOption),
-      //  warningsOptions: newSelectedOptions
+      //  warningOptions: newSelectedOptions
         }
       });
     };
@@ -244,24 +257,9 @@ console.log(`Selected: ${selectedOption.toString()}`);
 
   // from EasyMultiSelect end
 
-  handleSelectChange(value) {
-    this.getInitialState();
-    console.log("You\"ve selected:", value);
-  }
-
-  toggleCheckbox (e) {
-		this.setState({
-			[e.target.name]: e.target.checked,
-		});
-	}
-
-	toggleRtl (e) {
-		let rtl = e.target.checked;
-		this.setState({ rtl });
-}
-
   render() {
     // for EasyMultiSelect
+    console.log("STATE INFO:")
     console.log("oil title: " + this.state.movie.title);
     console.log("oil type: " + this.state.movie.oilType);
     console.log("warnings: " + this.state.movie.warnings);
@@ -271,6 +269,28 @@ console.log(`Selected: ${selectedOption.toString()}`);
     console.log("properties: " + this.state.movie.properties);
     console.log("keywords: " + this.state.movie.keywords);
     console.log("links: " + this.state.movie.links);
+
+    /*
+    emotionsOptions,
+    applicationOptions,
+    bodySystemsOptions,
+    propertiesOptions,
+    oilTypeOptions,
+    keywordsOptions: [],
+    linksOptions: [], check on this format
+    warningOptions
+    */
+
+    console.log("SELECTORDISPLAYINFO:")
+    // console.log("oil title: " + this.state.movie.title);
+    console.log("oil type options: " + this.state.movie.oilTypeOptions);
+    console.log("warnings options: " + this.state.movie.warningOptions);
+    console.log("emotions options: " + this.state.movie.emotionsOptions);
+    console.log("application options: " + this.state.movie.applicationOptions);
+    console.log("body systems options: " + this.state.movie.bodySystemsOptions);
+    console.log("properties options: " + this.state.movie.propertiesOptions);
+    console.log("keywords options: " + this.state.movie.keywordsOptions);
+    console.log("links options: " + this.state.movie.linksOptions);
 
 // REF https://github.com/JedWatson/react-select/issues/1663
 // static arrays moved to state so newly created tags would appear in input field
@@ -291,7 +311,7 @@ const oilTypeOptions = [
 */
 
 /*
-  const warningsOptions = [
+  const warningOptions = [
       { value: "Dilute", label: "Dilute" },
       { value: "Volatile", label: "Volatile" },
       { value: "Photosensitizing", label: "Photosensitizing" },
@@ -382,11 +402,11 @@ const oilTypeOptions = [
 */
     // end for EasyMultiSelect
 
-    const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
+    // const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
   //  const emotionsArray = [];
 
-    const emotionsArray = [
-      "stress", "focus", "fatigue", "happiness"];
+    // const emotionsArray = [
+    //  "stress", "focus", "fatigue", "happiness"];
 /*
     { label: "Happy", value: "happy" },
     { label: "Sad", value: "sad" },
@@ -433,7 +453,7 @@ const oilTypeOptions = [
             }
           }}>
             <div>
-            Movie Poster or Image URL (please enter a URL or leave empty, not required):
+            Oil Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
             const movie = {image: e.target.value || ""};
             this.setState({
@@ -461,7 +481,9 @@ const oilTypeOptions = [
                 closeOnSelect={!this.state.stayOpen}
                 simpleValue
                 // options={oilTypeOptions}
-                options={this.state.oilTypeOptions}
+
+                // options={this.state.oilTypeOptions}
+                options={this.state.movie.oilTypeOptions}
             />
           </div>
 
@@ -483,8 +505,11 @@ const oilTypeOptions = [
               //  onNewOptionClick = function(option) {}
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
+                // LLLOOOOK HERE!!! simpleValue
                 // options={warningOptions}
-                options={this.state.warningOptions}
+
+                // options={this.state.warningOptions}
+                options={this.state.movie.warningOptions}
              />
 
             </div>
@@ -502,8 +527,11 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={emotionsOptions}
-                options={this.state.emotionsOptions}
                 // id="emotions" // option for sending to general handleChange?
+
+                // options={this.state.emotionsOptions}
+                options={this.state.movie.emotionsOptions}
+
             />
             </div>
 
@@ -520,7 +548,9 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={applicationOptions}
-                options={this.state.applicationOptions}
+
+                // options={this.state.applicationOptions}
+                options={this.state.movie.applicationOptions}
             />
             </div>
 
@@ -537,7 +567,9 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={bodySystemsOptions}
-                options={this.state.bodySystemsOptions}
+
+                // options={this.state.bodySystemsOptions}
+                options={this.state.movie.bodySystemsOptions}
             />
             </div>
 
@@ -554,7 +586,9 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={propertiesOptions}
-                options={this.state.propertiesOptions}
+
+                // options={this.state.propertiesOptions}
+                options={this.state.movie.propertiesOptions}
             />
             </div>
 
@@ -577,7 +611,9 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={keywordsOptions}
-                options={this.state.keywordsOptions}
+
+                // options={this.state.keywordsOptions}
+                options={this.state.movie.keywordsOptions}
             />
             </div>
 
@@ -587,6 +623,7 @@ const oilTypeOptions = [
               <li> Press enter to save your link </li>
               <li> Begin typing again to add additional http links </li>
             </ul>
+
             <div className="linksCreate">
               <Select.Creatable
                 name="links"
@@ -600,7 +637,9 @@ const oilTypeOptions = [
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={linksOptions}
-                options={this.state.linksOptions}
+
+                // options={this.state.linksOptions}
+                options={this.state.movie.linksOptions}
             />
             </div>
 
@@ -613,6 +652,8 @@ const oilTypeOptions = [
     );
   }
 }
+
+export default CreateMovieListing;
 
 /*
 
@@ -655,5 +696,3 @@ handleEmotions(e.target.value);
     />
 </div>
 */
-
-export default CreateMovieListing;

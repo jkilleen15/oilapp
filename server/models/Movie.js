@@ -14,12 +14,24 @@ const schema = new mongoose.Schema({
     required: false,
     type: String
   },
+
   /*
-  date: {
+  emotionsOptions,
+  applicationOptions,
+  bodySystemsOptions,
+  propertiesOptions,
+  oilTypeOptions,
+  keywordsOptions: [],
+  linksOptions: [], check on this format
+  warningOptions
+  */
+
+  warningOptions: {
     required: false,
-    type: String
+    type: Object
     // type: Date, default: Date.now
   },
+  /*
   format: {
     required: false,
     type: String
@@ -45,6 +57,8 @@ const schema = new mongoose.Schema({
     // required: true,
     required: false,
     type: Array
+    // type: String,
+    // type: Object,
   },
   emotions: {
     // required: true,

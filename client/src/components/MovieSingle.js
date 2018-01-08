@@ -23,12 +23,11 @@ class MovieSingle extends Component {
     console.log(this.props.movie);
     console.log("this.props.movie.links props: " + this.props.movie.links);
 
-    let linksYesOrNo = "";
+    // let linksYesOrNo = "";
     let linksDisplay = "";
     if (!this.props.movie.links || this.props.movie.links === "") {
-      linksYesOrNo = <h3>Links:</h3>;
+      linksDisplay = "";
     } else {
-      linksYesOrNo = <h3>Links Below:</h3>
       const linksToDisplay = this.props.movie.links;
       const linksToDisplay2 = linksToDisplay.split(",");
       console.log("formatOptions2" + linksToDisplay2);
@@ -37,6 +36,20 @@ class MovieSingle extends Component {
         <h3 key={i}><li><a href={link} target="_blank">{link}</a></li></h3>
     ));
     }
+/*
+    let warningsDisplay = "";
+    if (!this.props.movie.warnings || this.props.movie.warnings === "") {
+      warningsDisplay = "";
+    } else {
+      const warningsToDisplay = this.props.movie.warnings;
+      const warningsToDisplay2 = warningsToDisplay.split(",");
+      console.log("warningsOptions2" + warningsToDisplay2);
+      warningsDisplay =
+        warningsToDisplay2.map((warn,i) => (
+        <h3 key={i}><li><a href={warn} target="_blank">{warn}</a></li></h3>
+    ));
+    }
+    */
 
 /*
     let linksDisplay="";
@@ -71,7 +84,7 @@ class MovieSingle extends Component {
         <h3>Body Systems Affected: {this.props.movie.bodySystems}</h3>
         <h3>Properties: {this.props.movie.properties}</h3>
         <h3>Keywords: {this.props.movie.keywords}</h3>
-        {linksYesOrNo}
+        <h3>Links:</h3>
         {linksDisplay}
 
         <h3><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></h3>
