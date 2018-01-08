@@ -23,13 +23,22 @@ class MovieSingle extends Component {
     console.log(this.props.movie);
     console.log("this.props.movie.links props: " + this.props.movie.links);
 
-    let linksYesOrNo="";
-    if (!this.props.movie.links || this.props.movie.links === ""){
+    let linksYesOrNo = "";
+    let linksDisplay = "";
+    if (!this.props.movie.links || this.props.movie.links === "") {
       linksYesOrNo = <h3>Links:</h3>;
     } else {
       linksYesOrNo = <h3>Links Below:</h3>
-   }
+      const linksToDisplay = this.props.movie.links;
+      const linksToDisplay2 = linksToDisplay.split(",");
+      console.log("formatOptions2" + linksToDisplay2);
+      linksDisplay =
+        linksToDisplay2.map((link,i) => (
+        <h3 key={i}><li><a href={link} target="_blank">{link}</a></li></h3>
+    ));
+    }
 
+/*
     let linksDisplay="";
     if (!this.props.movie.links){
       linksDisplay = "";
@@ -42,6 +51,7 @@ class MovieSingle extends Component {
         <h3><li key={i}><a href={link} target="_blank">{link}</a></li></h3>
     ));
     }
+    */
 
     return (
       <div>
