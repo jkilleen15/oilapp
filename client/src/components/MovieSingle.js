@@ -2,6 +2,16 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
 class MovieSingle extends Component {
+  // constructor() {
+  //   super();
+  // }
+
+/*
+  componentWillMount() {
+    const thisMovieId = this.props.match.params.id;
+    this.props.getMovie(thisMovieId);
+  }
+*/
 
   componentDidMount() {
     const thisMovieId = this.props.match.params.id;
@@ -11,10 +21,31 @@ class MovieSingle extends Component {
   render(){
     const PersonImg = "http://avantsynergy.com/wp-content/uploads/2016/03/highlight-reel.png";
     console.log(this.props.movie);
-    console.log(this.props.movie.title);
+    console.log("this.props.movie.links props: " + this.props.movie.links);
+
+    let linksYesOrNo="";
+    if (!this.props.movie.links || this.props.movie.links === ""){
+      linksYesOrNo = <h3>Links:</h3>;
+    } else {
+      linksYesOrNo = <h3>Links Below:</h3>
+   }
+
+    let linksDisplay="";
+    if (!this.props.movie.links){
+      linksDisplay = "";
+    } else {
+      const linksToDisplay = this.props.movie.links;
+      const linksToDisplay2 = linksToDisplay.split(",");
+      console.log("formatOptions2" + linksToDisplay2);
+      linksDisplay =
+        linksToDisplay2.map((link,i) => (
+        <h3><li key={i}><a href={link} target="_blank">{link}</a></li></h3>
+    ));
+    }
+
     return (
       <div>
-        <li><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></li>
+        <h3><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></h3>
         <h3>Movie Id: {this.props.movie._id}</h3>
         <h3>Movie Poster or Image URL: <br /><img src={this.props.movie.image || PersonImg}
           alt={this.props.movie.title + " Image"} /></h3>
@@ -30,11 +61,14 @@ class MovieSingle extends Component {
         <h3>Body Systems Affected: {this.props.movie.bodySystems}</h3>
         <h3>Properties: {this.props.movie.properties}</h3>
         <h3>Keywords: {this.props.movie.keywords}</h3>
+        {linksYesOrNo}
+        {linksDisplay}
 
-        <li><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></li>
+        <h3><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></h3>
       </div>
     );
   }
+ // }
 }
 
 export default MovieSingle;

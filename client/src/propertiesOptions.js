@@ -1,0 +1,16 @@
+export default [
+  { value: "Antibacterial", label: "Antibacterial" },
+  { value: "Anticatarrhal", label: "Anticatarrhal" },
+  { value: "Antidepressant", label: "Antidepressant"},
+  { value: "Antifungal", label: "Antifungal" },
+  { value: "Anti-infectious", label: "Anti-infectious" },
+  { value: "Anti-inflammatory", label: "Anti-inflammatory" },
+  { value: "Antimicrobial", label: "Antimicrobial"},
+  { value: "Antiparasitic", label: "Antiparasitic" },
+  { value: "Antirheumatic", label: "Antirheumatic" },
+  { value: "Antiseptic", label: "Antiseptic" },
+  { value: "Antispasmodic", label: "Antispasmodic" },
+  { value: "Antiviral", label: "Antiviral"},
+  { value: "Analgesic", label: "Analgesic" },
+  { value: "Immune-stimulant", label: "Immune-stimulant" },
+];

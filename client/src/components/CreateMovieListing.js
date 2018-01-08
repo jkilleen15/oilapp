@@ -3,7 +3,13 @@ import {Link} from "react-router-dom";
 // import MultiSelectField from "../components/MultiSelectField";
 // import EasyMultiSelect from "../components/EasyMultiSelect";
 import movieGenres from "../movieGenres";
+// move options files into options folder and re-route below
+import oilTypeOptions from "../oilTypeOptions";
 import warningOptions from "../warningOptions";
+import emotionsOptions from "../emotionsOptions";
+import applicationOptions from "../applicationOptions";
+import bodySystemsOptions from "../bodySystemsOptions";
+import propertiesOptions from "../propertiesOptions";
 import createClass from "create-react-class";
 import PropTypes from "prop-types";
 import Select from "react-select";
@@ -17,10 +23,10 @@ class CreateMovieListing extends Component {
       movie: {
         image: "",
         title: "",
-        date: "",
-        format: "",
-        genre: [],
-        plot: "",
+        // date: "",
+        // format: "",
+        // genre: [],
+        // plot: "",
         // emotions currently going in as simpleValue string from Select
         // so array.length = 1
         oilType: "",
@@ -29,7 +35,9 @@ class CreateMovieListing extends Component {
         application: [], // !! ADD TO MODEL, UPDATE COMP
         bodySystems: [],
         properties: [],
-        // keywords: "",
+        keywords: [],
+        // links: [],
+        links: "",
         movieGenres,
         // selectedOption: [], // here for now, but no longer used
         // value: [], // here for now, but no longer used
@@ -39,6 +47,13 @@ class CreateMovieListing extends Component {
       warningOptions, // right now this adds to (global) state that applies now any time a new movie is CREATED
                       // consider benefits of adding like this -- how would a user remove unwanted global options
                       // should it just be applied to per-movie, movie-specific - how would this effect search functions
+      emotionsOptions,
+      applicationOptions,
+      bodySystemsOptions,
+      propertiesOptions,
+      oilTypeOptions,
+      keywordsOptions: [],
+      linksOptions: [],
       /*
       warningsOptions: [
           { value: "Dilute", label: "Dilute" },
@@ -55,7 +70,7 @@ class CreateMovieListing extends Component {
       // value: [], // dup
       rtl: false,
     };
-    //this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 /*
 // FULL with old notes
@@ -191,6 +206,26 @@ const onChange = (selectedOption) => {
     console.log("properties Selected Option: " + selectedOption);
   }
 
+  handleKeywordsChange = (selectedOption) => {
+// this.stateName = stateName;
+    // const keyword = "application";
+    const stateName = {keywords: selectedOption};
+    // this.handleChange(selectedOption, stateName, keyword);
+    this.handleChange(selectedOption, stateName);
+    // console.log("application keyword: " + keyword);
+    console.log("keywords Selected Option: " + selectedOption);
+  }
+
+  handleLinksChange = (selectedOption) => {
+// this.stateName = stateName;
+    // const keyword = "application";
+    const stateName = {links: selectedOption};
+    // this.handleChange(selectedOption, stateName, keyword);
+    this.handleChange(selectedOption, stateName);
+    // console.log("application keyword: " + keyword);
+    console.log("keywords Selected Option: " + selectedOption);
+  }
+
 handleChange = (selectedOption, stateName) => {
 // this.stateName = stateName;
 console.log("selectedOptions: " + selectedOption.toString());
@@ -227,27 +262,34 @@ console.log(`Selected: ${selectedOption.toString()}`);
 
   render() {
     // for EasyMultiSelect
+    console.log("oil title: " + this.state.movie.title);
     console.log("oil type: " + this.state.movie.oilType);
     console.log("warnings: " + this.state.movie.warnings);
     console.log("emotions: " + this.state.movie.emotions);
     console.log("application: " + this.state.movie.application);
     console.log("body systems: " + this.state.movie.bodySystems);
     console.log("properties: " + this.state.movie.properties);
+    console.log("keywords: " + this.state.movie.keywords);
+    console.log("links: " + this.state.movie.links);
 
-  //  const oilList
+// REF https://github.com/JedWatson/react-select/issues/1663
+// static arrays moved to state so newly created tags would appear in input field
 
-  const oilTypeOptions = [
-      { value: "Single Oil", label: "Single Oil" },
-      { value: "Oil Blend", label: "Oil Blend" },
-    ];
+//  const oilList
 
 /*
-    Oil Type
-      - single oils
-      - oil blend (two or more oils)
+const oilTypeOptions = [
+    { value: "Single Oil", label: "Single Oil" },
+    { value: "Oil Blend", label: "Oil Blend" },
+  ];
 */
-// REF
-// static array moved to state so newly created tags would appear in input field
+
+/*
+  Oil Type
+    - single oils
+    - oil blend (two or more oils)
+*/
+
 /*
   const warningsOptions = [
       { value: "Dilute", label: "Dilute" },
@@ -261,20 +303,22 @@ console.log(`Selected: ${selectedOption.toString()}`);
     - Volatile
     - Photosensitizing
 */
-
+/*
     const emotionsOptions = [
       { value: "stress", label: "Stress" },
       { value: "focus", label: "Focus" },
       { value: "fatigue", label: "Fatigue"},
       { value: "happiness", label: "Happiness" },
     ];
-
+*/
+/*
     const applicationOptions = [
       { value: "topical", label: "Topical" },
       { value: "aromatic", label: "Aromatic" },
       { value: "internal", label: "Internal"},
     ];
-
+*/
+/*
     const bodySystemsOptions = [
       { value: "cardiovascular system", label: "Cardiovascular System" },
       { value: "digestive system", label: "Digestive System" },
@@ -287,6 +331,8 @@ console.log(`Selected: ${selectedOption.toString()}`);
       { value: "skin and hair", label: "Skin and Hair" },
     ];
 
+  */
+/*
     const propertiesOptions = [
       { value: "Antibacterial", label: "Antibacterial" },
       { value: "Anticatarrhal", label: "Anticatarrhal" },
@@ -303,7 +349,7 @@ console.log(`Selected: ${selectedOption.toString()}`);
       { value: "Analgesic", label: "Analgesic" },
       { value: "Immune-stimulant", label: "Immune-stimulant" },
     ];
-
+*/
 /*
     Properties (choose from):
       - Antibacterial
@@ -375,27 +421,11 @@ console.log(`Selected: ${selectedOption.toString()}`);
     console.log("emotionsDisplay: " + emotionsDisplay);
     */
 
-    const genreFruitSelected = [];
-
-    const formatOptionDisplay = formatOptions.map((f,i) => (
-      <option value={f} key={i}>{f}</option>
-    ));
-
-    const movieGenreDisplay = movieGenres.map((g,i) => (
-      <option value={g} key={i}>{g}</option>
-    ));
-
-
-
-
-    // BONUS - dropdowns used for viewing format and movie genres
-    //       - format dropdown pulls from local variable array
-    //       - grenres dropdown utilizes movieGenres.js exported array
 
     return (
       <div>
         <div>
-          <h1>Create a movie listing:</h1>
+          <h1>Create a new oil listing:</h1>
           <form onSubmit={(e) => {
             e.preventDefault();
             if (this.props.createMovie) {
@@ -412,42 +442,8 @@ console.log(`Selected: ${selectedOption.toString()}`);
           }} />
             </div>
             <div>
-              Movie Title: <input onChange={(e) => {
+              Oil Name: <input onChange={(e) => {
                 const movie = {title: e.target.value};
-                this.setState({
-                  movie: Object.assign(this.state.movie,movie)
-                });
-              }} />
-            </div>
-            <div>
-              Date watched: <input onChange={(e) => {
-                const movie = {date: e.target.value};
-                this.setState({
-                  movie: Object.assign(this.state.movie,movie)
-                });
-              }} />
-            </div>
-            <div>
-              Viewing Format(theater, redbox, netflix, etc.):
-              <select onChange={(e) => {
-                console.log("e: " + e.target.value);
-                const movie = {format: e.target.value};
-                this.setState({
-                  movie: Object.assign(this.state.movie,movie)
-                });
-              }} >
-                {formatOptionDisplay}
-              </select>
-            </div>
-            <div>
-              Genre:
-                {movieGenreDisplay}
-
-            </div>
-            <div>
-              Plot Summary: <input onChange={(e) => {
-
-                const movie = {plot: e.target.value};
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
                 });
@@ -464,8 +460,8 @@ console.log(`Selected: ${selectedOption.toString()}`);
                 // multi
                 closeOnSelect={!this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
-                options={oilTypeOptions}
+                // options={oilTypeOptions}
+                options={this.state.oilTypeOptions}
             />
           </div>
 
@@ -475,6 +471,7 @@ console.log(`Selected: ${selectedOption.toString()}`);
                 <Select.Creatable
                 name="warnings"
                 // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
                 value={this.state.movie.warnings.toString()}
                 onChange={this.handleWarningsChange}
                 // onInputChange
@@ -486,7 +483,7 @@ console.log(`Selected: ${selectedOption.toString()}`);
               //  onNewOptionClick = function(option) {}
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
+                // options={warningOptions}
                 options={this.state.warningOptions}
              />
 
@@ -494,73 +491,119 @@ console.log(`Selected: ${selectedOption.toString()}`);
 
             Emotions (select all that apply)
             <div className="emotionsSelect">
-              <Select
+              <Select.Creatable
                 name="emotions" // option for sending to general handleChange?
                 // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
                 value={this.state.movie.emotions.toString()}
                 onChange={this.handleEmotionsChange}
                 multi
+                allowCreate
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
                 // options={emotionsOptions}
-                options={emotionsOptions}
+                options={this.state.emotionsOptions}
                 // id="emotions" // option for sending to general handleChange?
             />
             </div>
 
             Application (select all that apply)
             <div className="applicationSelect">
-              <Select
+              <Select.Creatable
                 name="application"
                 // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
                 value={this.state.movie.application.toString()}
                 onChange={this.handleApplicationChange}
                 multi
+                allowCreate
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
-                options={applicationOptions}
+                // options={applicationOptions}
+                options={this.state.applicationOptions}
             />
             </div>
 
             Body Systems Affected (select all that apply)
             <div className="bodySystemsSelect">
-              <Select
+              <Select.Creatable
                 name="bodySystems"
                 // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
                 value={this.state.movie.bodySystems.toString()}
                 onChange={this.handleBodySystemsChange}
                 multi
+                allowCreate
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
-                options={bodySystemsOptions}
+                // options={bodySystemsOptions}
+                options={this.state.bodySystemsOptions}
             />
             </div>
 
             Properties (select all that apply):
             <div className="propertiesSelect">
-              <Select
+              <Select.Creatable
                 name="properties"
                 // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
                 value={this.state.movie.properties.toString()}
                 onChange={this.handlePropertiesChange}
                 multi
+                allowCreate
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
-                options={propertiesOptions}
+                // options={propertiesOptions}
+                options={this.state.propertiesOptions}
             />
             </div>
 
-            <div>
-              Keywords: <input onChange={(e) => {
-                const movie = {keywords: e.target.value};
-                this.setState({
-                  movie: Object.assign(this.state.movie,movie)
-                });
-              }} />
+            Keywords
+            <ul>
+              <li> Begin typing to add helpful keywords </li>
+              <li> Press enter to save keyword </li>
+              <li> Begin typing again to add additional keywords </li>
+              <li> use keywords to retrieve oils </li>
+            </ul>
+            <div className="keywordsCreate">
+              <Select.Creatable
+                name="keywords"
+                // value={value}
+                placeholder="Begin typing to add keywords..."
+                value={this.state.movie.keywords.toString()}
+                onChange={this.handleKeywordsChange}
+                multi
+                allowCreate
+                closeOnSelect={this.state.stayOpen}
+                simpleValue
+                // options={keywordsOptions}
+                options={this.state.keywordsOptions}
+            />
             </div>
+
+            Links & References
+            <ul>
+              <li> Begin typing to add http link </li>
+              <li> Press enter to save your link </li>
+              <li> Begin typing again to add additional http links </li>
+            </ul>
+            <div className="linksCreate">
+              <Select.Creatable
+                name="links"
+                // value={value}
+                placeholder="Begin typing to add keywords..."
+                // value={this.state.movie.links.toString()}
+                value={this.state.movie.links}
+                onChange={this.handleLinksChange}
+                multi
+                allowCreate
+                closeOnSelect={this.state.stayOpen}
+                simpleValue
+                // options={linksOptions}
+                options={this.state.linksOptions}
+            />
+            </div>
+
             <button>Create Movie!</button>
           </form>
         </div>

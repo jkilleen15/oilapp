@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
     required: false,
     type: String
   },
+  /*
   date: {
     required: false,
     type: String
@@ -34,6 +35,7 @@ const schema = new mongoose.Schema({
     required: false,
     type: String
   },
+  */
   oilType: {
     // required: true,
     required: false,
@@ -67,7 +69,13 @@ const schema = new mongoose.Schema({
   keywords: {
     // required: true,
     required: false,
+    type: Array
+  },
+  links: {
+    // required: true,
+    required: false,
     type: String
+    // type: Array
   },
 });
 
