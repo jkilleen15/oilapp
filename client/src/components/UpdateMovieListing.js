@@ -11,49 +11,53 @@ import movieGenres from "../movieGenres";
 
 // AFTER UPDATE
 // http://localhost:3101/update/undefined ???
-/*
 
-// May include these later as fallback/or || in case user deletes all choices
+// include these --> fallback/or || for display in case
+// current state is empty/none were selected initially/or user deletes all selected choices during update
 import oilTypeOptions from "../oilTypeOptions";
 import warningOptions from "../warningOptions";
 import emotionsOptions from "../emotionsOptions";
 import applicationOptions from "../applicationOptions";
 import bodySystemsOptions from "../bodySystemsOptions";
 import propertiesOptions from "../propertiesOptions";
-*/
-
 
 class UpdateMovieListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movie: {
-        id: this.props.movie._id,
-        image: this.props.movie.image,
-        title: this.props.movie.title,
+        id: this.props.movie._id || "",
+
+        // image: this.props.movie.image [] "",
+        // title: this.props.movie.title [] "",
+        image: this.props.movie.image || [],
+        title: this.props.movie.title || [],
         // emotions currently going in as simpleValue string from Select
         // so array.length = 1
-        oilType: this.props.movie.oilType,
-        warnings: this.props.movie.warnings,
-        emotions: this.props.movie.emotions,
-        application: this.props.movie.application,
-        bodySystems: this.props.movie.bodySystems,
-        properties: this.props.movie.properties,
-        keywords: this.props.movie.keywords,
+        // oilType: this.props.movie.oilType || [],
+        oilType: this.props.movie.oilType || [],
+        warnings: this.props.movie.warnings || [],
+        emotions: this.props.movie.emotions || [],
+        application: this.props.movie.application || [],
+        bodySystems: this.props.movie.bodySystems || [],
+        properties: this.props.movie.properties || [],
+        keywords: this.props.movie.keywords || [],
         // links: this.props.movie.title,
-        links: this.props.movie.links,
+        links: this.props.movie.links || [],
         movieGenres,
 
         // these values moved from global state to per-movie, keep in mind for search
-        emotionsOptions: this.props.movie.emotionsOptions,
-        applicationOptions: this.props.movie.applicationOptions,
-        bodySystemsOptions: this.props.movie.bodySystemsOptions,
-        propertiesOptions: this.props.movie.propertiesOptions,
-        oilTypeOptions: this.props.movie.oilTypeOptions,
-        keywordsOptions: this.props.movie.keywordsOptions,
-        linksOptions: this.props.movie.linksOptions,
-        warningOptions: this.props.movie.warningOptions,
+        oilTypeOptions: this.props.movie.oilTypeOptions || oilTypeOptions,
+        warningOptions: this.props.movie.warningOptions || warningOptions,
+        emotionsOptions: this.props.movie.emotionsOptions || emotionsOptions,
+        applicationOptions: this.props.movie.applicationOptions || applicationOptions,
+        bodySystemsOptions: this.props.movie.bodySystemsOptions || bodySystemsOptions,
+        propertiesOptions: this.props.movie.propertiesOptions || propertiesOptions,
+
+        keywordsOptions: this.props.movie.keywordsOptions || [],
+        linksOptions: this.props.movie.linksOptions || [],
       },
+
       stayOpen: false,
       /*
       warningOptions,
@@ -71,7 +75,7 @@ class UpdateMovieListing extends Component {
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
   // const keyword = "emotions";
-  const stateName = {oilType: selectedOption};
+  const stateName = {oilType: selectedOption || []};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
@@ -81,7 +85,8 @@ class UpdateMovieListing extends Component {
   handleWarningsChange = (selectedOption) => {
   // this.stateName = stateName;
   // const keyword = "emotions";
-  const stateName = {warnings: selectedOption};
+  const stateName = {warnings: selectedOption || []};
+  // LOOK HERE AT THIS EXTRA SAVE(?) IF NEW OBJECTS DON'T UPDATE CORRECTLY
   const displayName = {warningDisplay: selectedOption};
   this.setState({
     movie: Object.assign(this.state.movie,displayName)
@@ -96,7 +101,7 @@ class UpdateMovieListing extends Component {
   handleEmotionsChange = (selectedOption) => {
   // this.stateName = stateName;
   // const keyword = "emotions";
-  const stateName = {emotions: selectedOption};
+  const stateName = {emotions: selectedOption || []};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
@@ -106,7 +111,7 @@ class UpdateMovieListing extends Component {
   handleApplicationChange = (selectedOption) => {
   // this.stateName = stateName;
     // const keyword = "application";
-    const stateName = {application: selectedOption};
+    const stateName = {application: selectedOption || []};
     // this.handleChange(selectedOption, stateName, keyword);
     this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
@@ -116,7 +121,7 @@ class UpdateMovieListing extends Component {
   handleBodySystemsChange = (selectedOption) => {
   // this.stateName = stateName;
     // const keyword = "application";
-    const stateName = {bodySystems: selectedOption};
+    const stateName = {bodySystems: selectedOption || []};
     // this.handleChange(selectedOption, stateName, keyword);
     this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
@@ -126,7 +131,7 @@ class UpdateMovieListing extends Component {
   handlePropertiesChange = (selectedOption) => {
   // this.stateName = stateName;
     // const keyword = "application";
-    const stateName = {properties: selectedOption};
+    const stateName = {properties: selectedOption || []};
     // this.handleChange(selectedOption, stateName, keyword);
     this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
@@ -136,7 +141,7 @@ class UpdateMovieListing extends Component {
   handleKeywordsChange = (selectedOption) => {
   // this.stateName = stateName;
     // const keyword = "application";
-    const stateName = {keywords: selectedOption};
+    const stateName = {keywords: selectedOption || []};
     // this.handleChange(selectedOption, stateName, keyword);
     this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
@@ -146,11 +151,11 @@ class UpdateMovieListing extends Component {
   handleLinksChange = (selectedOption) => {
   // this.stateName = stateName;
     // const keyword = "application";
-    const stateName = {links: selectedOption};
+    const stateName = {links: selectedOption || []};
     // this.handleChange(selectedOption, stateName, keyword);
     this.handleChange(selectedOption, stateName);
     // console.log("application keyword: " + keyword);
-    console.log("keywords Selected Option: " + selectedOption);
+    console.log("links Selected Option: " + selectedOption);
   }
 
   /////////
@@ -257,7 +262,7 @@ class UpdateMovieListing extends Component {
             <div className="oilURLCreate">
               <input value={this.state.movie.image}
                 onChange={(e) => {
-                  const movie = {image: e.target.value || ""};
+                  const movie = {image: e.target.value || []};
                   this.setState({
                     movie: Object.assign(this.state.movie,movie)
                   });
@@ -269,7 +274,7 @@ class UpdateMovieListing extends Component {
               <input
                 value={this.state.movie.title}
                 onChange={(e) => {
-                  const movie = {title: e.target.value};
+                  const movie = {title: e.target.value || []};
                   this.setState({
                     movie: Object.assign(this.state.movie,movie)
                   });
@@ -280,8 +285,8 @@ class UpdateMovieListing extends Component {
             <div className="oilTypeSelect">
               <Select
                 name="oilType"
-                // value={this.state.movie.oilType.toString()}
                 value={this.state.movie.oilType.toString()}
+                // value={this.state.movie.oilType}
                 onChange={this.handleOilTypeChange}
                 // multi
                 closeOnSelect={!this.state.stayOpen}
@@ -435,7 +440,7 @@ class UpdateMovieListing extends Component {
                 // value={value}
                 placeholder="Begin typing to add keywords..."
                 // value={this.state.movie.links.toString()}
-                value={this.state.movie.links}
+                value={this.state.movie.links.toString()}
                 onChange={this.handleLinksChange}
                 multi
                 allowCreate

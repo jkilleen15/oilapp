@@ -5,10 +5,27 @@ const schema = new mongoose.Schema({
     required: false,
     type: String
   },
+
   image: {
     required: false,
     type: String
   },
+
+/*
+  image: {
+    required: false,
+    type: Array
+  },
+*/
+
+  /*
+  title: {
+    // required: true,
+    required: false,
+    type: Array
+  },
+  */
+
   title: {
     // required: true,
     required: false,
@@ -16,43 +33,21 @@ const schema = new mongoose.Schema({
   },
 
   /*
-  emotionsOptions,
-  applicationOptions,
-  bodySystemsOptions,
-  propertiesOptions,
-  oilTypeOptions,
-  keywordsOptions: [],
-  linksOptions: [], check on this format
-  warningOptions
-  */
-
-  warningOptions: {
-    required: false,
-    type: Object
-    // type: Date, default: Date.now
-  },
-  /*
-  format: {
-    required: false,
-    type: String
-  },
-  genre: {
-    // required: true,
-    required: false,
-    // type: String
-    type: Array
-  },
-  plot: {
-    // required: true,
-    required: false,
-    type: String
-  },
-  */
   oilType: {
     // required: true,
     required: false,
+    // type: Array
     type: Array
   },
+  */
+
+  oilType: {
+    // required: true,
+    required: false,
+    // type: Array
+    type: String
+  },
+
   warnings: {
     // required: true,
     required: false,
@@ -60,11 +55,13 @@ const schema = new mongoose.Schema({
     // type: String,
     // type: Object,
   },
+
   emotions: {
     // required: true,
     required: false,
     type: Array
   },
+
   application: {
     // required: true,
     required: false,
@@ -88,9 +85,76 @@ const schema = new mongoose.Schema({
   links: {
     // required: true,
     required: false,
-    type: String
+    type: Array
     // type: Array
   },
+
+  // DISPLAY OPTIONS STATE
+  /*
+  oilTypeOptions,
+  warningOptions,
+  emotionsOptions,
+  applicationOptions,
+  bodySystemsOptions,
+  propertiesOptions,
+
+  keywordsOptions: [],
+  linksOptions: [], check on this format
+
+  */
+
+  oilTypeOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+
+  warningOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+// remove?
+  emotionsOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+
+  applicationOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+
+  bodySystemsOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+
+  propertiesOptions: {
+    required: false,
+    type: Object
+    // type: Date, default: Date.now
+  },
+
+  keywordsOptions: {
+    required: false,
+    type: Object,
+    value: "",
+    label: "",
+    // type: Date, default: Date.now
+  },
+
+  linksOptions: {
+    required: false,
+    type: Object,
+    value: "",
+    label: "",
+    // type: Date, default: Date.now
+  },
+
 });
 
 export default mongoose.model("Movie", schema);

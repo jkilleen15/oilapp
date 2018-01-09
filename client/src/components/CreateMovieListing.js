@@ -24,19 +24,21 @@ class CreateMovieListing extends Component {
     this.state = {
       movie: {
         id: "",
-        image: "",
-        title: "",
+        image: [],
+        title: [],
         // emotions currently going in as simpleValue string from Select
         // so array.length = 1
-        oilType: "",
+
+        // oilType: [],
+        oilType: [],
         warnings: [],
         emotions: [],
         application: [], // !! ADD TO MODEL, UPDATE COMP
         bodySystems: [],
         properties: [],
         keywords: [],
-        // links: [],
-        links: "",
+        links: [],
+        // links: "",
         movieGenres,
         // selectedOption: [], // here for now, but no longer used
         // value: [], // here for now, but no longer used
@@ -137,7 +139,7 @@ class CreateMovieListing extends Component {
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
   // const keyword = "emotions";
-  const stateName = {oilType: selectedOption};
+  const stateName = {oilType: selectedOption || []};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
   // console.log("emotions keyword: " + keyword);
@@ -153,6 +155,20 @@ class CreateMovieListing extends Component {
   // console.log("emotions keyword: " + keyword);
   console.log("warnings Selected Option: " + selectedOption);
 }
+
+// SAVE! here is an opportunity to save all current selections to global selections
+// may be helpful to user to be able to look up all i.e. keywords ever CREATED
+// this would also be helpful when dev creating search functions,
+    // rather than looping thru i.e. keywords of each user ???
+// 1. initial entry pulls from file (initial options)
+// 2. global keywordsOptions is updated with org + any CREATED
+// 3. currently loads on last created options
+// 4. perhaps
+        // a. re-establish global option objects for applicable categories
+        // b. on there own, or within movies object, on same level as movie
+        // c. create a model?, controllers, mapStateToProps as needed
+        // d. current global is searched, if new items no match, concat with current global
+              // see code ref below for inspiration
 
 // POTENTIAL REF FOR SHOWING NEWLY CREATED
 // THIS WOULD BE WITHIN HANDLECHANGE
@@ -455,7 +471,8 @@ const oilTypeOptions = [
             <div>
             Oil Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
-            const movie = {image: e.target.value || ""};
+            // const movie = {image: e.target.value || ""};
+            const movie = {image: e.target.value || []};
             this.setState({
               movie: Object.assign(this.state.movie,movie)
             });
@@ -463,7 +480,8 @@ const oilTypeOptions = [
             </div>
             <div>
               Oil Name: <input onChange={(e) => {
-                const movie = {title: e.target.value};
+                // const movie = {title: e.target.value};
+                const movie = {title: e.target.value || []};
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
                 });
@@ -488,12 +506,13 @@ const oilTypeOptions = [
           </div>
 
             Warnings (select all that apply)
+            * Refresh to clear recently added options
             <div className="warningsSelect">
 
                 <Select.Creatable
                 name="warnings"
                 // value={value}
-                placeholder="Click to select from list below or begin typing to add custom options..."
+                placeholder="Click to select from list, begin typing to search or add options..."
                 value={this.state.movie.warnings.toString()}
                 onChange={this.handleWarningsChange}
                 // onInputChange
@@ -628,9 +647,9 @@ const oilTypeOptions = [
               <Select.Creatable
                 name="links"
                 // value={value}
-                placeholder="Begin typing to add keywords..."
-                // value={this.state.movie.links.toString()}
-                value={this.state.movie.links}
+                placeholder="Begin typing to add links..."
+                value={this.state.movie.links.toString()}
+                // value={this.state.movie.links}
                 onChange={this.handleLinksChange}
                 multi
                 allowCreate

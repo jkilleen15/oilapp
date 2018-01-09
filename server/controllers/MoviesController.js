@@ -65,8 +65,8 @@ export function updateMovie(request, response) {
     movie.application = request.body.application || movie.application;
     movie.bodySystems = request.body.bodySystems || movie.bodySystems;
     movie.properties = request.body.properties || movie.properties;
-    movie.keywords = request.body.keywords || movie.keywords;
-    movie.links = request.body.links || movie.links;
+    movie.keywords = request.body.keywords || movie.keywords || [];
+    movie.links = request.body.links || movie.links || [];
 
 /*
 id: "",
@@ -96,7 +96,7 @@ links: "",
     */
 
 // UPDATE THIS NOW!!! not sure if we also need to round displayers...
-    movie.oilTypeOptions = request.body.oilType || movie.oilType;
+    movie.oilTypeOptions = request.body.oilTypeOptions || movie.oilTypeOptions;
     movie.warningOptions = request.body.warningOptions || movie.warningOptions;
     movie.emotionsOptions = request.body.emotionsOptions || movie.emotionsOptions;
     movie.applicationOptions = request.body.applicationOptions || movie.applicationOptions;

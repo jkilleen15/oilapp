@@ -81,7 +81,7 @@ export function updateMovie(m) {
       body: JSON.stringify(m)
     })
     .then(() => dispatch(updateMovieDone()))
-    .then(() => dispatch(loadMovies())) //;
+    .then(() => dispatch(loadMovies())) // ;
     .then(console.log("updated props! " + m.warnings));
   };
 }
