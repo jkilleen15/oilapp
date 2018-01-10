@@ -25,9 +25,9 @@ class MovieSingle extends Component {
 
 
     let linksDisplay = "";
-    if (!this.props.movie.links ||
-      this.props.movie.links === [] ||
-      this.props.movie.links === "" ) {
+    if (this.props.movie.links) {
+
+      if (this.props.movie.links === [] || this.props.movie.links === "" || this.props.movie.links.length === 0) {
       console.log("no links: " + this.props.movie.links);
       /*
       const linksToDisplay = this.props.movie.links;
@@ -52,6 +52,7 @@ class MovieSingle extends Component {
     ));
 
     }
+  }
 
 
 /*
@@ -112,8 +113,9 @@ class MovieSingle extends Component {
         <h3>Links:</h3>
         {linksDisplay}
 
-        <button><h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3></button>
-        <button><h3><Link to={"/"}> Return to Full Oil List </Link></h3></button>
+        <button><h3><Link to={"/update/" + this.props.movie._id}>
+          Edit or Update this Listing </Link></h3></button>
+        <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
       </div>
     );
   }
