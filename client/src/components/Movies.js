@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+// import { Button } from "react-bootstrap";
 
 // class CollapsableMapper extends Component {
 class Movies extends Component {
   constructor() {
     super();
     this.state = {
-      fullListVisible: true,
+      fullListVisible: false,
     };
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
@@ -24,14 +25,20 @@ class Movies extends Component {
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
   render() {
 
-    let buttonText = "Hide";
+    let showFullListButtonText = "";
+    let showFullYesNoLabel = ""
     let movieDivs = "";
     if (this.state.fullListVisible) {
-      buttonText = "Hide Full List";
-      // movieDivs = this.props.data.map((d,i) => {
-         movieDivs = this.props.movies.map((d,i) => {
 
-    return (
+      showFullListButtonText = "Hide Full List";
+
+      showFullYesNoLabel =
+      <h2>My Oils Quick Look Listing</h2>;
+      // movieDivs = this.props.data.map((d,i) => {
+
+      movieDivs = this.props.movies.map((d,i) => (
+
+    // return (
           <div key={i}>
           <div>
             <h3>{d.title}</h3>
@@ -46,12 +53,15 @@ class Movies extends Component {
                 DELETE THIS OIL - {d.title.toUpperCase()}
               </button>
           </div>
-    );
-         });
+        ));
+         // });
+
     } else {
-      buttonText = "Show Full List";
+      showFullListButtonText = "View Full Listing of Oils";
+      showFullYesNoLabel = "";
       movieDivs = "";
     }
+
     return (
       <div>
         <button onClick={() => {
@@ -60,8 +70,9 @@ class Movies extends Component {
           });
         }
         }>
-          {buttonText}
+          <h3>{showFullListButtonText}</h3>
         </button>
+        {showFullYesNoLabel}
         {movieDivs}
       </div>);
   }

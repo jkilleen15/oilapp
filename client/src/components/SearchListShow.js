@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Select from "react-select";
+// import Select from "react-select";
+// import { Button } from "react-bootstrap";
 // import Movie from './Movie';
 // <li key={i}><a>{movie.title} {movie._id}</a></li>
 
@@ -12,7 +13,7 @@ class SearchListShow extends React.Component {
      * going to use state to manage filtering of movies.
      */
     this.state = {
-      searchableListVisible: false,
+      searchableListVisible: true,
 
       filteredMovies: [],
       filtering: false,
@@ -80,54 +81,87 @@ class SearchListShow extends React.Component {
     ));
 */
 
-    if (this.props.movies.length === 0) {
+/*
+    if (!this.props.movies.length) {
       return (
         <div className="column">
           <h4>{this.props.title}</h4>
-          No movies on this list.
+          Loading searchable list...
         </div>
       );
     }
+*/
 
     ////
-    let buttonText = "Show List";
+    let searchShowButtonText = "";
+    let showFullYesNoLabel = "";
+    let quickLinksLabel = "";
+    let resultsListLabel = "";
     let inputBox = "";
     let resultStatus = "";
     let movieListShow = "";
+    let movieListShowLong = "";
     if (this.state.searchableListVisible) {
-      buttonText = "Hide Searchable List";
+      searchShowButtonText = "Hide Searchable List";
+
+      showFullYesNoLabel = "Search My Oils";
+      // <div><h2>Search My Oils</h2></div>;
+
+      quickLinksLabel =
+      <div><h3>Quick Link Results: </h3></div>;
+
+      resultsListLabel =
+      <div><h3>Search Results: </h3></div>;
 
       resultStatus =
-      <h4>
-
-        <div className="ui label basic circular">
+        <i>
           {this.state.filtering ?
             this.state.filteredMovies.length +
             " out of " + this.props.movies.length + " oils match your search" :
-            this.props.movies.length + " oils in my collection"}
-        </div>
-      </h4>;
+            this.props.movies.length + " oils in my collection"}</i>;
 
       inputBox =
-
-      <div className="ui transparent icon input">
-        <h3><input
+        <input
         className="prompt"
         placeholder="Search oils by keyword (oil name, emotions, keywords, application, body systems)"
         onChange={this.filterList.bind(this)}
         // onChange={this.filterList}
         // value={this.state.keyword}
-      /></h3>
-    </div>;
+      />;
 
       // movieDivs = this.props.data.map((d,i) => {
          // movieDivs = this.props.movies.map((d,i) => {
-         movieListShow = movieList.map((movie,i) => (
-           <li className="listNoDecoration" key={movie._id}><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
+         //<li className="listNoDecoration" key={movie._id}><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
+
+         movieListShow =
+         movieList.map((movie,i) => (
+           <li key={i}><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
          ));
 
-      }
-    else {buttonText = "Show Searchable List";}
+         movieListShowLong = movieList.map((movie,i) => (
+         // movieDivs = this.props.movies.map((d,i) => {
+          <div key={i}>
+          <div>
+            <h3>{movie.title}</h3>
+            <ul>
+            <li><i>{movie.oilType}</i></li>
+            <li>Application: {movie.application}</li>
+            <li>Properties: {movie.properties}</li>
+            <li><Link to={"/movie/" + movie._id}> view and update movie details </Link></li>
+          </ul>
+        </div>
+              <button onClick={this.handleDeleteClick} id={movie._id}>
+                DELETE THIS OIL - {movie.title.toUpperCase()}
+              </button>
+          </div>
+         ));
+         // });
+    } else {
+      searchShowButtonText = "Search My Collection";
+      showFullYesNoLabel = "";
+      quickLinksLabel = "";
+      resultsListLabel = "";
+    }
 
     return (
     //  //
@@ -141,21 +175,26 @@ class SearchListShow extends React.Component {
               });
             }
           }>
-              {buttonText}
+              <h3>{searchShowButtonText}</h3>
             </button>
 
           </div>
+
+          <div><h2>{showFullYesNoLabel}</h2></div>
+          <div><h3>{inputBox}</h3></div>
           {resultStatus}
-          <div className="ui top attached menu">
-            <div className="right menu">
-              <div className="ui right aligned search item">
-                {inputBox}
-            </div>
-          </div>
-        </div>
+          {quickLinksLabel}
+
         <div className="ui bottom attached segment">
           <div className="ui divided items">
-            {movieList.length ? movieListShow : 'No matches found.'}
+            <ul className="listNoDecoration">
+            {movieList.length ? movieListShow : "No matches found."}
+          </ul>
+          </div>
+
+          {resultsListLabel}
+          <div className="ui divided items">
+            {movieList.length ? movieListShowLong : "No matches found."}
           </div>
         </div>
         </div>

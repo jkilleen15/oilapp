@@ -23,20 +23,37 @@ class MovieSingle extends Component {
     console.log(this.props.movie);
     console.log("this.props.movie.links props: " + this.props.movie.links);
 
-    /*
+
     let linksDisplay = "";
-    if (!this.props.movie.links || this.props.movie.links === "") {
-      linksDisplay = "";
-    } else {
+    if (!this.props.movie.links ||
+      this.props.movie.links === [] ||
+      this.props.movie.links === "" ) {
+      console.log("no links: " + this.props.movie.links);
+      /*
       const linksToDisplay = this.props.movie.links;
       const linksToDisplay2 = linksToDisplay.split(",");
       console.log("formatOptions2" + linksToDisplay2);
       linksDisplay =
         linksToDisplay2.map((link,i) => (
         <h3 key={i}><li><a href={link} target="_blank">{link}</a></li></h3>
+
     ));
-    }
     */
+    } else {
+      console.log("we got links!");
+      const linksToDisplay = this.props.movie.links;
+      console.log(linksToDisplay[0].toString().split(","));
+      const linksToDisplay2 = linksToDisplay[0].toString().split(",");
+      // console.log("formatOptions2" + linksToDisplay2);
+      linksDisplay =
+        linksToDisplay2.map((link,i) => (
+        <h4 key={i}><li><a href={link} target="_blank">{link}</a></li></h4>
+
+    ));
+
+    }
+
+
 /*
     let warningsDisplay = "";
     if (!this.props.movie.warnings || this.props.movie.warnings === "") {
@@ -74,7 +91,7 @@ class MovieSingle extends Component {
 
     return (
       <div>
-        <h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3>
+        <button><h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3></button>
         <h3>Movie Id: {this.props.movie._id}</h3>
 
         <h3>Movie Poster or Image URL: <br /><img src={this.props.movie.image || PersonImg}
@@ -92,11 +109,11 @@ class MovieSingle extends Component {
         <h3>Body Systems Affected: {this.props.movie.bodySystems}</h3>
         <h3>Properties: {this.props.movie.properties}</h3>
         <h3>Keywords: {this.props.movie.keywords || ""}</h3>
-        <h3>Links: {this.props.movie.links || ""}</h3>
+        <h3>Links:</h3>
+        {linksDisplay}
 
-
-        <h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3>
-        <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
+        <button><h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3></button>
+        <button><h3><Link to={"/"}> Return to Full Oil List </Link></h3></button>
       </div>
     );
   }
