@@ -26,7 +26,7 @@ class UpdateMovieListing extends Component {
     super(props);
     this.state = {
       movie: {
-        id: this.props.movie._id || "",
+        id: this.props.movie._id,
 
         // image: this.props.movie.image [] "",
         // title: this.props.movie.title [] "",
@@ -71,6 +71,7 @@ class UpdateMovieListing extends Component {
       */
     };
   }
+
   // let displayName="";
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
@@ -258,19 +259,19 @@ class UpdateMovieListing extends Component {
             }
             // ??
           }}>
-            Oil Poster or Image URL (please enter a URL or leave empty, not required):
-            <div className="oilURLCreate">
+          <div className="oilURLCreate">
+            <h4> Oil Poster or Image URL (please enter a URL or leave empty, not required):
               <input value={this.state.movie.image}
                 onChange={(e) => {
                   const movie = {image: e.target.value || []};
                   this.setState({
                     movie: Object.assign(this.state.movie,movie)
                   });
-                }} />
+                }} /></h4>
             </div>
 
-            Oil Name:
             <div className="oilNameCreate">
+              <h4>Oil Name:
               <input
                 value={this.state.movie.title}
                 onChange={(e) => {
@@ -278,10 +279,10 @@ class UpdateMovieListing extends Component {
                   this.setState({
                     movie: Object.assign(this.state.movie,movie)
                   });
-                }} />
+                }} /></h4>
             </div>
 
-            Oil Type (Select One)
+            <h4> Oil Type (Select One) </h4>
             <div className="oilTypeSelect">
               <Select
                 name="oilType"
@@ -298,7 +299,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Warnings (select all that apply)
+            <h4>Warnings (select all that apply)</h4>
             <div className="warningsSelect">
 
                 <Select.Creatable
@@ -325,7 +326,7 @@ class UpdateMovieListing extends Component {
 
             </div>
 
-            Emotions (select all that apply)
+            <h4>Emotions (select all that apply)</h4>
             <div className="emotionsSelect">
               <Select.Creatable
                 name="emotions" // option for sending to general handleChange?
@@ -345,7 +346,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Application (select all that apply)
+            <h4>Application (select all that apply)</h4>
             <div className="applicationSelect">
               <Select.Creatable
                 name="application"
@@ -364,7 +365,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Body Systems Affected (select all that apply)
+            <h4>Body Systems Affected (select all that apply)</h4>
             <div className="bodySystemsSelect">
               <Select.Creatable
                 name="bodySystems"
@@ -383,7 +384,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Properties (select all that apply):
+            <h4>Properties (select all that apply):</h4>
             <div className="propertiesSelect">
               <Select.Creatable
                 name="properties"
@@ -402,7 +403,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Keywords
+            <h4>Keywords</h4>
             <ul>
               <li> Begin typing to add helpful keywords </li>
               <li> Press enter to save keyword </li>
@@ -427,7 +428,7 @@ class UpdateMovieListing extends Component {
             />
             </div>
 
-            Links & References
+            <h4>Links & References</h4>
             <ul>
               <li> Begin typing to add http link </li>
               <li> Press enter to save your link </li>
@@ -456,7 +457,8 @@ class UpdateMovieListing extends Component {
             <button>Update This Listing! </button>
           </form>
         </div>
-        <li><Link to={"/"}> return to movie list </Link></li>
+        <h3><Link to={"/movie/" + this.state.movie.id}> Return to Oil Details! </Link></h3>
+        <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
       </div>
 
     );

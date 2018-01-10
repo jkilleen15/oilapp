@@ -5,58 +5,52 @@ import {Link} from "react-router-dom";
 class Movies extends Component {
   constructor() {
     super();
-    this.state = {
-      fullListVisible: true,
-    };
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.state = {visible: true};
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleDeleteClick(e) {
+  handleClick(e) {
     console.log("Click happened");
-    alert("Oil Deleted!");
     console.log(e);
     console.log(e.target.id);
     this.props.deleteMovie(e.target.id);
-    console.log("handleDeleteClick Complete");
+    console.log("handleClickComplete");
   }
 
 // <li><Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link></li>
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
   render() {
-
     let buttonText = "Hide";
     let movieDivs = "";
-    if (this.state.fullListVisible) {
-      buttonText = "Hide Full List";
+    if (this.state.visible) {
+      buttonText = "Hide My Movies";
       // movieDivs = this.props.data.map((d,i) => {
          movieDivs = this.props.movies.map((d,i) => {
-
-    return (
+        return (
           <div key={i}>
-          <div>
-            <h3>{d.title}</h3>
+            {d.title}
             <ul>
-            <li><i>{d.oilType}</i></li>
-            <li>Application: {d.application}</li>
-            <li>Properties: {d.properties}</li>
+            <li>{d.genre}</li>
+            <li>{d.plot}</li>
             <li><Link to={"/movie/" + d._id}> view and update movie details </Link></li>
-          </ul>
-        </div>
-              <button onClick={this.handleDeleteClick} id={d._id}>
-                DELETE THIS OIL - {d.title.toUpperCase()}
+
+              <button onClick={this.handleClick} id={d._id}>
+                DELETE THIS MOVIE
               </button>
+
+            </ul>
           </div>
-    );
+        );
          });
     } else {
-      buttonText = "Show Full List";
+      buttonText = "Show My Movies";
       movieDivs = "";
     }
     return (
       <div>
         <button onClick={() => {
           this.setState({
-            fullListVisible: !this.state.fullListVisible
+            visible: !this.state.visible
           });
         }
         }>

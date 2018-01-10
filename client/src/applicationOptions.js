@@ -1,5 +1,5 @@
 export default [
-  { value: "topical", label: "Topical" },
-  { value: "aromatic", label: "Aromatic" },
-  { value: "internal", label: "Internal"},
+  { value: "Topical", label: "Topical" },
+  { value: "Aromatic", label: "Aromatic" },
+  { value: "Internal", label: "Internal"},
 ];

@@ -53,6 +53,7 @@ export function updateMovie(request, response) {
   console.log("update movie controller reached");
   Movie.findById(request.params.id).exec()
   .then(movie => { // UPDATE THIS NOW!
+    movie.id = request.body.id || movie.id;
     movie.image = request.body.image || movie.image;
     movie.title = request.body.title || movie.title;
     // movie.date = request.body.date || movie.date;

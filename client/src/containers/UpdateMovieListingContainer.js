@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
   return {
     updateMovie: function (mov) {
       dispatch(updateMovie(mov));
-    },
+    }
   };
 }
 

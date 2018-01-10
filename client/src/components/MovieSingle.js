@@ -74,7 +74,7 @@ class MovieSingle extends Component {
 
     return (
       <div>
-        <h3><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></h3>
+        <h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3>
         <h3>Movie Id: {this.props.movie._id}</h3>
 
         <h3>Movie Poster or Image URL: <br /><img src={this.props.movie.image || PersonImg}
@@ -95,7 +95,8 @@ class MovieSingle extends Component {
         <h3>Links: {this.props.movie.links || ""}</h3>
 
 
-        <h3><Link to={"/update/" + this.props.movie._id}> edit or update this listing </Link></h3>
+        <h3><Link to={"/update/" + this.props.movie._id}> Edit or Update this Listing </Link></h3>
+        <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
       </div>
     );
   }

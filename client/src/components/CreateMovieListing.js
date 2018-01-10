@@ -469,26 +469,26 @@ const oilTypeOptions = [
             }
           }}>
             <div>
-            Oil Poster or Image URL (please enter a URL or leave empty, not required):
+            <h4> Oil Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
             // const movie = {image: e.target.value || ""};
             const movie = {image: e.target.value || []};
             this.setState({
               movie: Object.assign(this.state.movie,movie)
             });
-          }} />
+          }} /></h4>
             </div>
             <div>
-              Oil Name: <input onChange={(e) => {
+              <h4>Oil Name: <input onChange={(e) => {
                 // const movie = {title: e.target.value};
                 const movie = {title: e.target.value || []};
                 this.setState({
                   movie: Object.assign(this.state.movie,movie)
                 });
-              }} />
+              }} /></h4>
             </div>
 
-            Oil Type (Select One)
+            <h4>Oil Type (Select One)</h4>
             <div className="oilTypeSelect">
               <Select
                 name="oilType"
@@ -505,7 +505,7 @@ const oilTypeOptions = [
             />
           </div>
 
-            Warnings (select all that apply)
+            <h4>Warnings (select all that apply)<br /></h4>
             * Refresh to clear recently added options
             <div className="warningsSelect">
 
@@ -533,7 +533,7 @@ const oilTypeOptions = [
 
             </div>
 
-            Emotions (select all that apply)
+            <h4>Emotions (select all that apply)</h4>
             <div className="emotionsSelect">
               <Select.Creatable
                 name="emotions" // option for sending to general handleChange?
@@ -554,7 +554,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            Application (select all that apply)
+            <h4>Application (select all that apply)</h4>
             <div className="applicationSelect">
               <Select.Creatable
                 name="application"
@@ -573,7 +573,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            Body Systems Affected (select all that apply)
+            <h4>Body Systems Affected (select all that apply)</h4>
             <div className="bodySystemsSelect">
               <Select.Creatable
                 name="bodySystems"
@@ -592,7 +592,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            Properties (select all that apply):
+            <h4>Properties (select all that apply):</h4>
             <div className="propertiesSelect">
               <Select.Creatable
                 name="properties"
@@ -611,7 +611,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            Keywords
+            <h4>Keywords:</h4>
             <ul>
               <li> Begin typing to add helpful keywords </li>
               <li> Press enter to save keyword </li>
@@ -622,7 +622,7 @@ const oilTypeOptions = [
               <Select.Creatable
                 name="keywords"
                 // value={value}
-                placeholder="Begin typing to add keywords..."
+                placeholder="Click and begin typing to add keywords..."
                 value={this.state.movie.keywords.toString()}
                 onChange={this.handleKeywordsChange}
                 multi
@@ -636,7 +636,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            Links & References
+            <h4>Links & References</h4>
             <ul>
               <li> Begin typing to add http link </li>
               <li> Press enter to save your link </li>
@@ -647,7 +647,7 @@ const oilTypeOptions = [
               <Select.Creatable
                 name="links"
                 // value={value}
-                placeholder="Begin typing to add links..."
+                placeholder="Click and begin typing to add links..."
                 value={this.state.movie.links.toString()}
                 // value={this.state.movie.links}
                 onChange={this.handleLinksChange}
@@ -661,11 +661,12 @@ const oilTypeOptions = [
                 options={this.state.movie.linksOptions}
             />
             </div>
-
-            <button>Create Movie!</button>
+            <div>
+              <h4><button>Create Movie!</button></h4>
+            </div>
           </form>
         </div>
-        <li><Link to={"/"}> return to movie list </Link></li>
+        <h3><Link to={"/"}> return to movie list </Link></h3>
       </div>
 
     );
