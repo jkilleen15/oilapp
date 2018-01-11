@@ -238,6 +238,9 @@ class UpdateOilListing extends Component {
         <li> To save custom values, press enter/return once value is complete</li>
         <li> Begin typing again to add the next value </li>
         <li> Enter values in search on Full Oil List page to retrieve this oil </li>
+        <li><i> Note: For title and image url, pressing enter/return while in entry field will automatically update this oil.</i></li>
+
+
       </ul>;
 
     } else {
@@ -292,7 +295,7 @@ class UpdateOilListing extends Component {
             // ??
           }}>
           <div className="oilURLCreate">
-            <h4> Oil Poster or Image URL (please enter a URL or leave empty, not required):
+            <h4> Oil Poster or Image URL (enter complete url link to image for display):
               <input value={this.state.oil.image}
                 onChange={(e) => {
                   const oil = {image: e.target.value || []};

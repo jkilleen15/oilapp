@@ -327,6 +327,7 @@ console.log(`Selected: ${selectedOption.toString()}`);
         <li> To save custom values, press enter/return once value is complete</li>
         <li> Begin typing again to add the next value </li>
         <li> Enter values in search on Full Oil List page to retrieve this oil </li>
+        <li><i> Note: For title and image url, pressing enter/return while in entry field will automatically create an oil. Enter value and move to next field without pressing enter/return to avoid extraneous entries.</i></li>
       </ul>;
 
     } else {
@@ -506,7 +507,7 @@ const oilTypeOptions = [
             }
           }}>
             <div>
-            <h4> Oil Poster or Image URL (please enter a URL or leave empty, not required):
+            <h4> Oil Poster or Image URL (enter complete url link to image for display):
           <input onChange={(e) => {
             // const oil = {image: e.target.value || ""};
             const oil = {image: e.target.value || []};

@@ -94,8 +94,8 @@ class OilSingle extends Component {
       <div>
         <button><h3><Link className="linkNoDecoration" to={"/update/" + this.props.oil._id}> Edit or Update this Listing </Link></h3></button>
         <h3>Oil Id: {this.props.oil._id}</h3>
-        <h3>Oil Poster or Image URL: <br /><img className="imageFormat" src={this.props.oil.image || oilPlaceholderImg}
-          alt={"Note: " + this.props.oil.title + " image will not load. Check your url."} /></h3>
+        <img className="imageFormat" src={this.props.oil.image || oilPlaceholderImg}
+          alt={"Image Info: " + this.props.oil.title + " image will not load. Check your url."} />
 
         <h3>Oil Name: {this.props.oil.title}</h3>
         <h3>Oil Type: {this.props.oil.oilType}</h3>
