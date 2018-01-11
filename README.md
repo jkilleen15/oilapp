@@ -1,156 +1,96 @@
+## Welcome to my e-ssentials app!
 ### Setup
-X yarn install, yarn start
-X Don’t use this readme to figure out what code to type
-X Use all other projects we have done as code examples
-X Pick a real life thing to use as a model. Vehicle, Product, Oil …etc
-X Implement 5 properties for this model.
-n/a Make sure if you are on a windows machine you remove the single quotes from package.json
+X yarn install
+X mondod
+X yarn start
 
-Oil
-  Image
-  Title
-  Date Watched
-  Format
-  Genre
-  Plot
-  Keywords
+- This application is designed for a user to manage a collection of essential oils.
 
-SAVE FOR LATER
-Oil
-  name
-  ok usage (internal, external, aroma only)
-  external body
-  aromatherapy
-  internal body
+- Users can build out there collection with name, type (single or blend), images (url links are displayed for visual customization), application (aromatic, internal, topical), warnings (i.e. volatile), uses (depression, cooking, etc.), properties (i.e. antibacterial), body systems effected (i.e. immune system), keywords (users choice!) and reference links (i.e. article about use, article that prompted their purchase, recipe, blend recommendations).
+
+## Highlights:
+* Users can easily create and update oil listing to best manage and utilize their collection
+* Users can easily retrieve oils with dynamic search
+* Intended to be discoverable and forgiving
+* Structure and functionality are adaptable and customizable for future projects.
+* Consistent naming allows for the framework to be adapted to manage various collections (i.e. books, movies, superheroes, i.e.)
+
+## General Functionality
+* Enter yarn start, web page loads with no errors
+* ROUTES - From landing screen navigate to create screen and oil detail/oil single screens. Searchable and static list reside on landing page (/)
+* CURRENT LIST - Two hide/show lists display all current existing information. Searchable list default is set to show.
+* DYNAMIC SEARCH - Search list (oil collection) dynamically by keyword(s) in combination of fields (oil name(title), oil type, application, usage, properties, keywords)
+* CREATE LISTING - Enter information into create screen fields and save. Return to the list screen,
+see new information is there.
+* Navigate to oil details/oil single page via quick link or link within oil listing block
+* Navigate to update/edit oil listing from oil details/oil single page
+* Enter, update or delete information within update screen and save. Return to the list screen,
+or oil details/oil single screen, to confirm updated values.
+* Delete items from landing page by clicking labeled delete button within corresponding listing. Item is removed from list/collection.
+* Feedback alerts appear to user when oils are created, updated or deleted.
+* Visit oil-specific urls by clicking links on oil details/oil single screen, opens new window
 
 ## Client
-X Client code goes in client/src
+X Client code in client/src
 
 ### React
-X Create a function component that lists out a collection of your models (ListOfUsers)
-  --> Main/ListOfOils
-    X Use prop types to define what props the component needs
-  ? REQUIRE It should probably need (require) a prop named after the plural of your model, and it should probably be an array
-    // CollapsableMapper
-    X Probably want to map over this array and create some divs or li’s showing 3 of the properties of the item
-    X Create a Link on each item so you can navigate to the detail page
-
-    X Create a button on each item so you can delete the item
-
-X Create a class component that makes a new model (redux fetch practice)
-      --> components/CreateOilListing
-    X Create a form and a button
-    X Put a label and an input for each property your model has
-
-    X Bonus - use a drop down if there are a limited number of values for a property
-      X add for genre, format
-
-    X Register onChange for each input and use setState to store the information typed in
-    X Register onSubmit for the form.
-    X onSubmit call an action called createThing(change it to make sense for your model) -->createOil
-
-X Create a function component that shows details of one thing (UserDetail)
-  --> OilSingle
-    X Use a prop that has the array of your models
-    X Use a parameter from the route path /:id to find the model to show
-
-  X Use whatever html you want to show all of the properties of your thing
-
-X App.js
-    X componentDidMount, call loadThings  -->loadOils
 
 ### React Router
-X Import necessary components from react-router-dom into App.js
-X Make sure to wrap everything in BrowserRouter
+X Components from react-router-dom imported into App.js
+X Everything wrapped in BrowserRouter
 
-X Create a route to show the list container
-  X Main / OilsContainer
+X Routes created in App.js
+  X Show Oil list containers (Searchable and Static)
+  X Show Create oil container
+  X Show Oil Details/Single container
+  X Show Update oil container
+  X All routes wrapped in Switch
 
-X Create a route to show the create container
-  X build CreateOilListingContainer as separate 'destination'
-
-X Create a route to show the detail container.
-  X OilSingleContainer
-  X Make sure this route has a variable in it
-X Make sure to wrap all routes in Switch
-
-OK Create links to the list (NEED TO - currently resides on page) and
-X create routes, put them anywhere in App.js outside of the Switch.
+X In OilRoutes.js, routes created for
+X getting all things,
+X getting one thing by id,
+X deleting one thing,
+X updating one thing, and
+X creating one thing
 
 ### Redux
 
-    * The only state you need is an array of your models
-        * state.js
+    X state is array of models (i.e. state.js)
 
-    X Create actions for loading your models and models loaded
+    X Actions for loading your models and models loaded
         X loadThings() - do a fetch get to “/things”
         X thingsLoaded(things) - THINGS_LOADED
 
-    X Create an action for saving a new model
+    X Action for saving a new model
         X createThing(thing) - do a fetch post to “/things”
         X when the fetch is complete, dispatch to loadThings
 
-    X Create an action for deleting an item
+    X Action for deleting an item
         X deleteThing(id) - do a fetch delete to “/things/” + id
         X when the fetch is complete, dispatch to loadThings
 
-    X Create reducer for the state
+    X reducer for the state
         X care about the action THINGS_LOADED
 
-    X Create containers for all of you components
+    X Containers for all components
         X mapStateToProps and mapDispatchToProps
-
-        X The list component container should mapStateToProps for the array of things
-        X The list component container should mapDispatchToProps for the deleteThing action
-
-        X The new thing component container should mapDispatchToProps for the saveThingAction
-
-        X AppContainer should mapDispatchToProps for loadThings.
+        X list component container mapStateToProps for the array of oils
+        X list component container mapDispatchToProps for the deleteOil action
+        X create new oil component container mapDispatchToProps for the saveOilAction
+        X AppContainer mapDispatchToProps for loadOils.
 
 ## Server - use advanced-express-practice as an example
-X The code for this goes in the /server folder
-X Use express to create a server listening on port 3001
-X Use mongoose to connect to a MongoDB database called “checkpoint2”
-X Create a Model for your thing -->Oil.js
-X Create a Route and Controller for your thing
+X Code for this in /server folder (index.js)
+X Express used to create a server listening on port 3001
+X Mongoose used to connect to a MongoDB database called “oilAppDB”
+X Oil Model created
+X Oil Route and Controller created
 
-X NEED TO CREATE DELETE
-// UPDATE => SAME AS EDIT (RE: BONUS)
-
-* In the Route,
-X create routes for getting all things,
-X getting one thing by id,
-X deleting one thing,
-updating one thing, and
-X creating one thing
-
-X In the Controller, create functions for list,show,create,remove(delete)
-bonus - update
-
-## Points
-* When I yarn start, the web page loads with no errors - 10pts
-* I can navigate to the list and create screen from links - 10pts
-* I can enter information into the create screen and click save. If I go back to the list screen, that new information is there. - 20pts
-* If I go to the list screen it will show all current existing information - 20pts
-* The list screen has a view link for each item. If I click that link the detail screen appears. The details of the item are shown. - 20pts
-* If I click the delete button on the list, the item I clicked will be removed from the list - 20pts
-
-
-## Extra Credit
-* Edit Component
-  * Create a component to edit your things. It will be almost the same as the create component.
-  * Use a prop that has the array of your models
-  * Use a parameter from the route path /:id to find the model to show
-  * Populate the properties of the model into the inputs
-  * onSubmit populate the information from state back into the model, call a prop function called updateThing(thing)
-* Create a container for the edit component
-  * mapsStateToProps for the array of models
-  * mapDispatchToProps for an action updateThing
-* Create an action updateThing(thing)
-  * do a fetch put to "/things/" + thing._id
-  * when the fetch is complete, dispatch to loadThings
-* In App.js, add a route to the edit container with a variable /:id
-* In the list components,add a Link for the edit route.
-
-## Bonus
-* Create the edit component by reusing the create component
+## Ideas for further development
+- Transition to Heroku
+- Explore/implement React inherent component functionality
+- Fetch to API for initial dropdown options (i.e. oil name (title), usage)
+- Transition dropdown options from single-option specific to global (users may use something they entered in another oil, create new 'defaults')
+- Enhanced Input Validation and User Feedback
+- Login/Authentication
+- CSS/Bootstrap, etc. styling
