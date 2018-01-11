@@ -3,8 +3,8 @@ import MultiSelectField from "../components/MultiSelectField";
 
 function mapStateToProps(state) {
   return {
-    movie: state.movie,
-    movies: state.movies,
+    oil: state.oil,
+    oils: state.oils,
   };
 }
 

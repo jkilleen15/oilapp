@@ -1,17 +1,17 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import MultiSelectField from "../components/MultiSelectField";
-import movieGenres from "../movieGenres";
+import oilGenres from "../oilGenres";
 import createClass from "create-react-class";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 
-class CreateMovieListing extends Component {
+class CreateOilListing extends Component {
   constructor() {
     super();
     this.state = {
-      movie: {
+      oil: {
         image: "",
         title: "",
         date: "",
@@ -19,17 +19,17 @@ class CreateMovieListing extends Component {
         genre: "",
         plot: "",
         keywords: "",
-        movieGenres,
+        oilGenres,
       },
     };
   }
 
   render() {
     const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
-    const emotionsArray = ["happy", "sad", "regretful", "inspired", "uncomfortable"];
+    const usageArray = ["happy", "sad", "regretful", "inspired", "uncomfortable"];
 
-    const movieEmotions = [];
-    const movieEmotionsSelected = [];
+    const oilUsage = [];
+    const oilUsageSelected = [];
 
     const FLAVOURS = [
 	{ label: 'Chocolate', value: 'chocolate' },
@@ -64,7 +64,7 @@ const MultiSelectField = createClass({
     console.log('You\'ve selected:', value);
     this.setState({ value });
     console.log("value: " + value);
-    handleEmotions(value);
+    handleUsage(value);
   },
   toggleCheckbox (e) {
     this.setState({
@@ -102,53 +102,53 @@ const MultiSelectField = createClass({
       <option value={f} key={i}>{f}</option>
     ));
 
-    const movieGenreDisplay = movieGenres.map((g,i) => (
+    const oilGenreDisplay = oilGenres.map((g,i) => (
       <option value={g} key={i}>{g}</option>
     ));
 
     // "happy", "sad", "regretful", "inspired", "uncomfortable"
-    const emotionDisplay = emotionsArray.map((g,i) => (
+    const emotionDisplay = usageArray.map((g,i) => (
       <option value={g} key={i}>{g}</option>
     ));
 
-    // BONUS - dropdowns used for viewing format and movie genres
+    // BONUS - dropdowns used for viewing format and oil genres
     //       - format dropdown pulls from local variable array
-    //       - grenres dropdown utilizes movieGenres.js exported array
+    //       - grenres dropdown utilizes oilGenres.js exported array
 
-    function handleEmotions(e) {
+    function handleUsage(e) {
         console.log("target value " + e);
-        // const movieEmotions = [];
-        // const movieEmotions = [];
-        movieEmotions.push(e);
-        console.log("movieEmotions: " + movieEmotions);
-        addEmotions(e);
+        // const oilUsage = [];
+        // const oilUsage = [];
+        oilUsage.push(e);
+        console.log("oilUsage: " + oilUsage);
+        addUsage(e);
     }
 
-    function addEmotions(e) {
-      // movieEmotionsSelected.push(movieEmotions);
-      // console.log("movieEmotionsSelected: " + movieEmotionsSelected);
-      const movie = {emotions: movieEmotions};
-      // console.log("movieEmotionsSelected before " + movieEmotionsSelected);
+    function addUsage(e) {
+      // oilUsageSelected.push(oilUsage);
+      // console.log("oilUsageSelected: " + oilUsageSelected);
+      const oil = {usage: oilUsage};
+      // console.log("oilUsageSelected before " + oilUsageSelected);
       this.setState({
-        movie: Object.assign(this.state.movie,movie)
-        // movie: Object.assign(this.state.movie,movie)
+        oil: Object.assign(this.state.oil,oil)
+        // oil: Object.assign(this.state.oil,oil)
       });
-      console.log("movie.emotions: " + this.state.movie.emotions)
-      // console.log("movieEmotionsSelected after " + movieEmotionsSelected);
+      console.log("oil.usage: " + this.state.oil.usage)
+      // console.log("oilUsageSelected after " + oilUsageSelected);
     }
 
     /*
-    Emotions: <select multiple
+    Usage: <select multiple
       onChange={(e) => {
-      //  const movie = {emotions: e.target.value};
-        const movieEmotions = [];
-        movieEmotions.push(e.target.value);
-        console.log("movieEmotions: " + movieEmotions);
-        const movie = {emotions: movieEmotions};
-        // console.log("movieEmotions: " + movieEmotions);
-        console.log("movie: " + movie);
+      //  const oil = {usage: e.target.value};
+        const oilUsage = [];
+        oilUsage.push(e.target.value);
+        console.log("oilUsage: " + oilUsage);
+        const oil = {usage: oilUsage};
+        // console.log("oilUsage: " + oilUsage);
+        console.log("oil: " + oil);
         this.setState({
-          movie: Object.assign(this.state.movie,movie)
+          oil: Object.assign(this.state.oil,oil)
         });
       }} >
     */
@@ -156,44 +156,44 @@ const MultiSelectField = createClass({
     return (
       <div>
         <div>
-          <h1>Create a movie listing:</h1>
+          <h1>Create a oil listing:</h1>
           <form onSubmit={(e) => {
             e.preventDefault();
-            if (this.props.createMovie) {
-              this.props.createMovie(this.state.movie);
+            if (this.props.createOil) {
+              this.props.createOil(this.state.oil);
             }
           }}>
             <div>
-            Movie Poster or Image URL (please enter a URL or leave empty, not required):
+            Oil Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
-            const movie = {image: e.target.value || ""};
+            const oil = {image: e.target.value || ""};
             this.setState({
-              movie: Object.assign(this.state.movie,movie)
+              oil: Object.assign(this.state.oil,oil)
             });
           }} />
             </div>
             <div>
-              Movie Title: <input onChange={(e) => {
-                const movie = {title: e.target.value};
+              Oil Title: <input onChange={(e) => {
+                const oil = {title: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} />
             </div>
             <div>
               Date watched: <input onChange={(e) => {
-                const movie = {date: e.target.value};
+                const oil = {date: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} />
             </div>
             <div>
               Viewing Format(theater, redbox, netflix, etc.):
               <select onChange={(e) => {
-                const movie = {format: e.target.value};
+                const oil = {format: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} >
                 {formatOptionDisplay}
@@ -201,36 +201,36 @@ const MultiSelectField = createClass({
             </div>
             <div>
               Genre: <select onChange={(e) => {
-                const movie = {genre: e.target.value};
+                const oil = {genre: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} >
-                {movieGenreDisplay}
+                {oilGenreDisplay}
               </select>
             </div>
             <div>
               Plot Summary: <input onChange={(e) => {
-                const movie = {plot: e.target.value};
+                const oil = {plot: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} />
             </div>
             <div>
-              Emotions: <select multiple
+              Usage: <select multiple
                 onChange={(e) => {
-                  handleEmotions(e.target.value);
-                  addEmotions();
+                  handleUsage(e.target.value);
+                  addUsage();
                   /*
-                  const movie = {emotions: movieEmotionsSelected};
-                  console.log("movieEmotionsSelected before " + movieEmotionsSelected);
+                  const oil = {usage: oilUsageSelected};
+                  console.log("oilUsageSelected before " + oilUsageSelected);
                   this.setState({
-                    movie: Object.assign(this.state.movie,movie)
-                    // movie: Object.assign(this.state.movie,movie)
+                    oil: Object.assign(this.state.oil,oil)
+                    // oil: Object.assign(this.state.oil,oil)
                   });
-                  console.log("movie.emotions: " + this.state.movie.emotions)
-                  console.log("movieEmotionsSelected after " + movieEmotionsSelected);
+                  console.log("oil.usage: " + this.state.oil.usage)
+                  console.log("oilUsageSelected after " + oilUsageSelected);
                   */
                 }} >
                 {emotionDisplay}
@@ -243,19 +243,19 @@ const MultiSelectField = createClass({
 
             <div>
               Keywords: <input onChange={(e) => {
-                const movie = {keywords: e.target.value};
+                const oil = {keywords: e.target.value};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} />
             </div>
-            <button>Create Movie!</button>
+            <button>Create Oil!</button>
           </form>
         </div>
-        <li><Link to={"/"}> return to movie list </Link></li>
+        <li><Link to={"/"}> return to oil list </Link></li>
       </div>
 
     );
   }
 }
-export default CreateMovieListing;
+export default CreateOilListing;

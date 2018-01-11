@@ -2,11 +2,11 @@
 X yarn install, yarn start
 X Don’t use this readme to figure out what code to type
 X Use all other projects we have done as code examples
-X Pick a real life thing to use as a model. Vehicle, Product, Movie …etc
+X Pick a real life thing to use as a model. Vehicle, Product, Oil …etc
 X Implement 5 properties for this model.
 n/a Make sure if you are on a windows machine you remove the single quotes from package.json
 
-Movie
+Oil
   Image
   Title
   Date Watched
@@ -28,7 +28,7 @@ X Client code goes in client/src
 
 ### React
 X Create a function component that lists out a collection of your models (ListOfUsers)
-  --> Main/ListOfMovies
+  --> Main/ListOfOils
     X Use prop types to define what props the component needs
   ? REQUIRE It should probably need (require) a prop named after the plural of your model, and it should probably be an array
     // CollapsableMapper
@@ -38,7 +38,7 @@ X Create a function component that lists out a collection of your models (ListOf
     X Create a button on each item so you can delete the item
 
 X Create a class component that makes a new model (redux fetch practice)
-      --> components/CreateMovieListing
+      --> components/CreateOilListing
     X Create a form and a button
     X Put a label and an input for each property your model has
 
@@ -47,30 +47,30 @@ X Create a class component that makes a new model (redux fetch practice)
 
     X Register onChange for each input and use setState to store the information typed in
     X Register onSubmit for the form.
-    X onSubmit call an action called createThing(change it to make sense for your model) -->createMovie
+    X onSubmit call an action called createThing(change it to make sense for your model) -->createOil
 
 X Create a function component that shows details of one thing (UserDetail)
-  --> MovieSingle
+  --> OilSingle
     X Use a prop that has the array of your models
     X Use a parameter from the route path /:id to find the model to show
 
   X Use whatever html you want to show all of the properties of your thing
 
 X App.js
-    X componentDidMount, call loadThings  -->loadMovies
+    X componentDidMount, call loadThings  -->loadOils
 
 ### React Router
 X Import necessary components from react-router-dom into App.js
 X Make sure to wrap everything in BrowserRouter
 
 X Create a route to show the list container
-  X Main / MoviesContainer
+  X Main / OilsContainer
 
 X Create a route to show the create container
-  X build CreateMovieListingContainer as separate 'destination'
+  X build CreateOilListingContainer as separate 'destination'
 
 X Create a route to show the detail container.
-  X MovieSingleContainer
+  X OilSingleContainer
   X Make sure this route has a variable in it
 X Make sure to wrap all routes in Switch
 
@@ -111,7 +111,7 @@ X create routes, put them anywhere in App.js outside of the Switch.
 X The code for this goes in the /server folder
 X Use express to create a server listening on port 3001
 X Use mongoose to connect to a MongoDB database called “checkpoint2”
-X Create a Model for your thing -->Movie.js
+X Create a Model for your thing -->Oil.js
 X Create a Route and Controller for your thing
 
 X NEED TO CREATE DELETE

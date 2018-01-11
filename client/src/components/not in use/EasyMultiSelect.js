@@ -9,43 +9,43 @@ class EasyMultiSelect extends React.Component {
       selectedOption: [],
       stayOpen: false,
       value: [],
-      movie: {
-        emotions: [],
+      oil: {
+        usage: [],
       }
     };
   }
 
   /*
-  handleEmotionsChange = (selectedOption) => {
-    // const selectedEmotions = [];
+  handleUsageChange = (selectedOption) => {
+    // const selectedUsage = [];
     this.setState({ selectedOption });
     this.setState({ value: selectedOption});
-    // selectedEmotions.push(selectedOption);
-    const movie = {emotions: selectedOptions};
+    // selectedUsage.push(selectedOption);
+    const oil = {usage: selectedOptions};
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
     });
     console.log(`Selected: ${selectedOption}`);
   }
   */
 
-  handleEmotionsChange = (selectedOption) => {
-    const selectedEmotions = [];
+  handleUsageChange = (selectedOption) => {
+    const selectedUsage = [];
     this.setState({ selectedOption });
     this.setState({ value: selectedOption});
-    selectedEmotions.push(selectedOption);
-    console.log("selectedEmotionsArray: " + selectedEmotions)
-    const movie = {emotions: selectedEmotions};
+    selectedUsage.push(selectedOption);
+    console.log("selectedUsageArray: " + selectedUsage)
+    const oil = {usage: selectedUsage};
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
     });
     console.log(`Selected: ${selectedOption}`);
   }
   render() {
     console.log("selectedOption: " + this.state.value)
-    console.log("emotions: " + this.state.movie.emotions)
+    console.log("usage: " + this.state.oil.usage)
     // console.log("value: " + value.value)
-    const { selectedOption, value, stayOpen, movie, emotions } = this.state;
+    const { selectedOption, value, stayOpen, oil, usage } = this.state;
     const options = [
       { value: "stress", label: "Stress" },
       { value: "focus", label: "Focus", clearableValue: false },
@@ -57,7 +57,7 @@ class EasyMultiSelect extends React.Component {
       <Select
         name="form-field-name"
         value={value}
-        onChange={this.handleEmotionsChange}
+        onChange={this.handleUsageChange}
         multi
         closeOnSelect={stayOpen}
         simpleValue
@@ -69,7 +69,7 @@ class EasyMultiSelect extends React.Component {
   }
 }
 
-// to insert into CreateMovieListing
+// to insert into CreateOilListing
 /*
 <div>
   <EasyMultiSelect />

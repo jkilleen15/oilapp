@@ -1,4 +1,4 @@
 export default {
-  // movies: [],
-  // movie: {},
+  // oils: [],
+  // oil: {},
 };

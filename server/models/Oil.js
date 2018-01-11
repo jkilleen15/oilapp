@@ -64,7 +64,7 @@ const schema = new mongoose.Schema({
     // type: Object,
   },
 
-  emotions: {
+  usage: { // previously emotions!
     // required: true,
     required: false,
     type: Array
@@ -101,7 +101,7 @@ const schema = new mongoose.Schema({
   /*
   oilTypeOptions,
   warningOptions,
-  emotionsOptions,
+  usageOptions,
   applicationOptions,
   bodySystemsOptions,
   propertiesOptions,
@@ -123,7 +123,7 @@ const schema = new mongoose.Schema({
     // type: Date, default: Date.now
   },
 // remove?
-  emotionsOptions: {
+  usageOptions: {
     required: false,
     type: Object
     // type: Date, default: Date.now
@@ -165,6 +165,6 @@ const schema = new mongoose.Schema({
 
 });
 
-export default mongoose.model("Movie", schema);
+export default mongoose.model("Oil", schema);
 
 // then, import this model into controller

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 // import { Button } from "react-bootstrap";
 
 // class CollapsableMapper extends Component {
-class Movies extends Component {
+class Oils extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,36 +17,41 @@ class Movies extends Component {
     alert("Oil Deleted!");
     console.log(e);
     console.log(e.target.id);
-    this.props.deleteMovie(e.target.id);
+    this.props.deleteOil(e.target.id);
     console.log("handleDeleteClick Complete");
   }
 
-// <li><Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link></li>
+// <li><Link to={"/" + this.props.path + "/" + d._id}> view oil details </Link></li>
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
   render() {
 
     let showFullListButtonText = "";
     let showFullYesNoLabel = ""
-    let movieDivs = "";
+    let oilDivs = "";
     if (this.state.fullListVisible) {
 
       showFullListButtonText = "Hide Full List";
 
       showFullYesNoLabel =
       <h2>My Oils Quick Look Listing</h2>;
-      // movieDivs = this.props.data.map((d,i) => {
 
-      movieDivs = this.props.movies.map((d,i) => (
+      // TODO look into alphabetizing full (static) list
+      // let oilAlpha = []
+      // oilAlpha = this.props.oils.title.sort((a,b) => a.timeM - b.timeM);
+
+      oilDivs = this.props.oils.map((d,i) => (
+      // oilDivs = oilAlpha.map((d,i) => (
+      // removed bc seems extraneous for initial listing --> <li><i>Oil Type: {d.oilType}</i></li>
 
     // return (
-          <div key={i}>
+          <div key={d._id}>
           <div>
             <h3>{d.title}</h3>
             <ul>
-            <li><i>{d.oilType}</i></li>
+            <li>Uses: {d.usage}</li>
             <li>Application: {d.application}</li>
             <li>Properties: {d.properties}</li>
-            <li><Link to={"/movie/" + d._id}> view and update movie details </Link></li>
+            <li><Link to={"/oil/" + d._id}> view and update oil details </Link></li>
           </ul>
         </div>
               <button onClick={this.handleDeleteClick} id={d._id}>
@@ -59,7 +64,7 @@ class Movies extends Component {
     } else {
       showFullListButtonText = "View Full Listing of Oils";
       showFullYesNoLabel = "";
-      movieDivs = "";
+      oilDivs = "";
     }
 
     return (
@@ -73,15 +78,15 @@ class Movies extends Component {
           <h3>{showFullListButtonText}</h3>
         </button>
         {showFullYesNoLabel}
-        {movieDivs}
+        {oilDivs}
       </div>);
   }
 }
 
 // export default CollapsableMapper;
-export default Movies;
+export default Oils;
 
-// REMOVED UNTIL CAN SORT OUT id v _id sent from Movies
+// REMOVED UNTIL CAN SORT OUT id v _id sent from Oils
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
 // End Removed
 
@@ -93,7 +98,7 @@ class CollapsableMapper extends Component {
   }
   render() {
     let buttonText = "Hide";
-    let movieDivs = "";
+    let oilDivs = "";
     if (this.state.visible) {
       buttonText = "Hide";
       userDivs = this.props.data.map((d,i) => {

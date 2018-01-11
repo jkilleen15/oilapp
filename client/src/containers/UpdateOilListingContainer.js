@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
-import UpdateMovieListing from "../components/UpdateMovieListing";
-import { updateMovie } from "../actions";
+import UpdateOilListing from "../components/UpdateOilListing";
+import { updateOil } from "../actions";
 
 function mapStateToProps(state) {
   return {
-    movie: state.movie,
-    // selectedOption: state.movie.selectedOption,
-    // movies: state.movies
+    oil: state.oil,
+    // selectedOption: state.oil.selectedOption,
+    // oils: state.oils
 
     /*
     stayOpen: state.stayOpen,
     warningOptions: state.warningOptions,
-    emotionsOptions: state.emotionsOptions,
+    usageOptions: state.usageOptions,
     applicationOptions: state.applicationOptions,
     bodySystemsOptions: state.bodySystemsOptions,
     propertiesOptions: state.propertiesOptions,
@@ -24,10 +24,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateMovie: function (mov) {
-      dispatch(updateMovie(mov));
+    updateOil: function (mov) {
+      dispatch(updateOil(mov));
     }
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(UpdateMovieListing);
+export default connect(mapStateToProps,mapDispatchToProps)(UpdateOilListing);

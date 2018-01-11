@@ -2,20 +2,20 @@ import React from "react";
 import {Link} from "react-router-dom";
 // import Select from "react-select";
 // import { Button } from "react-bootstrap";
-// import Movie from './Movie';
-// <li key={i}><a>{movie.title} {movie._id}</a></li>
+// import Oil from './Oil';
+// <li key={i}><a>{oil.title} {oil._id}</a></li>
 
 class SearchListShow extends React.Component {
   constructor(props) {
     super(props);
     /*
-     * The data (movies) comes from the higher level component as props. We are
-     * going to use state to manage filtering of movies.
+     * The data (oils) comes from the higher level component as props. We are
+     * going to use state to manage filtering of oils.
      */
     this.state = {
       searchableListVisible: true,
 
-      filteredMovies: [],
+      filteredOils: [],
       filtering: false,
       keyword: "",
     };
@@ -24,24 +24,25 @@ class SearchListShow extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.state.filtering) {
       /*
-       * If the movies got deleted or watched/unwatched we have to reflect it
-       * in the filteredMovies array.
+       * If the oils got deleted or watched/unwatched we have to reflect it
+       * in the filteredOils array.
        */
-      this.setState({ filteredMovies: this.filterMovies(nextProps.movies) });
+      this.setState({ filteredOils: this.filterOils(nextProps.oils) });
     }
   }
 
-  filterMovies(movies) {
-    return movies.filter((movie) => {
+  filterOils(oils) {
+    return oils.filter((oil) => {
       // search by keyword
-      // return movie.emotions.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1;
+      // return oil.usage.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1;
       // return (
-      return movie.title.toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
-      movie.emotions.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
-      movie.keywords.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
-      movie.application.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
-      movie.properties.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
-      movie.bodySystems.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1;
+      return oil.title.toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.oilType.toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.usage.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.keywords.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.application.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.properties.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
+      oil.bodySystems.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1;
       // return;
       // );
     });
@@ -54,35 +55,35 @@ class SearchListShow extends React.Component {
       return;
     }
     this.setState({
-      filteredMovies: this.filterMovies(this.props.movies),
+      filteredOils: this.filterOils(this.props.oils),
       filtering: true,
       // keyword: keyword
       keyword
     });
   }
 
-  // {movieList.length ? movieList : 'Nothing found.'}
+  // {oilList.length ? oilList : 'Nothing found.'}
 
   render() {
-    let movieList = [];
-    let movies = this.state.filtering ? this.state.filteredMovies : this.props.movies;
+    let oilList = [];
+    let oils = this.state.filtering ? this.state.filteredOils : this.props.oils;
 
-    if (movies.length) {
-      movies.map((movie) => {
-        // movieList.push(<Movie key={movie._id} movie={movie} />);
-        // movieList.push(movie.title, movie._id);
-        movieList.push(movie);
+    if (oils.length) {
+      oils.map((oil) => {
+        // oilList.push(<Oil key={oil._id} oil={oil} />);
+        // oilList.push(oil.title, oil._id);
+        oilList.push(oil);
       });
     }
 
 /* removed for button
-    const movieListShow = movieList.map((movie,i) => (
-      <li><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
+    const oilListShow = oilList.map((oil,i) => (
+      <li><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
     ));
 */
 
 /*
-    if (!this.props.movies.length) {
+    if (!this.props.oils.length) {
       return (
         <div className="column">
           <h4>{this.props.title}</h4>
@@ -99,8 +100,8 @@ class SearchListShow extends React.Component {
     let resultsListLabel = "";
     let inputBox = "";
     let resultStatus = "";
-    let movieListShow = "";
-    let movieListShowLong = "";
+    let oilListShow = "";
+    let oilListShowLong = "";
     if (this.state.searchableListVisible) {
       searchShowButtonText = "Hide Searchable List";
 
@@ -116,42 +117,44 @@ class SearchListShow extends React.Component {
       resultStatus =
         <i>
           {this.state.filtering ?
-            this.state.filteredMovies.length +
-            " out of " + this.props.movies.length + " oils match your search" :
-            this.props.movies.length + " oils in my collection"}</i>;
+            this.state.filteredOils.length +
+            " out of " + this.props.oils.length + " oils match your search" :
+            this.props.oils.length + " oils in my collection"}</i>;
 
       inputBox =
         <input
         className="prompt"
-        placeholder="Search oils by keyword (oil name, emotions, keywords, application, body systems)"
+        placeholder="Search oils by keyword (oil name, usage, keywords, application, body systems)"
         onChange={this.filterList.bind(this)}
         // onChange={this.filterList}
         // value={this.state.keyword}
       />;
 
-      // movieDivs = this.props.data.map((d,i) => {
-         // movieDivs = this.props.movies.map((d,i) => {
-         //<li className="listNoDecoration" key={movie._id}><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
+      // oilDivs = this.props.data.map((d,i) => {
+         // oilDivs = this.props.oils.map((d,i) => {
+         //<li className="listNoDecoration" key={oil._id}><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
 
-         movieListShow =
-         movieList.map((movie,i) => (
-           <li key={i}><Link to={"/movie/" + movie._id}> {movie.title} </Link></li>
+         oilListShow =
+         oilList.map((oil,i) => (
+           <li key={i}><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
          ));
 
-         movieListShowLong = movieList.map((movie,i) => (
-         // movieDivs = this.props.movies.map((d,i) => {
+         oilListShowLong = oilList.map((oil,i) => (
+         // oilDivs = this.props.oils.map((d,i) => {
+         // removed bc seems extraneous for initial listing --> <li><i>Oil Type: {oil.oilType}</i></li>
+
           <div key={i}>
           <div>
-            <h3>{movie.title}</h3>
+            <h3>{oil.title}</h3>
             <ul>
-            <li><i>{movie.oilType}</i></li>
-            <li>Application: {movie.application}</li>
-            <li>Properties: {movie.properties}</li>
-            <li><Link to={"/movie/" + movie._id}> view and update movie details </Link></li>
+            <li>Uses: {oil.usage}</li>
+            <li>Application: {oil.application}</li>
+            <li>Properties: {oil.properties}</li>
+            <li><Link to={"/oil/" + oil._id}> view and update oil details </Link></li>
           </ul>
         </div>
-              <button onClick={this.handleDeleteClick} id={movie._id}>
-                DELETE THIS OIL - {movie.title.toUpperCase()}
+              <button onClick={this.handleDeleteClick} id={oil._id}>
+                DELETE THIS OIL - {oil.title.toUpperCase()}
               </button>
           </div>
          ));
@@ -188,13 +191,13 @@ class SearchListShow extends React.Component {
         <div className="ui bottom attached segment">
           <div className="ui divided items">
             <ul className="listNoDecoration">
-            {movieList.length ? movieListShow : "No matches found."}
+            {oilList.length ? oilListShow : "No matches found."}
           </ul>
           </div>
 
           {resultsListLabel}
           <div className="ui divided items">
-            {movieList.length ? movieListShowLong : "No matches found."}
+            {oilList.length ? oilListShowLong : "No matches found."}
           </div>
         </div>
         </div>
@@ -203,8 +206,8 @@ class SearchListShow extends React.Component {
 }
 
 /*
-Movie.propTypes = {
-  movies: React.PropTypes.array,
+Oil.propTypes = {
+  oils: React.PropTypes.array,
   title: React.PropTypes.string
 };
 */

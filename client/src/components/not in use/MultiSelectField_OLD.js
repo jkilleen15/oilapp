@@ -13,7 +13,7 @@ const FLAVOURS = [
 	{ label: "Peppermint", value: "peppermint" },
 ];
 
-const emotionsArray2 = [
+const usageArray2 = [
   // "happy", "sad", "regretful", "inspired", "uncomfortable", "melancholy"
 { label: "Happy", value: "happy" },
 { label: "Sad", value: "sad" },
@@ -38,16 +38,16 @@ var MultiSelectField = createClass({
 			disabled: false,
 			crazy: false,
 			stayOpen: false,
-			emotionsValue: [],
-      // emotionsSelected:[],
+			usageValue: [],
+      // usageSelected:[],
 			rtl: false,
 		};
 	},
 	handleSelectChange (value) {
 		console.log("You\"ve selected:", value);
-		this.setState({ emotionsValue: value });
-    // this.setState({ emotionsSelected });
-    console.log("emotionsValue: " + this.state.emotionsValue)
+		this.setState({ usageValue: value });
+    // this.setState({ usageSelected });
+    console.log("usageValue: " + this.state.usageValue)
 	},
 	toggleCheckbox (e) {
 		this.setState({
@@ -63,7 +63,7 @@ var MultiSelectField = createClass({
   */
 
 	render () {
-		const { crazy, disabled, stayOpen, emotionsValue } = this.state;
+		const { crazy, disabled, stayOpen, usageValue } = this.state;
 		const options = crazy ? WHY_WOULD_YOU : FLAVOURS;
 		return (
 			<div className="section">
@@ -78,8 +78,8 @@ var MultiSelectField = createClass({
           removeSelected={this.state.removeSelected}
 					rtl={this.state.rtl}
 					simpleValue
-					value={emotionsValue}
-          // emotionsSelected={emotionsSelected}
+					value={usageValue}
+          // usageSelected={usageSelected}
 				/>
 
 				<div className="checkbox-list">

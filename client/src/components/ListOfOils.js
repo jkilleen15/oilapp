@@ -2,10 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 // import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-import MoviesContainer from "../containers/MoviesContainer";
+import OilsContainer from "../containers/OilsContainer";
 import SearchListShowContainer from "../containers/SearchListShowContainer";
 
-function ListOfMovies() {
+function ListOfOils() {
   return (
     <div>
       <div style={{float: "left", width: "49%"}}>
@@ -16,14 +16,14 @@ function ListOfMovies() {
       <div>
         <SearchListShowContainer />
       </div>
-        <MoviesContainer />
+        <OilsContainer />
       </div>
     </div>
   );
 }
 
-ListOfMovies.propTypes = {
-  movies: PropTypes.array,
-  // movies: PropTypes.array.isRequired,
+ListOfOils.propTypes = {
+  oils: PropTypes.array,
+  // oils: PropTypes.array.isRequired,
 };
-export default ListOfMovies;
+export default ListOfOils;

@@ -8,7 +8,7 @@ class MultiSelectField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: {
+      oil: {
         id: "",
         image: "",
         title: "",
@@ -16,13 +16,13 @@ class MultiSelectField extends Component {
         format: "",
         genre: "",
         plot: "",
-        emotions: [],
+        usage: [],
         keywords: "",
-        // movieGenres,
+        // oilGenres,
       },
     };
 */
-const emotionsArray = [
+const usageArray = [
   // "happy", "sad", "regretful", "inspired", "uncomfortable", "melancholy"
 { label: "Happy", value: "happy" },
 { label: "Sad", value: "sad" },
@@ -46,9 +46,9 @@ const emotionsArray = [
 			stayOpen: false,
 			value: [],
 			rtl: false,
-      // emotions: [],
-      movie: {
-        genre: (this.movie.props.genre || []),
+      // usage: [],
+      oil: {
+        genre: (this.oil.props.genre || []),
       },
 		};
 	},
@@ -60,13 +60,13 @@ const emotionsArray = [
     console.log("multifield state.value" + this.state.value);
     console.log("multifield genre.value" + this.state.genre);
 /*
-    const movie = {emotions: value};
-    // console.log("movieEmotionsSelected before " + movieEmotionsSelected);
+    const oil = {usage: value};
+    // console.log("oilUsageSelected before " + oilUsageSelected);
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
-      // movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
+      // oil: Object.assign(this.state.oil,oil)
     });
-    console.log("this.state.movie.emotions " + this.state.movie.emotions)
+    console.log("this.state.oil.usage " + this.state.oil.usage)
 */
 },
 	toggleCheckbox (e) {
@@ -88,7 +88,7 @@ render(){
 					disabled={disabled}
 					multi
 					onChange={this.handleSelectChange}
-					options={emotionsArray}
+					options={usageArray}
 					placeholder="Select your favourite(s)"
           removeSelected={this.state.removeSelected}
 					rtl={this.state.rtl}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import ListOfMovies from "./components/ListOfMovies";
-import MovieSingleContainer from "./containers/MovieSingleContainer";
-import CreateMovieListingContainer from "./containers/CreateMovieListingContainer";
-import UpdateMovieListingContainer from "./containers/UpdateMovieListingContainer";
+import ListOfOils from "./components/ListOfOils";
+import OilSingleContainer from "./containers/OilSingleContainer";
+import CreateOilListingContainer from "./containers/CreateOilListingContainer";
+import UpdateOilListingContainer from "./containers/UpdateOilListingContainer";
 
 import {
    BrowserRouter,
@@ -15,32 +15,32 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
-      movie: [],
+      oils: [],
+      oil: [],
     };
   }
   componentDidMount() {
-    this.props.loadMovies();
+    this.props.loadOils();
   }
 
   render() {
   /*
   X Create a route to show the list container
-    X Main / MoviesContainer
+    X Main / OilsContainer
   X Create a route to show the create container
-    Currently built into Main with MoviesContainer
-    ? build CreateMovieListingContainer as separate destination?
+    Currently built into Main with OilsContainer
+    ? build CreateOilListingContainer as separate destination?
   X Create a route to show the detail container.
-    X MovieSingleContainer
+    X OilSingleContainer
   */
     return (
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path="/movie/:id" component={MovieSingleContainer} />
-            <Route path="/create" component={CreateMovieListingContainer} />
-            <Route path="/update" component={UpdateMovieListingContainer} />
-            <Route path="/" component={ListOfMovies} />
+            <Route path="/oil/:id" component={OilSingleContainer} />
+            <Route path="/create" component={CreateOilListingContainer} />
+            <Route path="/update" component={UpdateOilListingContainer} />
+            <Route path="/" component={ListOfOils} />
           </Switch>
         </BrowserRouter>
       </div>

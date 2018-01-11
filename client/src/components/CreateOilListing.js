@@ -9,42 +9,42 @@ import Select from "react-select";
 import Creatable from "react-select";
 import "react-select/dist/react-select.css";
 
-import movieGenres from "../movieGenres";
+// import movieGenres from "../movieGenres";
 // move options files into options folder and re-route below
 import oilTypeOptions from "../oilTypeOptions";
 import warningOptions from "../warningOptions";
-import emotionsOptions from "../emotionsOptions";
+import usageOptions from "../usageOptions";
 import applicationOptions from "../applicationOptions";
 import bodySystemsOptions from "../bodySystemsOptions";
 import propertiesOptions from "../propertiesOptions";
 
-class CreateMovieListing extends Component {
+class CreateOilListing extends Component {
   constructor() {
     super();
     this.state = {
-      movie: {
+      oil: {
         id: "",
         image: [],
         title: [],
-        // emotions currently going in as simpleValue string from Select
+        // usage currently going in as simpleValue string from Select
         // so array.length = 1
 
         // oilType: [],
         oilType: [],
         warnings: [],
-        emotions: [],
+        usage: [],
         application: [], // !! ADD TO MODEL, UPDATE COMP
         bodySystems: [],
         properties: [],
         keywords: [],
         links: [],
         // links: "",
-        movieGenres,
+        // movieGenres,
         // selectedOption: [], // here for now, but no longer used
         // value: [], // here for now, but no longer used
 
-        // these values moved from global state to per-movie, keep in mind for search
-        emotionsOptions,
+        // these values moved from global state to per-oil, keep in mind for search
+        usageOptions,
         applicationOptions,
         bodySystemsOptions,
         propertiesOptions,
@@ -54,12 +54,12 @@ class CreateMovieListing extends Component {
         warningOptions
       },
       stayOpen: false,
-      // emotionsDisplay: [],
-      // warningOptions, // right now this adds to (global) state that applies now any time a new movie is CREATED
+      // usageDisplay: [],
+      // warningOptions, // right now this adds to (global) state that applies now any time a new oil is CREATED
                       // consider benefits of adding like this -- how would a user remove unwanted global options
-                      // should it just be applied to per-movie, movie-specific - how would this effect search functions
+                      // should it just be applied to per-oil, oil-specific - how would this effect search functions
       /*
-      emotionsOptions,
+      usageOptions,
       applicationOptions,
       bodySystemsOptions,
       propertiesOptions,
@@ -89,17 +89,17 @@ class CreateMovieListing extends Component {
   }
 /*
 // FULL with old notes
-  handleEmotionsChange = (selectedOption) => {
-    // 1 const selectedEmotions = [];
+  handleUsageChange = (selectedOption) => {
+    // 1 const selectedUsage = [];
     console.log("selectedOption: " + selectedOption.toString()); // not selectedOption.value
     // 2 this.setState({ selectedOption });
     // 3 this.setState({ value: selectedOption});
-    // 4 selectedEmotions.push(selectedOption);
-    // 5 console.log("selectedEmotionsArray: " + selectedEmotions)
-    // 6, switch to below, const movie = {emotions: selectedEmotions};
-    const movie = {emotions: selectedOption};
+    // 4 selectedUsage.push(selectedOption);
+    // 5 console.log("selectedUsageArray: " + selectedUsage)
+    // 6, switch to below, const oil = {usage: selectedUsage};
+    const oil = {usage: selectedOption};
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
     });
     console.log(`Selected: ${selectedOption.toString()}`);
   }
@@ -107,29 +107,29 @@ class CreateMovieListing extends Component {
 
   // cleaned up
 /*
-  handleEmotionsChange = (selectedOption) => {
+  handleUsageChange = (selectedOption) => {
     // this.stateName = stateName;
-    console.log("selectedOption Emotions: " + selectedOption.toString());
+    console.log("selectedOption Usage: " + selectedOption.toString());
     console.log("selectedOption id: " + selectedOption.name);
     // console.log("stateName: " + stateName);
-    // console.log("emotions keyword name: " + keyword);
+    // console.log("usage keyword name: " + keyword);
 
-    const movie = {emotions: selectedOption};
+    const oil = {usage: selectedOption};
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
     });
     console.log(`Selected: ${selectedOption.toString()}`);
   }
 
   // this can be used for all changes if
-// emotions, application (the name of the state categorie can be sent as variable)
+// usage, application (the name of the state categorie can be sent as variable)
 
   handleApplicationChange = (selectedOption) => {
     console.log("selectedOption Application: " +
     selectedOption.toString()); // not selectedOption.value
-    const movie = {application: selectedOption};
+    const oil = {application: selectedOption};
     this.setState({
-      movie: Object.assign(this.state.movie,movie)
+      oil: Object.assign(this.state.oil,oil)
     });
     console.log(`Selected: ${selectedOption.toString()}`);
   }
@@ -138,21 +138,21 @@ class CreateMovieListing extends Component {
 
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
-  // const keyword = "emotions";
+  // const keyword = "usage";
   const stateName = {oilType: selectedOption || []};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
-  // console.log("emotions keyword: " + keyword);
+  // console.log("usage keyword: " + keyword);
   console.log("oilType Selected Option: " + selectedOption);
   }
 
   handleWarningsChange = (selectedOption) => {
   // this.stateName = stateName;
-  // const keyword = "emotions";
+  // const keyword = "usage";
   const stateName = {warnings: selectedOption};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
-  // console.log("emotions keyword: " + keyword);
+  // console.log("usage keyword: " + keyword);
   console.log("warnings Selected Option: " + selectedOption);
 }
 
@@ -165,7 +165,7 @@ class CreateMovieListing extends Component {
 // 3. currently loads on last created options
 // 4. perhaps
         // a. re-establish global option objects for applicable categories
-        // b. on there own, or within movies object, on same level as movie
+        // b. on there own, or within oils object, on same level as oil
         // c. create a model?, controllers, mapStateToProps as needed
         // d. current global is searched, if new items no match, concat with current global
               // see code ref below for inspiration
@@ -187,7 +187,7 @@ const onChange = (selectedOption) => {
       });
       warningOptions = newSelectedOptions
       this.setState({
-      movie: {
+      oil: {
         warnings: [].concat(selectedOption),
       //  warningOptions: newSelectedOptions
         }
@@ -195,14 +195,14 @@ const onChange = (selectedOption) => {
     };
 */
 
-  handleEmotionsChange = (selectedOption) => {
+  handleUsageChange = (selectedOption) => {
   // this.stateName = stateName;
-  // const keyword = "emotions";
-  const stateName = {emotions: selectedOption};
+  // const keyword = "usage";
+  const stateName = {usage: selectedOption};
   // this.handleChange(selectedOption, stateName, keyword);
   this.handleChange(selectedOption, stateName);
-  // console.log("emotions keyword: " + keyword);
-  console.log("emotions Selected Option: " + selectedOption);
+  // console.log("usage keyword: " + keyword);
+  console.log("usage Selected Option: " + selectedOption);
 }
 
   handleApplicationChange = (selectedOption) => {
@@ -260,14 +260,14 @@ handleChange = (selectedOption, stateName) => {
 console.log("selectedOptions: " + selectedOption.toString());
 console.log("stateName: " + stateName);
 // console.log("stateName: " + stateName);
-// console.log("emotions keyword name: " + keyword);
+// console.log("usage keyword name: " + keyword);
 // const stateName = keyword;
-// const movie = (`{${stateName}: selectedOption}`); moved to handleEmotionsChange
-  // const movie = {emotions: selectedOption};
+// const oil = (`{${stateName}: selectedOption}`); moved to handleUsageChange
+  // const oil = {usage: selectedOption};
   this.setState({
-    movie: Object.assign(this.state.movie,stateName)
+    oil: Object.assign(this.state.oil,stateName)
   });
-// console.log( `this.state.movie.${keyword}`);
+// console.log( `this.state.oil.${keyword}`);
 console.log(`Selected: ${selectedOption.toString()}`);
 }
 
@@ -276,18 +276,18 @@ console.log(`Selected: ${selectedOption.toString()}`);
   render() {
     // for EasyMultiSelect
     console.log("STATE INFO:")
-    console.log("oil title: " + this.state.movie.title);
-    console.log("oil type: " + this.state.movie.oilType);
-    console.log("warnings: " + this.state.movie.warnings);
-    console.log("emotions: " + this.state.movie.emotions);
-    console.log("application: " + this.state.movie.application);
-    console.log("body systems: " + this.state.movie.bodySystems);
-    console.log("properties: " + this.state.movie.properties);
-    console.log("keywords: " + this.state.movie.keywords);
-    console.log("links: " + this.state.movie.links);
+    console.log("oil title: " + this.state.oil.title);
+    console.log("oil type: " + this.state.oil.oilType);
+    console.log("warnings: " + this.state.oil.warnings);
+    console.log("usage: " + this.state.oil.usage);
+    console.log("application: " + this.state.oil.application);
+    console.log("body systems: " + this.state.oil.bodySystems);
+    console.log("properties: " + this.state.oil.properties);
+    console.log("keywords: " + this.state.oil.keywords);
+    console.log("links: " + this.state.oil.links);
 
     /*
-    emotionsOptions,
+    usageOptions,
     applicationOptions,
     bodySystemsOptions,
     propertiesOptions,
@@ -298,15 +298,15 @@ console.log(`Selected: ${selectedOption.toString()}`);
     */
 
     console.log("SELECTORDISPLAYINFO:")
-    // console.log("oil title: " + this.state.movie.title);
-    console.log("oil type options: " + this.state.movie.oilTypeOptions);
-    console.log("warnings options: " + this.state.movie.warningOptions);
-    console.log("emotions options: " + this.state.movie.emotionsOptions);
-    console.log("application options: " + this.state.movie.applicationOptions);
-    console.log("body systems options: " + this.state.movie.bodySystemsOptions);
-    console.log("properties options: " + this.state.movie.propertiesOptions);
-    console.log("keywords options: " + this.state.movie.keywordsOptions);
-    console.log("links options: " + this.state.movie.linksOptions);
+    // console.log("oil title: " + this.state.oil.title);
+    console.log("oil type options: " + this.state.oil.oilTypeOptions);
+    console.log("warnings options: " + this.state.oil.warningOptions);
+    console.log("usage options: " + this.state.oil.usageOptions);
+    console.log("application options: " + this.state.oil.applicationOptions);
+    console.log("body systems options: " + this.state.oil.bodySystemsOptions);
+    console.log("properties options: " + this.state.oil.propertiesOptions);
+    console.log("keywords options: " + this.state.oil.keywordsOptions);
+    console.log("links options: " + this.state.oil.linksOptions);
 
 // REF https://github.com/JedWatson/react-select/issues/1663
 // static arrays moved to state so newly created tags would appear in input field
@@ -340,7 +340,7 @@ const oilTypeOptions = [
     - Photosensitizing
 */
 /*
-    const emotionsOptions = [
+    const usageOptions = [
       { value: "stress", label: "Stress" },
       { value: "focus", label: "Focus" },
       { value: "fatigue", label: "Fatigue"},
@@ -419,9 +419,9 @@ const oilTypeOptions = [
     // end for EasyMultiSelect
 
     // const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
-  //  const emotionsArray = [];
+  //  const usageArray = [];
 
-    // const emotionsArray = [
+    // const usageArray = [
     //  "stress", "focus", "fatigue", "happiness"];
 /*
     { label: "Happy", value: "happy" },
@@ -433,8 +433,8 @@ const oilTypeOptions = [
     ];
     */
 
-    // const movieEmotions = [];
-    // const movieEmotionsSelected = [];
+    // const oilUsage = [];
+    // const oilUsageSelected = [];
 
     // save for later - trying to dynamically generate arrays, is it possible
 
@@ -448,13 +448,13 @@ const oilTypeOptions = [
     Function callbackand will be called when the input text is changed.
     */
     /*
-    const { emotionsDisplay } = this.state;
-    const emotionsDisplayPrep = emotionsArray.map((g,i) => (
-      // emotionsDisplay.push(`{value:"${g}", label:"${g}", key:"${i}"}`)
-      emotionsDisplay.push(`{value: "${g}", label: "${g}"}`)
+    const { usageDisplay } = this.state;
+    const usageDisplayPrep = usageArray.map((g,i) => (
+      // usageDisplay.push(`{value:"${g}", label:"${g}", key:"${i}"}`)
+      usageDisplay.push(`{value: "${g}", label: "${g}"}`)
     ));
-    console.log("emotionsDisplayPrep: " + emotionsDisplayPrep);
-    console.log("emotionsDisplay: " + emotionsDisplay);
+    console.log("usageDisplayPrep: " + usageDisplayPrep);
+    console.log("usageDisplay: " + usageDisplay);
     */
 
 
@@ -464,26 +464,26 @@ const oilTypeOptions = [
           <h1>Create a new oil listing:</h1>
           <form onSubmit={(e) => {
             e.preventDefault();
-            if (this.props.createMovie) {
-              this.props.createMovie(this.state.movie);
+            if (this.props.createOil) {
+              this.props.createOil(this.state.oil);
             }
           }}>
             <div>
             <h4> Oil Poster or Image URL (please enter a URL or leave empty, not required):
           <input onChange={(e) => {
-            // const movie = {image: e.target.value || ""};
-            const movie = {image: e.target.value || []};
+            // const oil = {image: e.target.value || ""};
+            const oil = {image: e.target.value || []};
             this.setState({
-              movie: Object.assign(this.state.movie,movie)
+              oil: Object.assign(this.state.oil,oil)
             });
           }} /></h4>
             </div>
             <div>
               <h4>Oil Name: <input onChange={(e) => {
-                // const movie = {title: e.target.value};
-                const movie = {title: e.target.value || []};
+                // const oil = {title: e.target.value};
+                const oil = {title: e.target.value || []};
                 this.setState({
-                  movie: Object.assign(this.state.movie,movie)
+                  oil: Object.assign(this.state.oil,oil)
                 });
               }} /></h4>
             </div>
@@ -493,7 +493,7 @@ const oilTypeOptions = [
               <Select
                 name="oilType"
                 // value={value}
-                value={this.state.movie.oilType.toString()}
+                value={this.state.oil.oilType.toString()}
                 onChange={this.handleOilTypeChange}
                 // multi
                 closeOnSelect={!this.state.stayOpen}
@@ -501,7 +501,7 @@ const oilTypeOptions = [
                 // options={oilTypeOptions}
 
                 // options={this.state.oilTypeOptions}
-                options={this.state.movie.oilTypeOptions}
+                options={this.state.oil.oilTypeOptions}
             />
           </div>
 
@@ -513,7 +513,7 @@ const oilTypeOptions = [
                 name="warnings"
                 // value={value}
                 placeholder="Click to select from list, begin typing to search or add options..."
-                value={this.state.movie.warnings.toString()}
+                value={this.state.oil.warnings.toString()}
                 onChange={this.handleWarningsChange}
                 // onInputChange
                 multi
@@ -528,28 +528,28 @@ const oilTypeOptions = [
                 // options={warningOptions}
 
                 // options={this.state.warningOptions}
-                options={this.state.movie.warningOptions}
+                options={this.state.oil.warningOptions}
              />
 
             </div>
 
-            <h4>Emotions (select all that apply)</h4>
-            <div className="emotionsSelect">
+            <h4>Usage (select all that apply)</h4>
+            <div className="usageSelect">
               <Select.Creatable
-                name="emotions" // option for sending to general handleChange?
+                name="usage" // option for sending to general handleChange?
                 // value={value}
                 placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.movie.emotions.toString()}
-                onChange={this.handleEmotionsChange}
+                value={this.state.oil.usage.toString()}
+                onChange={this.handleUsageChange}
                 multi
                 allowCreate
                 closeOnSelect={this.state.stayOpen}
                 simpleValue
-                // options={emotionsOptions}
-                // id="emotions" // option for sending to general handleChange?
+                // options={usageOptions}
+                // id="usage" // option for sending to general handleChange?
 
-                // options={this.state.emotionsOptions}
-                options={this.state.movie.emotionsOptions}
+                // options={this.state.usageOptions}
+                options={this.state.oil.usageOptions}
 
             />
             </div>
@@ -560,7 +560,7 @@ const oilTypeOptions = [
                 name="application"
                 // value={value}
                 placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.movie.application.toString()}
+                value={this.state.oil.application.toString()}
                 onChange={this.handleApplicationChange}
                 multi
                 allowCreate
@@ -569,7 +569,7 @@ const oilTypeOptions = [
                 // options={applicationOptions}
 
                 // options={this.state.applicationOptions}
-                options={this.state.movie.applicationOptions}
+                options={this.state.oil.applicationOptions}
             />
             </div>
 
@@ -579,7 +579,7 @@ const oilTypeOptions = [
                 name="bodySystems"
                 // value={value}
                 placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.movie.bodySystems.toString()}
+                value={this.state.oil.bodySystems.toString()}
                 onChange={this.handleBodySystemsChange}
                 multi
                 allowCreate
@@ -588,7 +588,7 @@ const oilTypeOptions = [
                 // options={bodySystemsOptions}
 
                 // options={this.state.bodySystemsOptions}
-                options={this.state.movie.bodySystemsOptions}
+                options={this.state.oil.bodySystemsOptions}
             />
             </div>
 
@@ -598,7 +598,7 @@ const oilTypeOptions = [
                 name="properties"
                 // value={value}
                 placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.movie.properties.toString()}
+                value={this.state.oil.properties.toString()}
                 onChange={this.handlePropertiesChange}
                 multi
                 allowCreate
@@ -607,7 +607,7 @@ const oilTypeOptions = [
                 // options={propertiesOptions}
 
                 // options={this.state.propertiesOptions}
-                options={this.state.movie.propertiesOptions}
+                options={this.state.oil.propertiesOptions}
             />
             </div>
 
@@ -623,7 +623,7 @@ const oilTypeOptions = [
                 name="keywords"
                 // value={value}
                 placeholder="Click and begin typing to add keywords..."
-                value={this.state.movie.keywords.toString()}
+                value={this.state.oil.keywords.toString()}
                 onChange={this.handleKeywordsChange}
                 multi
                 allowCreate
@@ -632,7 +632,7 @@ const oilTypeOptions = [
                 // options={keywordsOptions}
 
                 // options={this.state.keywordsOptions}
-                options={this.state.movie.keywordsOptions}
+                options={this.state.oil.keywordsOptions}
             />
             </div>
 
@@ -648,8 +648,8 @@ const oilTypeOptions = [
                 name="links"
                 // value={value}
                 placeholder="Click and begin typing to add links..."
-                value={this.state.movie.links.toString()}
-                // value={this.state.movie.links}
+                value={this.state.oil.links.toString()}
+                // value={this.state.oil.links}
                 onChange={this.handleLinksChange}
                 multi
                 allowCreate
@@ -658,60 +658,60 @@ const oilTypeOptions = [
                 // options={linksOptions}
 
                 // options={this.state.linksOptions}
-                options={this.state.movie.linksOptions}
+                options={this.state.oil.linksOptions}
             />
             </div>
             <div>
-              <h4><button>Create Movie!</button></h4>
+              <h4><button>Create Oil!</button></h4>
             </div>
           </form>
         </div>
-        <h3><Link to={"/"}> return to movie list </Link></h3>
+        <h3><Link to={"/"}> return to oil list </Link></h3>
       </div>
 
     );
   }
 }
 
-export default CreateMovieListing;
+export default CreateOilListing;
 
 /*
 
 <select onChange={(e) => {
-  const movie = {genre: e.target.value};
+  const oil = {genre: e.target.value};
   this.setState({
-    movie: Object.assign(this.state.movie,movie)
+    oil: Object.assign(this.state.oil,oil)
   });
 }} >
 </select>
 */
 
 /*
-handleEmotions(e.target.value);
-// addEmotions();
+handleUsage(e.target.value);
+// addUsage();
 
 
-  const movie = {emotions: movieEmotionsSelected};
-  console.log("movieEmotionsSelected before " + movieEmotionsSelected);
+  const oil = {usage: oilUsageSelected};
+  console.log("oilUsageSelected before " + oilUsageSelected);
   this.setState({
-    movie: Object.assign(this.state.movie,movie)
-    // movie: Object.assign(this.state.movie,movie)
+    oil: Object.assign(this.state.oil,oil)
+    // oil: Object.assign(this.state.oil,oil)
   });
-  console.log("movie.emotions: " + this.state.movie.emotions)
-  console.log("movieEmotionsSelected after " + movieEmotionsSelected);
+  console.log("oil.usage: " + this.state.oil.usage)
+  console.log("oilUsageSelected after " + oilUsageSelected);
 
 }}
 
 ////////////
 <div>
-  Emotions:
+  Usage:
 
   <Select
     multi
-    options={emotionsArray}
+    options={usageArray}
     simpleValue
-    value={movieEmotions}
-    placeholder="Select how this movie makes you feel"
+    value={oilUsage}
+    placeholder="Select how this oil makes you feel"
     onChange={this.handleSelectChange}
     />
 </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom";
 
 // class CollapsableMapper extends Component {
-class Movies extends Component {
+class Oils extends Component {
   constructor() {
     super();
     this.state = {visible: true};
@@ -13,29 +13,29 @@ class Movies extends Component {
     console.log("Click happened");
     console.log(e);
     console.log(e.target.id);
-    this.props.deleteMovie(e.target.id);
+    this.props.deleteOil(e.target.id);
     console.log("handleClickComplete");
   }
 
-// <li><Link to={"/" + this.props.path + "/" + d._id}> view movie details </Link></li>
+// <li><Link to={"/" + this.props.path + "/" + d._id}> view oil details </Link></li>
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
   render() {
     let buttonText = "Hide";
-    let movieDivs = "";
+    let oilDivs = "";
     if (this.state.visible) {
-      buttonText = "Hide My Movies";
-      // movieDivs = this.props.data.map((d,i) => {
-         movieDivs = this.props.movies.map((d,i) => {
+      buttonText = "Hide My Oils";
+      // oilDivs = this.props.data.map((d,i) => {
+         oilDivs = this.props.oils.map((d,i) => {
         return (
           <div key={i}>
             {d.title}
             <ul>
             <li>{d.genre}</li>
             <li>{d.plot}</li>
-            <li><Link to={"/movie/" + d._id}> view and update movie details </Link></li>
+            <li><Link to={"/oil/" + d._id}> view and update oil details </Link></li>
 
               <button onClick={this.handleClick} id={d._id}>
-                DELETE THIS MOVIE
+                DELETE THIS OIL
               </button>
 
             </ul>
@@ -43,8 +43,8 @@ class Movies extends Component {
         );
          });
     } else {
-      buttonText = "Show My Movies";
-      movieDivs = "";
+      buttonText = "Show My Oils";
+      oilDivs = "";
     }
     return (
       <div>
@@ -56,15 +56,15 @@ class Movies extends Component {
         }>
           {buttonText}
         </button>
-        {movieDivs}
+        {oilDivs}
       </div>);
   }
 }
 
 // export default CollapsableMapper;
-export default Movies;
+export default Oils;
 
-// REMOVED UNTIL CAN SORT OUT id v _id sent from Movies
+// REMOVED UNTIL CAN SORT OUT id v _id sent from Oils
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
 // End Removed
 
@@ -76,7 +76,7 @@ class CollapsableMapper extends Component {
   }
   render() {
     let buttonText = "Hide";
-    let movieDivs = "";
+    let oilDivs = "";
     if (this.state.visible) {
       buttonText = "Hide";
       userDivs = this.props.data.map((d,i) => {

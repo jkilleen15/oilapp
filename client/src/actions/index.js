@@ -1,96 +1,96 @@
-// MOVIES
+// OILS
 /*
 X Create actions for loading your models and models loaded
     X loadThings() - do a fetch get to “/things”
     X thingsLoaded(things) - THINGS_LOADED
 */
 
-export function loadMovies() {
+export function loadOils() {
   return function (dispatch) {
-    fetch("/movies")
+    fetch("/oils")
     .then( (response) => {
       return response.json();
-    }).then((movies) => {
-      dispatch(moviesLoaded(movies));
+    }).then((oils) => {
+      dispatch(oilsLoaded(oils));
     });
   };
 }
-function moviesLoaded(movies) {
+function oilsLoaded(oils) {
   return {
-    type: "MOVIES_LOADED",
-    value: movies
+    type: "OILS_LOADED",
+    value: oils
   };
 }
 
-// SINGLE MOVIE
+// SINGLE OIL
 /*
 X Create an action for saving a new model
     X createThing(thing) - do a fetch post to “/things”
     X when the fetch is complete, dispatch to loadThings
 */
 
-export function createMovie(m) {
+export function createOil(m) {
   return function (dispatch) {
-    fetch("/movies", {
+    fetch("/oils", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(m)
-  //  }).then(() => dispatch(loadMovies()));
-    }).then(() => dispatch(createMovieDone()))
-    .then(() => dispatch(loadMovies()));
+  //  }).then(() => dispatch(loadOils()));
+    }).then(() => dispatch(createOilDone()))
+    .then(() => dispatch(loadOils()));
   };
 }
 
-function createMovieDone(newMovie) {
-  alert('new movie added!')
+function createOilDone(newOil) {
+  alert('new oil added!')
   return {
-    type: "CREATE_MOVIE_DONE",
-    value: newMovie
+    type: "CREATE_OIL_DONE",
+    value: newOil
   };
 }
 
 // ////////
 
-export function getMovie(id) {
+export function getOil(id) {
   return function (dispatch) {
-    fetch(`/movies/${id}`)
+    fetch(`/oils/${id}`)
     .then( (response) => {
       return response.json();
-    }).then((movie) => {
-      dispatch(getMovieDone(movie));
+    }).then((oil) => {
+      dispatch(getOilDone(oil));
     });
   };
 }
 
-function getMovieDone(movie) {
+function getOilDone(oil) {
   return {
-    type: "GET_MOVIE_DONE",
-    value: movie
+    type: "GET_OIL_DONE",
+    value: oil
   };
 }
 
 // Create an action for updating an item
 
-export function updateMovie(m) {
-  console.log("update movie reached");
-  console.log("movie id: " + m.id);
+export function updateOil(m) {
+  console.log("update oil reached");
+  console.log("oil id: " + m.id);
   return function (dispatch) {
-    fetch("/movies/" + m.id, {
+    fetch("/oils/" + m.id, {
       method: "PUT",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(m)
     })
-    .then(() => dispatch(updateMovieDone()))
-    .then(() => dispatch(loadMovies())) // ;
+    .then(() => dispatch(updateOilDone()))
+    .then(() => dispatch(loadOils())) // ;
     .then(console.log("updated props! " + m.warnings));
   };
 }
 
-function updateMovieDone(updatedMovie) {
-  alert("movie listing updated!")
+function updateOilDone(updatedOil) {
+  alert("oil listing updated!")
   return {
-    type: "UPDATE_MOVIE_DONE",
-    value: updatedMovie
+    type: "UPDATE_OIL_DONE",
+    value: updatedOil
   };
 }
 
@@ -102,23 +102,23 @@ function updateMovieDone(updatedMovie) {
 
 */
 
-export function deleteMovie(id) {
-  console.log("delete movie reached");
+export function deleteOil(id) {
+  console.log("delete oil reached");
   console.log("id: " + id);
   return function (dispatch) {
-    fetch(`/movies/${id}`, {
+    fetch(`/oils/${id}`, {
       method: "DELETE"
     })
      .then(console.log("fetch complete"))
-     .then(() => dispatch(loadMovies()))
-     .then(() => dispatch(deleteMovieDone()));
+     .then(() => dispatch(loadOils()))
+     .then(() => dispatch(deleteOilDone()));
   };
 }
-// function getMovieDone(movie) {
-function deleteMovieDone() {
-  // alert("movie deleted!");
-  console.log("movie deleted!");
+// function getOilDone(oil) {
+function deleteOilDone() {
+  // alert("oil deleted!");
+  console.log("oil deleted!");
   return {
-    type: "DELETE_MOVIE_DONE",
+    type: "DELETE_OIL_DONE",
   };
 }

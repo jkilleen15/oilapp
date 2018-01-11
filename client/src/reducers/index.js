@@ -1,25 +1,25 @@
 import {combineReducers} from "redux";
 
-// MOVIES
+// OILS
 
-function movies(state = [], action) {
-  if (action.type === "MOVIES_LOADED") {
+function oils(state = [], action) {
+  if (action.type === "OILS_LOADED") {
     return action.value;
   }
   return state;
 }
 
-// SINGLE MOVIE
+// SINGLE OIL
 
-function movie(state = [], action) {
-  if (action.type === "GET_MOVIE_DONE") {
+function oil(state = [], action) {
+  if (action.type === "GET_OIL_DONE") {
     return action.value;
   }
   return state;
 }
 
 const rootReducer = combineReducers({
-  movies, movie
+  oils, oil
 });
 
 export default rootReducer;

@@ -1,12 +1,12 @@
 import App from "./App";
 import "./App.css";
 import { connect } from "react-redux";
-import {loadMovies} from "./actions";
+import {loadOils} from "./actions";
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadMovies: function () {
-      dispatch(loadMovies());
+    loadOils: function () {
+      dispatch(loadOils());
     },
   };
 }
