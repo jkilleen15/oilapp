@@ -59,6 +59,7 @@ class UpdateOilListing extends Component {
       },
 
       stayOpen: false,
+      instructionsVisible: false,
       /*
       warningOptions,
       usageOptions: this.props.usageOptions,
@@ -222,6 +223,28 @@ class UpdateOilListing extends Component {
     console.log("oil state: ");
     console.log(this.state.oil);
 
+    // SHOW OR HIDE INSTRUCTIONS
+
+    let showInstructionButtonText = "";
+    let instructionsDiv = "";
+    if (this.state.instructionsVisible) {
+
+      showInstructionButtonText = "Hide Instructions";
+
+      instructionsDiv =
+      <ul>
+        <li> Click any field and begin typing to search or add custom values </li>
+        <li> If you see your desired value, select it from dropdown to save </li>
+        <li> To save custom values, press enter/return once value is complete</li>
+        <li> Begin typing again to add the next value </li>
+        <li> Enter values in search on Full Oil List page to retrieve this oil </li>
+      </ul>;
+
+    } else {
+      showInstructionButtonText = "Show Instructions";
+      instructionsDiv = "";
+    }
+
     // console.log("oil state: " + this.state.oil);
     /*
     console.log(this.props.oil.title);
@@ -248,9 +271,18 @@ class UpdateOilListing extends Component {
 */
 
     return (
-      <div>
+      <div className="aLittleSpace">
         <div>
           <h1>Update this oil listing:</h1>
+          <button onClick={() => {
+            this.setState({
+              instructionsVisible: !this.state.instructionsVisible
+            });
+          }
+          }>
+          {showInstructionButtonText}
+        </button>
+        {instructionsDiv}
           <form onSubmit={(e) => {
             // ???
             e.preventDefault();
@@ -282,7 +314,7 @@ class UpdateOilListing extends Component {
                 }} /></h4>
             </div>
 
-            <h4> Oil Type (Select One) </h4>
+            <h4> Oil Type (select one) </h4>
             <div className="oilTypeSelect">
               <Select
                 name="oilType"
@@ -299,7 +331,26 @@ class UpdateOilListing extends Component {
             />
             </div>
 
-            <h4>Warnings (select all that apply)</h4>
+            <h4>Application (all that apply)</h4>
+            <div className="applicationSelect">
+              <Select.Creatable
+                name="application"
+                // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
+                value={this.state.oil.application.toString()}
+                onChange={this.handleApplicationChange}
+                multi
+                allowCreate
+                closeOnSelect={this.state.stayOpen}
+                simpleValue
+                // options={applicationOptions}
+
+                // options={this.state.applicationOptions}
+                options={this.state.oil.applicationOptions}
+            />
+            </div>
+
+            <h4>Warnings (all that apply)</h4>
             <div className="warningsSelect">
 
                 <Select.Creatable
@@ -326,7 +377,7 @@ class UpdateOilListing extends Component {
 
             </div>
 
-            <h4>Usage (select all that apply)</h4>
+            <h4>Usage (all that apply)</h4>
             <div className="usageSelect">
               <Select.Creatable
                 name="usage" // option for sending to general handleChange?
@@ -346,45 +397,7 @@ class UpdateOilListing extends Component {
             />
             </div>
 
-            <h4>Application (select all that apply)</h4>
-            <div className="applicationSelect">
-              <Select.Creatable
-                name="application"
-                // value={value}
-                placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.oil.application.toString()}
-                onChange={this.handleApplicationChange}
-                multi
-                allowCreate
-                closeOnSelect={this.state.stayOpen}
-                simpleValue
-                // options={applicationOptions}
-
-                // options={this.state.applicationOptions}
-                options={this.state.oil.applicationOptions}
-            />
-            </div>
-
-            <h4>Body Systems Affected (select all that apply)</h4>
-            <div className="bodySystemsSelect">
-              <Select.Creatable
-                name="bodySystems"
-                // value={value}
-                placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.oil.bodySystems.toString()}
-                onChange={this.handleBodySystemsChange}
-                multi
-                allowCreate
-                closeOnSelect={this.state.stayOpen}
-                simpleValue
-                // options={bodySystemsOptions}
-
-                // options={this.state.bodySystemsOptions}
-                options={this.state.oil.bodySystemsOptions}
-            />
-            </div>
-
-            <h4>Properties (select all that apply):</h4>
+            <h4>Properties (all that apply)</h4>
             <div className="propertiesSelect">
               <Select.Creatable
                 name="properties"
@@ -403,18 +416,32 @@ class UpdateOilListing extends Component {
             />
             </div>
 
+            <h4>Body Systems Affected (all that apply)</h4>
+            <div className="bodySystemsSelect">
+              <Select.Creatable
+                name="bodySystems"
+                // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
+                value={this.state.oil.bodySystems.toString()}
+                onChange={this.handleBodySystemsChange}
+                multi
+                allowCreate
+                closeOnSelect={this.state.stayOpen}
+                simpleValue
+                // options={bodySystemsOptions}
+
+                // options={this.state.bodySystemsOptions}
+                options={this.state.oil.bodySystemsOptions}
+            />
+            </div>
+
             <h4>Keywords</h4>
-            <ul>
-              <li> Begin typing to add helpful keywords </li>
-              <li> Press enter to save keyword </li>
-              <li> Begin typing again to add additional keywords </li>
-              <li> use keywords to retrieve oils </li>
-            </ul>
+
             <div className="keywordsCreate">
               <Select.Creatable
                 name="keywords"
                 // value={value}
-                placeholder="Begin typing to add keywords..."
+                placeholder="Click and begin typing to add keywords..."
                 value={this.state.oil.keywords.toString()}
                 onChange={this.handleKeywordsChange}
                 multi
@@ -429,17 +456,12 @@ class UpdateOilListing extends Component {
             </div>
 
             <h4>Links & References</h4>
-            <ul>
-              <li> Begin typing to add http link </li>
-              <li> Press enter to save your link </li>
-              <li> Begin typing again to add additional http links </li>
-            </ul>
 
             <div className="linksCreate">
               <Select.Creatable
                 name="links"
                 // value={value}
-                placeholder="Begin typing to add keywords..."
+                placeholder="Click and begin typing to add http links..."
                 // value={this.state.oil.links.toString()}
                 value={this.state.oil.links.toString()}
                 onChange={this.handleLinksChange}
@@ -454,7 +476,7 @@ class UpdateOilListing extends Component {
             />
             </div>
 
-            <button>Update This Listing! </button>
+            <button><h3>Update This Listing!</h3></button>
           </form>
         </div>
         <h3><Link to={"/oil/" + this.state.oil.id}> Return to Oil Details! </Link></h3>

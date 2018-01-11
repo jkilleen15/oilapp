@@ -19,7 +19,7 @@ class OilSingle extends Component {
   }
 
   render(){
-    const PersonImg = "http://avantsynergy.com/wp-content/uploads/2016/03/highlight-reel.png";
+    const oilPlaceholderImg = "http://studiobotanica.com/wp-content/uploads/2012/12/EssOilHerbs.jpg";
     console.log(this.props.oil);
     console.log("this.props.oil.links props: " + this.props.oil.links);
 
@@ -52,8 +52,8 @@ class OilSingle extends Component {
     ));
 
     }
-  }
 
+  }
 
 /*
     let warningsDisplay = "";
@@ -92,10 +92,9 @@ class OilSingle extends Component {
 
     return (
       <div>
-        <button><h3><Link to={"/update/" + this.props.oil._id}> Edit or Update this Listing </Link></h3></button>
+        <button><h3><Link className="linkNoDecoration" to={"/update/" + this.props.oil._id}> Edit or Update this Listing </Link></h3></button>
         <h3>Oil Id: {this.props.oil._id}</h3>
-
-        <h3>Oil Poster or Image URL: <br /><img src={this.props.oil.image || PersonImg}
+        <h3>Oil Poster or Image URL: <br /><img className="imageFormat" src={this.props.oil.image || oilPlaceholderImg}
           alt={"Note: " + this.props.oil.title + " image will not load. Check your url."} /></h3>
 
         <h3>Oil Name: {this.props.oil.title}</h3>
@@ -109,7 +108,7 @@ class OilSingle extends Component {
         <h3>Links:</h3>
         {linksDisplay}
 
-        <button><h3><Link to={"/update/" + this.props.oil._id}>
+        <button><h3><Link className="linkNoDecoration" to={"/update/" + this.props.oil._id}>
           Edit or Update this Listing </Link></h3></button>
         <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
       </div>

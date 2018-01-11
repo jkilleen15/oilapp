@@ -23,6 +23,38 @@
   to { transform: rotate(360deg); }
 }
 
+button {
+  padding: 5px;
+  margin: 5px;
+}
+
+.aLittleSpace {
+  width: 90%;
+  padding-left: 15px;
+  word-wrap: break-word;
+}
+
+.imageFormat {
+  height: 150px;
+  width: 200px;
+}
+
 .listNoDecoration {
   list-style-type: none;
+}
+
+.linkNoDecoration {
+  text-decoration: none;
+}
+
+.searchInputBox {
+  height: 40px;
+  max-width: 400px;
+  min-width:95%;
+  font-size: 25px;
+  margin: 10px 10px 10px 0px;
+}
+
+.warningOrange {
+  background-color: orange;
 }

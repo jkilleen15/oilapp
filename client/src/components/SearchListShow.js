@@ -19,6 +19,16 @@ class SearchListShow extends React.Component {
       filtering: false,
       keyword: "",
     };
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick(e) {
+    console.log("Click happened");
+    alert("Oil Deleted!");
+    console.log(e);
+    console.log(e.target.id);
+    this.props.deleteOil(e.target.id);
+    console.log("handleDeleteClick Complete");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -105,8 +115,11 @@ class SearchListShow extends React.Component {
     if (this.state.searchableListVisible) {
       searchShowButtonText = "Hide Searchable List";
 
-      showFullYesNoLabel = "Search My Oils";
-      // <div><h2>Search My Oils</h2></div>;
+      showFullYesNoLabel = // "Search My Oils";
+      <div>
+      <h2>Search My Oils</h2>
+      <i>Search by oil name, oil type, usage, application, properties, body systems and keywords!</i>
+      </div>;
 
       quickLinksLabel =
       <div><h3>Quick Link Results: </h3></div>;
@@ -117,14 +130,14 @@ class SearchListShow extends React.Component {
       resultStatus =
         <i>
           {this.state.filtering ?
-            this.state.filteredOils.length +
-            " out of " + this.props.oils.length + " oils match your search" :
-            this.props.oils.length + " oils in my collection"}</i>;
+            "(" + this.state.filteredOils.length +
+            " out of " + this.props.oils.length + " oils match your search)" :
+            "(" + this.props.oils.length + " oils in my collection)"}</i>;
 
       inputBox =
         <input
-        className="prompt"
-        placeholder="Search oils by keyword (oil name, usage, keywords, application, body systems)"
+        className="searchInputBox"
+        placeholder="Click and begin typing..."
         onChange={this.filterList.bind(this)}
         // onChange={this.filterList}
         // value={this.state.keyword}
@@ -147,13 +160,13 @@ class SearchListShow extends React.Component {
           <div>
             <h3>{oil.title}</h3>
             <ul>
-            <li>Uses: {oil.usage}</li>
-            <li>Application: {oil.application}</li>
-            <li>Properties: {oil.properties}</li>
-            <li><Link to={"/oil/" + oil._id}> view and update oil details </Link></li>
+            <li><b>Uses: </b>{oil.usage}</li>
+            <li><b>Application: </b>{oil.application}</li>
+            <li><b>Properties: </b>{oil.properties}</li>
+            <li><Link to={"/oil/" + oil._id}> View and Update Oil Details </Link></li>
           </ul>
         </div>
-              <button onClick={this.handleDeleteClick} id={oil._id}>
+              <button className="warningOrange" onClick={this.handleDeleteClick} id={oil._id}>
                 DELETE THIS OIL - {oil.title.toUpperCase()}
               </button>
           </div>
@@ -170,7 +183,7 @@ class SearchListShow extends React.Component {
     //  //
 
     // return (
-        <div className="column">
+        <div>
           <div>
             <button onClick={() => {
               this.setState({
@@ -178,28 +191,25 @@ class SearchListShow extends React.Component {
               });
             }
           }>
-              <h3>{searchShowButtonText}</h3>
+              {searchShowButtonText}
             </button>
 
           </div>
-
-          <div><h2>{showFullYesNoLabel}</h2></div>
-          <div><h3>{inputBox}</h3></div>
+          {showFullYesNoLabel}
+          <div>{inputBox}</div>
           {resultStatus}
           {quickLinksLabel}
 
-        <div className="ui bottom attached segment">
-          <div className="ui divided items">
+          <div>
             <ul className="listNoDecoration">
             {oilList.length ? oilListShow : "No matches found."}
           </ul>
           </div>
 
           {resultsListLabel}
-          <div className="ui divided items">
+          <div>
             {oilList.length ? oilListShowLong : "No matches found."}
           </div>
-        </div>
         </div>
      );
   }

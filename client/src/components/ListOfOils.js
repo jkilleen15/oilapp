@@ -7,11 +7,11 @@ import SearchListShowContainer from "../containers/SearchListShowContainer";
 
 function ListOfOils() {
   return (
-    <div>
-      <div style={{float: "left", width: "49%"}}>
+    <div className="aLittleSpace">
+      <div>
         <h1>My Essential Oil Collection </h1>
         <div>
-        <button><h3><Link to={"/create"}> Add Oil to Collection </Link></h3></button>
+        <button><h3><Link className="linkNoDecoration" to={"/create"}> Create New Oil! </Link></h3></button>
       </div>
       <div>
         <SearchListShowContainer />

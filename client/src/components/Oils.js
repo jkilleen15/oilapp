@@ -30,7 +30,7 @@ class Oils extends Component {
     let oilDivs = "";
     if (this.state.fullListVisible) {
 
-      showFullListButtonText = "Hide Full List";
+      showFullListButtonText = "Hide Full List of Oils - No Search";
 
       showFullYesNoLabel =
       <h2>My Oils Quick Look Listing</h2>;
@@ -48,13 +48,13 @@ class Oils extends Component {
           <div>
             <h3>{d.title}</h3>
             <ul>
-            <li>Uses: {d.usage}</li>
-            <li>Application: {d.application}</li>
-            <li>Properties: {d.properties}</li>
-            <li><Link to={"/oil/" + d._id}> view and update oil details </Link></li>
+            <li><b>Uses: </b>{d.usage}</li>
+            <li><b>Application: </b>{d.application}</li>
+            <li><b>Properties: </b>{d.properties}</li>
+            <li><Link to={"/oil/" + d._id}> View and Update Oil Details </Link></li>
           </ul>
         </div>
-              <button onClick={this.handleDeleteClick} id={d._id}>
+              <button className="warningOrange" onClick={this.handleDeleteClick} id={d._id}>
                 DELETE THIS OIL - {d.title.toUpperCase()}
               </button>
           </div>
@@ -62,7 +62,7 @@ class Oils extends Component {
          // });
 
     } else {
-      showFullListButtonText = "View Full Listing of Oils";
+      showFullListButtonText = "View Full List of Oils - No Search";
       showFullYesNoLabel = "";
       oilDivs = "";
     }

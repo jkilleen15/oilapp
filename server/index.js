@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 
 mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/checkpoint2");
+// mongoose.connect("mongodb://localhost/checkpoint2");
+mongoose.connect("mongodb://localhost/oilAppDB");
 
 const myOilServer = express();
 myOilServer.use(bodyParser.json());

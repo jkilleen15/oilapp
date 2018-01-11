@@ -54,6 +54,7 @@ class CreateOilListing extends Component {
         warningOptions
       },
       stayOpen: false,
+      instructionsVisible: false,
       // usageDisplay: [],
       // warningOptions, // right now this adds to (global) state that applies now any time a new oil is CREATED
                       // consider benefits of adding like this -- how would a user remove unwanted global options
@@ -256,6 +257,9 @@ const onChange = (selectedOption) => {
   }
 
 handleChange = (selectedOption, stateName) => {
+
+  ///
+  ///
 // this.stateName = stateName;
 console.log("selectedOptions: " + selectedOption.toString());
 console.log("stateName: " + stateName);
@@ -307,6 +311,30 @@ console.log(`Selected: ${selectedOption.toString()}`);
     console.log("properties options: " + this.state.oil.propertiesOptions);
     console.log("keywords options: " + this.state.oil.keywordsOptions);
     console.log("links options: " + this.state.oil.linksOptions);
+
+    /////
+    // HIDE OR SHOW INSTRUCTIONS
+    let showInstructionButtonText = "";
+    let instructionsDiv = "";
+    if (this.state.instructionsVisible) {
+
+      showInstructionButtonText = "Hide Instructions";
+
+      instructionsDiv =
+      <ul>
+        <li> Click any field and begin typing to search or add custom values </li>
+        <li> If you see your desired value, select it from dropdown to save </li>
+        <li> To save custom values, press enter/return once value is complete</li>
+        <li> Begin typing again to add the next value </li>
+        <li> Enter values in search on Full Oil List page to retrieve this oil </li>
+      </ul>;
+
+    } else {
+      showInstructionButtonText = "Show Instructions";
+      instructionsDiv = "";
+    }
+
+    ////
 
 // REF https://github.com/JedWatson/react-select/issues/1663
 // static arrays moved to state so newly created tags would appear in input field
@@ -459,9 +487,18 @@ const oilTypeOptions = [
 
 
     return (
-      <div>
+      <div className="aLittleSpace">
         <div>
           <h1>Create a new oil listing:</h1>
+          <button onClick={() => {
+            this.setState({
+              instructionsVisible: !this.state.instructionsVisible
+            });
+          }
+          }>
+          {showInstructionButtonText}
+        </button>
+        {instructionsDiv}
           <form onSubmit={(e) => {
             e.preventDefault();
             if (this.props.createOil) {
@@ -488,7 +525,7 @@ const oilTypeOptions = [
               }} /></h4>
             </div>
 
-            <h4>Oil Type (Select One)</h4>
+            <h4>Oil Type (select one)</h4>
             <div className="oilTypeSelect">
               <Select
                 name="oilType"
@@ -505,7 +542,26 @@ const oilTypeOptions = [
             />
           </div>
 
-            <h4>Warnings (select all that apply)<br /></h4>
+          <h4>Application (all that apply)</h4>
+          <div className="applicationSelect">
+            <Select.Creatable
+              name="application"
+              // value={value}
+              placeholder="Click to select from list below or begin typing to add custom options..."
+              value={this.state.oil.application.toString()}
+              onChange={this.handleApplicationChange}
+              multi
+              allowCreate
+              closeOnSelect={this.state.stayOpen}
+              simpleValue
+              // options={applicationOptions}
+
+              // options={this.state.applicationOptions}
+              options={this.state.oil.applicationOptions}
+          />
+          </div>
+
+            <h4>Warnings (all that apply)<br /></h4>
             * Refresh to clear recently added options
             <div className="warningsSelect">
 
@@ -533,7 +589,7 @@ const oilTypeOptions = [
 
             </div>
 
-            <h4>Usage (select all that apply)</h4>
+            <h4>Usage (all that apply)</h4>
             <div className="usageSelect">
               <Select.Creatable
                 name="usage" // option for sending to general handleChange?
@@ -554,45 +610,7 @@ const oilTypeOptions = [
             />
             </div>
 
-            <h4>Application (select all that apply)</h4>
-            <div className="applicationSelect">
-              <Select.Creatable
-                name="application"
-                // value={value}
-                placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.oil.application.toString()}
-                onChange={this.handleApplicationChange}
-                multi
-                allowCreate
-                closeOnSelect={this.state.stayOpen}
-                simpleValue
-                // options={applicationOptions}
-
-                // options={this.state.applicationOptions}
-                options={this.state.oil.applicationOptions}
-            />
-            </div>
-
-            <h4>Body Systems Affected (select all that apply)</h4>
-            <div className="bodySystemsSelect">
-              <Select.Creatable
-                name="bodySystems"
-                // value={value}
-                placeholder="Click to select from list below or begin typing to add custom options..."
-                value={this.state.oil.bodySystems.toString()}
-                onChange={this.handleBodySystemsChange}
-                multi
-                allowCreate
-                closeOnSelect={this.state.stayOpen}
-                simpleValue
-                // options={bodySystemsOptions}
-
-                // options={this.state.bodySystemsOptions}
-                options={this.state.oil.bodySystemsOptions}
-            />
-            </div>
-
-            <h4>Properties (select all that apply):</h4>
+            <h4>Properties (all that apply)</h4>
             <div className="propertiesSelect">
               <Select.Creatable
                 name="properties"
@@ -611,13 +629,26 @@ const oilTypeOptions = [
             />
             </div>
 
+            <h4>Body Systems Affected (all that apply)</h4>
+            <div className="bodySystemsSelect">
+              <Select.Creatable
+                name="bodySystems"
+                // value={value}
+                placeholder="Click to select from list below or begin typing to add custom options..."
+                value={this.state.oil.bodySystems.toString()}
+                onChange={this.handleBodySystemsChange}
+                multi
+                allowCreate
+                closeOnSelect={this.state.stayOpen}
+                simpleValue
+                // options={bodySystemsOptions}
+
+                // options={this.state.bodySystemsOptions}
+                options={this.state.oil.bodySystemsOptions}
+            />
+            </div>
+
             <h4>Keywords:</h4>
-            <ul>
-              <li> Begin typing to add helpful keywords </li>
-              <li> Press enter to save keyword </li>
-              <li> Begin typing again to add additional keywords </li>
-              <li> use keywords to retrieve oils </li>
-            </ul>
             <div className="keywordsCreate">
               <Select.Creatable
                 name="keywords"
@@ -637,17 +668,12 @@ const oilTypeOptions = [
             </div>
 
             <h4>Links & References</h4>
-            <ul>
-              <li> Begin typing to add http link </li>
-              <li> Press enter to save your link </li>
-              <li> Begin typing again to add additional http links </li>
-            </ul>
 
             <div className="linksCreate">
               <Select.Creatable
                 name="links"
                 // value={value}
-                placeholder="Click and begin typing to add links..."
+                placeholder="Click and begin typing to add http links..."
                 value={this.state.oil.links.toString()}
                 // value={this.state.oil.links}
                 onChange={this.handleLinksChange}
@@ -662,11 +688,11 @@ const oilTypeOptions = [
             />
             </div>
             <div>
-              <h4><button>Create Oil!</button></h4>
+              <button><h3>Create Oil!</h3></button>
             </div>
           </form>
         </div>
-        <h3><Link to={"/"}> return to oil list </Link></h3>
+        <h3><Link to={"/"}> Return to Full Oil List </Link></h3>
       </div>
 
     );
