@@ -29,15 +29,14 @@ X yarn start
 ## General Functionality
 * Enter yarn start, web page loads with no errors
 * ROUTES - From landing screen navigate to create screen and oil detail/oil single screens. Searchable and static list reside on landing page (/)
-* CURRENT LIST - Two hide/show lists display all current existing information. Searchable list default is set to show.
+* READ/VIEW COLLECTION - Two hide/show lists display all current existing information. Searchable list default is set to show.
 * DYNAMIC SEARCH - Search list (oil collection) dynamically by keyword(s) in combination of fields (oil name(title), oil type, application, usage, properties, keywords)
-* CREATE LISTING - Enter information into create screen fields and save. Return to the list screen,
+* CREATE - Enter information into create screen fields and save. Return to the list screen,
 see new information is there.
-* Navigate to oil details/oil single page via quick link or link within oil listing block
-* Navigate to update/edit oil listing from oil details/oil single page
-* Enter, update or delete information within update screen and save. Return to the list screen,
-or oil details/oil single screen, to confirm updated values.
-* Delete items from landing page by clicking labeled delete button within corresponding listing. Item is removed from list/collection.
+* READ/VIEW SINGLE ITEM- Navigate to oil details/oil single page via quick link or link within oil listing block
+* UPDATE - Navigate to update/edit oil listing from oil details/oil single page
+* UPDATE - Enter, update or delete information within update screen and save. Return to the list screen, or oil details/oil single screen, to confirm updated values.
+* DELETE - Delete items from landing page by clicking labeled delete button within corresponding listing. Item is removed from list/collection.
 * Feedback alerts appear to user when oils are created, updated or deleted.
 * Visit oil-specific urls by clicking links on oil details/oil single screen, opens new window
 
