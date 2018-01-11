@@ -1,19 +1,16 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
-import createClass from "create-react-class";
-import PropTypes from "prop-types";
+// import createClass from "create-react-class";
+// import PropTypes from "prop-types";
 import Select from "react-select";
-import Creatable from "react-select";
+// import Creatable from "react-select";
 import "react-select/dist/react-select.css";
 
-// import movieGenres from "../movieGenres";
-
-// AFTER UPDATE
-// http://localhost:3101/update/undefined ???
 
 // include these --> fallback/or || for display in case
-// current state is empty/none were selected initially/or user deletes all selected choices during update
+// current state is empty/none were selected initially
+// or user deletes all selected choices during update
 import oilTypeOptions from "../oilTypeOptions";
 import warningOptions from "../warningOptions";
 import usageOptions from "../usageOptions";
@@ -73,7 +70,6 @@ class UpdateOilListing extends Component {
     };
   }
 
-  // let displayName="";
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
   // const keyword = "usage";
@@ -160,7 +156,7 @@ class UpdateOilListing extends Component {
     console.log("links Selected Option: " + selectedOption);
   }
 
-  /////////
+  // /////// handleChange step 2 for all
 
   handleChange = (selectedOption, stateName) => {
   // this.stateName = stateName;
@@ -248,31 +244,6 @@ class UpdateOilListing extends Component {
       instructionsDiv = "";
     }
 
-    // console.log("oil state: " + this.state.oil);
-    /*
-    console.log(this.props.oil.title);
-    console.log("state image" + this.state.oil.image);
-    const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
-    const usageArray = ["happy", "sad", "regretful", "inspired", "uncomfortable"];
-
-    const formatOptionDisplay = formatOptions.map((f,i) => (
-      <option value={f} key={i}>{f}</option>
-    ));
-
-    const oilGenreDisplay = oilGenres.map((g,i) => (
-      <option value={g} key={i}>{g}</option>
-    ));
-
-    // "happy", "sad", "regretful", "inspired", "uncomfortable"
-    const emotionDisplay = usageArray.map((g,i) => (
-      <option value={g} key={i}>{g}</option>
-    ));
-
-    // BONUS - dropdowns used for viewing format and oil genres
-    //       - format dropdown pulls from local variable array
-    //       - grenres dropdown utilizes oilGenres.js exported array
-*/
-
     return (
       <div className="aLittleSpace">
         <div>
@@ -287,23 +258,11 @@ class UpdateOilListing extends Component {
         </button>
         {instructionsDiv}
           <form onSubmit={(e) => {
-            // ???
             e.preventDefault();
             if (this.props.updateOil) {
               this.props.updateOil(this.state.oil);
             }
-            // ??
           }}>
-          <div className="oilURLCreate">
-            <h4> Oil Poster or Image URL (enter complete url link to image for display):
-              <input value={this.state.oil.image}
-                onChange={(e) => {
-                  const oil = {image: e.target.value || []};
-                  this.setState({
-                    oil: Object.assign(this.state.oil,oil)
-                  });
-                }} /></h4>
-            </div>
 
             <div className="oilNameCreate">
               <h4>Oil Name:
@@ -316,6 +275,17 @@ class UpdateOilListing extends Component {
                   });
                 }} /></h4>
             </div>
+
+            <div className="oilURLCreate">
+              <h4> Oil Image URL (enter complete url link to image for display):
+                <input value={this.state.oil.image}
+                  onChange={(e) => {
+                    const oil = {image: e.target.value || []};
+                    this.setState({
+                      oil: Object.assign(this.state.oil,oil)
+                    });
+                  }} /></h4>
+              </div>
 
             <h4> Oil Type (select one) </h4>
             <div className="oilTypeSelect">
@@ -490,91 +460,3 @@ class UpdateOilListing extends Component {
   }
 }
 export default UpdateOilListing;
-
-/*
-<div>
-  Date watched: <input value={this.state.oil.date}
-    onChange={(e) => {
-    const oil = {date: e.target.value};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-  }} />
-</div>
-<div>
-  Viewing Format(theater, redbox, netflix, etc.):
-  <select value={this.state.oil.format}
-    onChange={(e) => {
-    const oil = {format: e.target.value};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-  }} >
-    {formatOptionDisplay}
-  </select>
-</div>
-<div>
-  Genre: <select value={this.state.oil.genre}
-    onChange={(e) => {
-    const oil = {genre: e.target.value};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-  }} >
-    {oilGenreDisplay}
-  </select>
-</div>
-<div>
-  Plot Summary: <input value={this.state.oil.plot}
-    onChange={(e) => {
-    const oil = {plot: e.target.value};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-  }} />
-</div>
-
-<div className="EasyMultiSelect">
-  <h4>Current Usage: {this.state.oil.usage}</h4>
-  <Select
-    name="form-field-name"
-    // value={this.state.oil.usage}
-    // value={this.state.oil.value}
-    // value={this.props.oil.usage.toString()}
-    value={this.state.oil.usage.toString()}
-    onChange={this.handleUsageChange}
-    multi
-    closeOnSelect={this.state.stayOpen}
-    simpleValue
-    options={options}
-/>
-
-</div>
-
-<div>
-  Usage: <select multiple value={this.state.oil.usage}
-    onChange={(e) => {
-    //  const oil = {usage: e.target.value};
-      const oilUsage = [];
-      oilUsage.push(e.target.value);
-      console.log("oilUsage: " + oilUsage);
-      const oil = {usage: oilUsage};
-      // console.log("oilUsage: " + oilUsage);
-      console.log("oil: " + oil);
-      this.setState({
-        oil: Object.assign(this.state.oil,oil)
-      });
-    }} >
-    {emotionDisplay}
-  </select>
-</div>
-<div>
-  Keywords: <input value={this.state.oil.keywords}
-    onChange={(e) => {
-    const oil = {keywords: e.target.value};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-  }} />
-</div>
-*/

@@ -56,10 +56,6 @@ export function updateOil(request, response) {
     oil.id = request.body.id || oil.id;
     oil.image = request.body.image || oil.image;
     oil.title = request.body.title || oil.title;
-    // oil.date = request.body.date || oil.date;
-    // oil.format = request.body.format || oil.format;
-    // oil.genre = request.body.genre || oil.genre;
-    // oil.plot = request.body.plot || oil.plot;
     oil.oilType = request.body.oilType || oil.oilType;
     oil.warnings = request.body.warnings || oil.warnings;
     oil.usage = request.body.usage || oil.usage;
@@ -96,7 +92,6 @@ links: "",
     warningOptions
     */
 
-// UPDATE THIS NOW!!! not sure if we also need to round displayers...
     oil.oilTypeOptions = request.body.oilTypeOptions || oil.oilTypeOptions;
     oil.warningOptions = request.body.warningOptions || oil.warningOptions;
     oil.usageOptions = request.body.usageOptions || oil.usageOptions;
@@ -122,38 +117,3 @@ export function deleteOil(request, response) {
   });
   // (alert("oil deleted!"));
 }
-
-
-
-/*
-export function updateComment(request, response) {
-  return response.json({theId: request.params.id});
-}
-
-// FUNCTIONS BELOW NOT UPDATED
-export function removeComment(request, response) {
-  return response.json(comments);
-}
-*/
-
-// Alternate 'show' functions
-/*
-export function show(request, response) {
- return response.json({theId: request.params.id});
-}
-
-export function show(request, response) {
-  const commentId = request.params.id;
- // use this id to get from a database
-  comments.findById(commentId);
-}
-
-export function show(request, response) {
-  const commentId = request.params.id;
- // use this id to get from a database
-  comments.findById(commentId);
-  const thisComment = comments.findById(commentId) || {};
-  return response.json(thisComment);
-}
-
-*/

@@ -6,7 +6,18 @@ X yarn start
 
 - This application is designed for a user to manage a collection of essential oils.
 
-- Users can build out there collection with name, type (single or blend), images (url links are displayed for visual customization), application (aromatic, internal, topical), warnings (i.e. volatile), uses (depression, cooking, etc.), properties (i.e. antibacterial), body systems effected (i.e. immune system), keywords (users choice!) and reference links (i.e. article about use, article that prompted their purchase, recipe, blend recommendations).
+- Users can build out there collection with:
+  - Oil name
+  - Oil type (single or blend)
+  - application (aromatic, internal, topical)
+  - warnings (i.e. volatile), uses (depression, cooking, etc.)
+  - properties (i.e. antibacterial)
+  - body systems effected (i.e. immune system)
+  - keywords (users choice!)
+  - reference links (i.e. article about use, article that prompted their purchase, recipe, blend recommendations)
+  - images (url links are displayed for visual customization)
+
+- Users can conveniently retrieve oils using dynamic, multi-field keyword search
 
 ## Highlights:
 * Users can easily create and update oil listing to best manage and utilize their collection

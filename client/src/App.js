@@ -24,15 +24,7 @@ class App extends Component {
   }
 
   render() {
-  /*
-  X Create a route to show the list container
-    X Main / OilsContainer
-  X Create a route to show the create container
-    Currently built into Main with OilsContainer
-    ? build CreateOilListingContainer as separate destination?
-  X Create a route to show the detail container.
-    X OilSingleContainer
-  */
+
     return (
       <div>
         <BrowserRouter>

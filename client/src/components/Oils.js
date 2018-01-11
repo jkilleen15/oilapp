@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom";
 // import { Button } from "react-bootstrap";
 
-// class CollapsableMapper extends Component {
 class Oils extends Component {
   constructor() {
     super();
@@ -59,7 +58,6 @@ class Oils extends Component {
               </button>
           </div>
         ));
-         // });
 
     } else {
       showFullListButtonText = "View Full List of Oils - No Search";
@@ -83,55 +81,8 @@ class Oils extends Component {
   }
 }
 
-// export default CollapsableMapper;
 export default Oils;
 
 // REMOVED UNTIL CAN SORT OUT id v _id sent from Oils
 // <li><Link to={"/update/" + d._id}> edit or update this listing </Link></li>
 // End Removed
-
-/*
-class CollapsableMapper extends Component {
-  constructor() {
-    super();
-    this.state = {visible: true};
-  }
-  render() {
-    let buttonText = "Hide";
-    let oilDivs = "";
-    if (this.state.visible) {
-      buttonText = "Hide";
-      userDivs = this.props.data.map((d,i) => {
-        return (
-          <div key={i}>
-            {d[this.props.field]}
-            {d[this.props.field1]}
-            {d[this.props.field2]}
-            {d[this.props.field3]}
-            <Link to={"/" + this.props.path + "/" + d._id}> View </Link>
-          </div>
-        );
-      });
-    } else {
-      buttonText = "Show";
-      userDivs = "";
-    }
-    return (
-      <div>
-        <button onClick={() => {
-          this.setState({
-            visible: !this.state.visible
-          });
-        }
-        }>
-          {buttonText}
-        </button>
-        {userDivs}
-      </div>);
-  }
-}
-
-
-export default CollapsableMapper;
-
-*/

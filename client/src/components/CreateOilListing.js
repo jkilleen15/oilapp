@@ -1,16 +1,12 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-// import MultiSelectField from "../components/MultiSelectField";
-// import EasyMultiSelect from "../components/EasyMultiSelect";
-
-import createClass from "create-react-class";
-import PropTypes from "prop-types";
+// import createClass from "create-react-class";
+// import PropTypes from "prop-types";
 import Select from "react-select";
-import Creatable from "react-select";
+// import Creatable from "react-select";
 import "react-select/dist/react-select.css";
 
-// import movieGenres from "../movieGenres";
-// move options files into options folder and re-route below
+// TODO move options files into options folder and re-route below
 import oilTypeOptions from "../oilTypeOptions";
 import warningOptions from "../warningOptions";
 import usageOptions from "../usageOptions";
@@ -29,17 +25,16 @@ class CreateOilListing extends Component {
         // usage currently going in as simpleValue string from Select
         // so array.length = 1
 
-        // oilType: [],
         oilType: [],
         warnings: [],
         usage: [],
-        application: [], // !! ADD TO MODEL, UPDATE COMP
+        application: [],
         bodySystems: [],
         properties: [],
         keywords: [],
         links: [],
         // links: "",
-        // movieGenres,
+
         // selectedOption: [], // here for now, but no longer used
         // value: [], // here for now, but no longer used
 
@@ -55,87 +50,13 @@ class CreateOilListing extends Component {
       },
       stayOpen: false,
       instructionsVisible: false,
-      // usageDisplay: [],
       // warningOptions, // right now this adds to (global) state that applies now any time a new oil is CREATED
                       // consider benefits of adding like this -- how would a user remove unwanted global options
                       // should it just be applied to per-oil, oil-specific - how would this effect search functions
-      /*
-      usageOptions,
-      applicationOptions,
-      bodySystemsOptions,
-      propertiesOptions,
-      oilTypeOptions,
-      keywordsOptions: [],
-      linksOptions: [],
-      */
-      /*
-      warningOptions: [
-          { value: "Dilute", label: "Dilute" },
-          { value: "Volatile", label: "Volatile" },
-          { value: "Photosensitizing", label: "Photosensitizing" },
-      ],
-      */
 
-      /*
-      // for multi select feature - unused
-      removeSelected: true,
-      disabled: false,
-      crazy: false,
-      // stayOpen: false, // dup
-      // value: [], // dup
-      rtl: false,
-      */
     };
     // this.handleChange = this.handleChange.bind(this);
   }
-/*
-// FULL with old notes
-  handleUsageChange = (selectedOption) => {
-    // 1 const selectedUsage = [];
-    console.log("selectedOption: " + selectedOption.toString()); // not selectedOption.value
-    // 2 this.setState({ selectedOption });
-    // 3 this.setState({ value: selectedOption});
-    // 4 selectedUsage.push(selectedOption);
-    // 5 console.log("selectedUsageArray: " + selectedUsage)
-    // 6, switch to below, const oil = {usage: selectedUsage};
-    const oil = {usage: selectedOption};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
-  */
-
-  // cleaned up
-/*
-  handleUsageChange = (selectedOption) => {
-    // this.stateName = stateName;
-    console.log("selectedOption Usage: " + selectedOption.toString());
-    console.log("selectedOption id: " + selectedOption.name);
-    // console.log("stateName: " + stateName);
-    // console.log("usage keyword name: " + keyword);
-
-    const oil = {usage: selectedOption};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
-
-  // this can be used for all changes if
-// usage, application (the name of the state categorie can be sent as variable)
-
-  handleApplicationChange = (selectedOption) => {
-    console.log("selectedOption Application: " +
-    selectedOption.toString()); // not selectedOption.value
-    const oil = {application: selectedOption};
-    this.setState({
-      oil: Object.assign(this.state.oil,oil)
-    });
-    console.log(`Selected: ${selectedOption.toString()}`);
-  }
-
-*/
 
   handleOilTypeChange = (selectedOption) => {
   // this.stateName = stateName;
@@ -170,31 +91,6 @@ class CreateOilListing extends Component {
         // c. create a model?, controllers, mapStateToProps as needed
         // d. current global is searched, if new items no match, concat with current global
               // see code ref below for inspiration
-
-// POTENTIAL REF FOR SHOWING NEWLY CREATED
-// THIS WOULD BE WITHIN HANDLECHANGE
-/*
-const onChange = (selectedOption) => {
-      console.log("Change Handler 1 : Selected: ", selectedOption);
-
-      const newSelectedOptions = [].concat(warningOptions);
-      // this will depend on how info out i.e. currently simple value
-      selectedOption.forEach(selected => {
-        const match = warningOptions.find(
-          entry => (entry.value == selected.value));
-        if (!match) {
-        	newSelectedOptions.add(match);
-        }
-      });
-      warningOptions = newSelectedOptions
-      this.setState({
-      oil: {
-        warnings: [].concat(selectedOption),
-      //  warningOptions: newSelectedOptions
-        }
-      });
-    };
-*/
 
   handleUsageChange = (selectedOption) => {
   // this.stateName = stateName;
@@ -258,8 +154,6 @@ const onChange = (selectedOption) => {
 
 handleChange = (selectedOption, stateName) => {
 
-  ///
-  ///
 // this.stateName = stateName;
 console.log("selectedOptions: " + selectedOption.toString());
 console.log("stateName: " + stateName);
@@ -275,10 +169,8 @@ console.log("stateName: " + stateName);
 console.log(`Selected: ${selectedOption.toString()}`);
 }
 
-  // from EasyMultiSelect end
-
   render() {
-    // for EasyMultiSelect
+
     console.log("STATE INFO:")
     console.log("oil title: " + this.state.oil.title);
     console.log("oil type: " + this.state.oil.oilType);
@@ -302,7 +194,6 @@ console.log(`Selected: ${selectedOption.toString()}`);
     */
 
     console.log("SELECTORDISPLAYINFO:")
-    // console.log("oil title: " + this.state.oil.title);
     console.log("oil type options: " + this.state.oil.oilTypeOptions);
     console.log("warnings options: " + this.state.oil.warningOptions);
     console.log("usage options: " + this.state.oil.usageOptions);
@@ -312,7 +203,6 @@ console.log(`Selected: ${selectedOption.toString()}`);
     console.log("keywords options: " + this.state.oil.keywordsOptions);
     console.log("links options: " + this.state.oil.linksOptions);
 
-    /////
     // HIDE OR SHOW INSTRUCTIONS
     let showInstructionButtonText = "";
     let instructionsDiv = "";
@@ -337,155 +227,7 @@ console.log(`Selected: ${selectedOption.toString()}`);
 
     ////
 
-// REF https://github.com/JedWatson/react-select/issues/1663
 // static arrays moved to state so newly created tags would appear in input field
-
-//  const oilList
-
-/*
-const oilTypeOptions = [
-    { value: "Single Oil", label: "Single Oil" },
-    { value: "Oil Blend", label: "Oil Blend" },
-  ];
-*/
-
-/*
-  Oil Type
-    - single oils
-    - oil blend (two or more oils)
-*/
-
-/*
-  const warningOptions = [
-      { value: "Dilute", label: "Dilute" },
-      { value: "Volatile", label: "Volatile" },
-      { value: "Photosensitizing", label: "Photosensitizing" },
-    ];
-*/
-/*
-  Warnings
-    - Dilute
-    - Volatile
-    - Photosensitizing
-*/
-/*
-    const usageOptions = [
-      { value: "stress", label: "Stress" },
-      { value: "focus", label: "Focus" },
-      { value: "fatigue", label: "Fatigue"},
-      { value: "happiness", label: "Happiness" },
-    ];
-*/
-/*
-    const applicationOptions = [
-      { value: "topical", label: "Topical" },
-      { value: "aromatic", label: "Aromatic" },
-      { value: "internal", label: "Internal"},
-    ];
-*/
-/*
-    const bodySystemsOptions = [
-      { value: "cardiovascular system", label: "Cardiovascular System" },
-      { value: "digestive system", label: "Digestive System" },
-      { value: "emotional balance", label: "Emotional Balance"},
-      { value: "hormonal system", label: "Hormonal System" },
-      { value: "immune system", label: "Immune System" },
-      { value: "muscles and bones", label: "Muscles and Bones" },
-      { value: "nervous system", label: "Nervous System"},
-      { value: "respiratory system", label: "Respiratory System" },
-      { value: "skin and hair", label: "Skin and Hair" },
-    ];
-
-  */
-/*
-    const propertiesOptions = [
-      { value: "Antibacterial", label: "Antibacterial" },
-      { value: "Anticatarrhal", label: "Anticatarrhal" },
-      { value: "Antidepressant", label: "Antidepressant"},
-      { value: "Antifungal", label: "Antifungal" },
-      { value: "Anti-infectious", label: "Anti-infectious" },
-      { value: "Anti-inflammatory", label: "Anti-inflammatory" },
-      { value: "Antimicrobial", label: "Antimicrobial"},
-      { value: "Antiparasitic", label: "Antiparasitic" },
-      { value: "Antirheumatic", label: "Antirheumatic" },
-      { value: "Antiseptic", label: "Antiseptic" },
-      { value: "Antispasmodic", label: "Antispasmodic" },
-      { value: "Antiviral", label: "Antiviral"},
-      { value: "Analgesic", label: "Analgesic" },
-      { value: "Immune-stimulant", label: "Immune-stimulant" },
-    ];
-*/
-/*
-    Properties (choose from):
-      - Antibacterial
-      - Anticatarrhal
-      - Antidepressant
-      - Antifungal
-      - Anti-infectious
-      - Anti-inflammatory
-      - Antimicrobial
-      - Antiparasitic
-      - Antirheumatic
-      - Antiseptic
-      - Antispasmodic
-      - Antiviral
-      - Analgesic
-      - Immune-stimulant
-*/
-
-/*
-    Body Systems Affected (choose from)
-      - Cardiovascular System
-      - Digestive System
-      - Emotional Balance
-      - Hormonal System
-      - Immune System
-      - Muscles and Bones
-      - Nervous System
-      - Respiratory System
-      - Skin and Hair
-*/
-    // end for EasyMultiSelect
-
-    // const formatOptions = ["theater", "redbox", "netflix", "blockbuster", "I own it!", "other"];
-  //  const usageArray = [];
-
-    // const usageArray = [
-    //  "stress", "focus", "fatigue", "happiness"];
-/*
-    { label: "Happy", value: "happy" },
-    { label: "Sad", value: "sad" },
-    { label: "Regretful", value: "regretful" },
-    { label: "Inspired", value: "inspired"},
-    { label: "Uncomfortable", value: "uncomfortable" },
-    { label: "Melancholy", value: "melancholy" },
-    ];
-    */
-
-    // const oilUsage = [];
-    // const oilUsageSelected = [];
-
-    // save for later - trying to dynamically generate arrays, is it possible
-
-    /*
-    // SEE NPM
-    Async options
-    If you want to load options asynchronously, use the Async export
-    and provide a loadOptions Function.
-
-    The function takes two arguments String input,
-    Function callbackand will be called when the input text is changed.
-    */
-    /*
-    const { usageDisplay } = this.state;
-    const usageDisplayPrep = usageArray.map((g,i) => (
-      // usageDisplay.push(`{value:"${g}", label:"${g}", key:"${i}"}`)
-      usageDisplay.push(`{value: "${g}", label: "${g}"}`)
-    ));
-    console.log("usageDisplayPrep: " + usageDisplayPrep);
-    console.log("usageDisplay: " + usageDisplay);
-    */
-
 
     return (
       <div className="aLittleSpace">
@@ -507,16 +249,6 @@ const oilTypeOptions = [
             }
           }}>
             <div>
-            <h4> Oil Poster or Image URL (enter complete url link to image for display):
-          <input onChange={(e) => {
-            // const oil = {image: e.target.value || ""};
-            const oil = {image: e.target.value || []};
-            this.setState({
-              oil: Object.assign(this.state.oil,oil)
-            });
-          }} /></h4>
-            </div>
-            <div>
               <h4>Oil Name: <input onChange={(e) => {
                 // const oil = {title: e.target.value};
                 const oil = {title: e.target.value || []};
@@ -524,6 +256,17 @@ const oilTypeOptions = [
                   oil: Object.assign(this.state.oil,oil)
                 });
               }} /></h4>
+            </div>
+
+            <div>
+            <h4> Oil Image URL (enter complete url link to image for display):
+          <input onChange={(e) => {
+            // const oil = {image: e.target.value || ""};
+            const oil = {image: e.target.value || []};
+            this.setState({
+              oil: Object.assign(this.state.oil,oil)
+            });
+          }} /></h4>
             </div>
 
             <h4>Oil Type (select one)</h4>
@@ -701,45 +444,3 @@ const oilTypeOptions = [
 }
 
 export default CreateOilListing;
-
-/*
-
-<select onChange={(e) => {
-  const oil = {genre: e.target.value};
-  this.setState({
-    oil: Object.assign(this.state.oil,oil)
-  });
-}} >
-</select>
-*/
-
-/*
-handleUsage(e.target.value);
-// addUsage();
-
-
-  const oil = {usage: oilUsageSelected};
-  console.log("oilUsageSelected before " + oilUsageSelected);
-  this.setState({
-    oil: Object.assign(this.state.oil,oil)
-    // oil: Object.assign(this.state.oil,oil)
-  });
-  console.log("oil.usage: " + this.state.oil.usage)
-  console.log("oilUsageSelected after " + oilUsageSelected);
-
-}}
-
-////////////
-<div>
-  Usage:
-
-  <Select
-    multi
-    options={usageArray}
-    simpleValue
-    value={oilUsage}
-    placeholder="Select how this oil makes you feel"
-    onChange={this.handleSelectChange}
-    />
-</div>
-*/

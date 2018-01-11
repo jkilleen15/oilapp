@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import Oils from "../components/Oils";
 import { deleteOil } from "../actions";
 import { updateOil } from "../actions";
-// import movieGenres from "../movieGenres";
 
 // The list component container should mapStateToProps for the array of things
 function mapStateToProps(state) {

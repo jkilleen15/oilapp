@@ -7,7 +7,8 @@ function mapStateToProps(state) {
     oil: state.oil,
     // selectedOption: state.oil.selectedOption,
     // oils: state.oils
-
+    // removed when moved display options from global (or movies in future)
+    // to oil listing - specif
     /*
     stayOpen: state.stayOpen,
     warningOptions: state.warningOptions,

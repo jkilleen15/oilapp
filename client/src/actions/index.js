@@ -35,7 +35,6 @@ export function createOil(m) {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(m)
-  //  }).then(() => dispatch(loadOils()));
     }).then(() => dispatch(createOilDone()))
     .then(() => dispatch(loadOils()));
   };
@@ -49,7 +48,6 @@ function createOilDone(newOil) {
   };
 }
 
-// ////////
 
 export function getOil(id) {
   return function (dispatch) {
@@ -114,9 +112,7 @@ export function deleteOil(id) {
      .then(() => dispatch(deleteOilDone()));
   };
 }
-// function getOilDone(oil) {
 function deleteOilDone() {
-  // alert("oil deleted!");
   console.log("oil deleted!");
   return {
     type: "DELETE_OIL_DONE",

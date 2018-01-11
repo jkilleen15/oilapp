@@ -2,16 +2,6 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
 class OilSingle extends Component {
-  // constructor() {
-  //   super();
-  // }
-
-/*
-  componentWillMount() {
-    const thisOilId = this.props.match.params.id;
-    this.props.getOil(thisOilId);
-  }
-*/
 
   componentDidMount() {
     const thisOilId = this.props.match.params.id;
@@ -29,16 +19,7 @@ class OilSingle extends Component {
 
       if (this.props.oil.links === [] || this.props.oil.links === "" || this.props.oil.links.length === 0) {
       console.log("no links: " + this.props.oil.links);
-      /*
-      const linksToDisplay = this.props.oil.links;
-      const linksToDisplay2 = linksToDisplay.split(",");
-      console.log("formatOptions2" + linksToDisplay2);
-      linksDisplay =
-        linksToDisplay2.map((link,i) => (
-        <h3 key={i}><li><a href={link} target="_blank">{link}</a></li></h3>
 
-    ));
-    */
     } else {
       console.log("we got links!");
       const linksToDisplay = this.props.oil.links;
@@ -54,41 +35,6 @@ class OilSingle extends Component {
     }
 
   }
-
-/*
-    let warningsDisplay = "";
-    if (!this.props.oil.warnings || this.props.oil.warnings === "") {
-      warningsDisplay = "";
-    } else {
-      const warningsToDisplay = this.props.oil.warnings;
-      const warningsToDisplay2 = warningsToDisplay.split(",");
-      console.log("warningsOptions2" + warningsToDisplay2);
-      warningsDisplay =
-        warningsToDisplay2.map((warn,i) => (
-        <h3 key={i}><li><a href={warn} target="_blank">{warn}</a></li></h3>
-    ));
-    }
-    */
-
-/*
-    let linksDisplay="";
-    if (!this.props.oil.links){
-      linksDisplay = "";
-    } else {
-      const linksToDisplay = this.props.oil.links;
-      const linksToDisplay2 = linksToDisplay.split(",");
-      console.log("formatOptions2" + linksToDisplay2);
-      linksDisplay =
-        linksToDisplay2.map((link,i) => (
-        <h3><li key={i}><a href={link} target="_blank">{link}</a></li></h3>
-    ));
-    }
-    */
-
-/* removed
-<h3>Oil Poster or Image URL: <br /><img src={this.props.oil.image || PersonImg}
-  alt={""} /></h3>
-*/
 
     return (
       <div>
@@ -114,9 +60,7 @@ class OilSingle extends Component {
       </div>
     );
   }
- // }
+
 }
-// removed!
-// {linksDisplay}
 
 export default OilSingle;

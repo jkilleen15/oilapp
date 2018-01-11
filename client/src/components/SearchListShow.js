@@ -1,9 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-// import Select from "react-select";
-// import { Button } from "react-bootstrap";
-// import Oil from './Oil';
-// <li key={i}><a>{oil.title} {oil._id}</a></li>
 
 class SearchListShow extends React.Component {
   constructor(props) {
@@ -44,8 +40,6 @@ class SearchListShow extends React.Component {
   filterOils(oils) {
     return oils.filter((oil) => {
       // search by keyword
-      // return oil.usage.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1;
-      // return (
       return oil.title.toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
       oil.oilType.toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
       oil.usage.toString().toLowerCase().search(this.state.keyword.toLowerCase()) !== -1 ||
@@ -72,8 +66,6 @@ class SearchListShow extends React.Component {
     });
   }
 
-  // {oilList.length ? oilList : 'Nothing found.'}
-
   render() {
     let oilList = [];
     let oils = this.state.filtering ? this.state.filteredOils : this.props.oils;
@@ -86,24 +78,6 @@ class SearchListShow extends React.Component {
       });
     }
 
-/* removed for button
-    const oilListShow = oilList.map((oil,i) => (
-      <li><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
-    ));
-*/
-
-/*
-    if (!this.props.oils.length) {
-      return (
-        <div className="column">
-          <h4>{this.props.title}</h4>
-          Loading searchable list...
-        </div>
-      );
-    }
-*/
-
-    ////
     let searchShowButtonText = "";
     let showFullYesNoLabel = "";
     let quickLinksLabel = "";
@@ -143,10 +117,6 @@ class SearchListShow extends React.Component {
         // value={this.state.keyword}
       />;
 
-      // oilDivs = this.props.data.map((d,i) => {
-         // oilDivs = this.props.oils.map((d,i) => {
-         //<li className="listNoDecoration" key={oil._id}><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
-
          oilListShow =
          oilList.map((oil,i) => (
            <li key={i}><Link to={"/oil/" + oil._id}> {oil.title} </Link></li>
@@ -171,7 +141,7 @@ class SearchListShow extends React.Component {
               </button>
           </div>
          ));
-         // });
+
     } else {
       searchShowButtonText = "Search My Collection";
       showFullYesNoLabel = "";
@@ -180,9 +150,7 @@ class SearchListShow extends React.Component {
     }
 
     return (
-    //  //
 
-    // return (
         <div>
           <div>
             <button onClick={() => {
@@ -223,4 +191,3 @@ Oil.propTypes = {
 */
 
 export default SearchListShow;
-// module.exports = searchListShow;

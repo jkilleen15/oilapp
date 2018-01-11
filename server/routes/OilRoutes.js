@@ -1,6 +1,5 @@
 import express from "express";
 const router = express.Router();
-// add deleteOil
 import {listOils,showOil,createOil,updateOil, deleteOil}
 from "../controllers/OilsController";
 

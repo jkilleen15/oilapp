@@ -24,6 +24,5 @@ function ListOfOils() {
 
 ListOfOils.propTypes = {
   oils: PropTypes.array,
-  // oils: PropTypes.array.isRequired,
 };
 export default ListOfOils;

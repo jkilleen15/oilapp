@@ -2,13 +2,6 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
 
-/*
-  _id: {
-    required: false,
-    type: String
-  },
-*/
-
   id: {
     required: false,
     type: String
@@ -19,35 +12,11 @@ const schema = new mongoose.Schema({
     type: String
   },
 
-/*
-  image: {
-    required: false,
-    type: Array
-  },
-*/
-
-  /*
-  title: {
-    // required: true,
-    required: false,
-    type: Array
-  },
-  */
-
   title: {
     // required: true,
     required: false,
     type: String
   },
-
-  /*
-  oilType: {
-    // required: true,
-    required: false,
-    // type: Array
-    type: Array
-  },
-  */
 
   oilType: {
     // required: true,
@@ -114,37 +83,37 @@ const schema = new mongoose.Schema({
   oilTypeOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+    
   },
 
   warningOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+
   },
-// remove?
+
   usageOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+
   },
 
   applicationOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+
   },
 
   bodySystemsOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+
   },
 
   propertiesOptions: {
     required: false,
     type: Object
-    // type: Date, default: Date.now
+
   },
 
   keywordsOptions: {
@@ -152,7 +121,7 @@ const schema = new mongoose.Schema({
     type: Object,
     value: "",
     label: "",
-    // type: Date, default: Date.now
+
   },
 
   linksOptions: {
@@ -160,7 +129,7 @@ const schema = new mongoose.Schema({
     type: Object,
     value: "",
     label: "",
-    // type: Date, default: Date.now
+
   },
 
 });
